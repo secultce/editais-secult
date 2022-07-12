@@ -37,8 +37,8 @@ Route::get('/cefic', function () {
     return view('cefic');
 });
 
-Route::get('/login', function () {
-    return view('login');
+Route::get('/ZonaDeEditais', function () {
+    return view('ZonaDeEditais');
 });
 
 Route::get('/postagem', function () {

@@ -69,7 +69,7 @@
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/editais" class="nav-item nav-link active">Editais</a>
                     <a href="/equipamentos" class="nav-item nav-link ">Equipamentos</a>
-                    <a href="/service" class="nav-item nav-link">Servicos</a>
+                    <a href="/servico" class="nav-item nav-link">Servicos</a>
                     <a href="/cefic" class="nav-item nav-link ">Cefic</a>
                 </div>
             </div>
