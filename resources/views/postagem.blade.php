@@ -97,8 +97,8 @@
         <div class="row gx-0">
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"></i>Governo Do Estado Do Ceará -> Acesso restrito para: <b
-                            style="text-transform: uppercase;">{{nome_usuario}}</b></small>
+                    <small class="me-3 text-light"></i>Governo Do Estado Do Ceará -> Acesso restrito para: {{auth()->user()->name}}<b
+                            style="text-transform: uppercase;"></b></small>
                 </div>
             </div>
             <div class="col-lg-4 text-center text-lg-end">
@@ -117,12 +117,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="http://localhost/EditaisMVC/" class="nav-item nav-link active"><b>Início</b></a>
-                    <a href="http://localhost/EditaisMVC/listagem/listaNova"
+                    <a href="/postagem" class="nav-item nav-link active"><b>Início</b></a>
+                    <a href="/listagem"
                         class="nav-item nav-link "><b>Editais</b></a>
-                    <a href="http://localhost/EditaisMVC/desativados/desativados"
+                    <a href="/desativados"
                         class="nav-item nav-link "><b>Encerrados</b></a>
-                    <a href="http://localhost/EditaisMVC/postagem/logout" class="nav-item nav-link  "><b>Sair</b></a>
+
+                         <a href="{{route('login.destroy')}}" class="nav-item nav-link"><b>Sair</b></a>
+                
                 </div>
             </div>
         </nav>
@@ -235,7 +237,6 @@
 
                                 <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);"
                                     onclick="adicionarCampo()">+</button>&nbsp;
-                                <!--<button class="col-lg-1" type="button" style="background-color: rgb(246, 8, 8);" onclick="removerCampo()">-</button>;-->
 
                                 <button class="btn btn-secondary w-100 py-3" type="submit" name="submit">Adicionar
                                     edital</button>
