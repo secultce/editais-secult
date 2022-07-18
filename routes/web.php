@@ -16,13 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('editais');
-});
+Route::get('/', [PostagensController::class, 'listagemEditais'])
+->name('postagens.editais');
 
-Route::get('/editais', function () {
+
+
+/* Route::get('/editais', function () {
     return view('editais');
-});
+}); */
 
 Route::get('/single', function () {
     return view('single');
@@ -44,7 +45,12 @@ Route::get('/postagem', function () {
     return view('postagem');
 })->middleware('auth');
 
-Route::get('/listagem', [RegistroController::class, 'listagem'])->name('registro.listagem')->middleware('auth');
+Route::get('/listagem', [RegistroController::class, 'listagem'])
+->name('registro.listagem')
+->middleware('auth');
+
+Route::get('/editais', [PostagensController::class, 'listagemEditais'])
+->name('postagens.editais');
 
 Route::get('/desativados', function () {
     return view('desativados');
@@ -74,4 +80,6 @@ Route::get('/logout', [SessaoController::class, 'destroy'])
     ->middleware('auth')
     ->name('login.destroy');
 
-Route::post('/inserir-postagem', [PostagensController::class, 'inserirPostagem'])->name('postagem.inserirPostagem')->middleware('auth');
+Route::post('/inserir-postagem', [PostagensController::class, 'inserirPostagem'])
+->name('postagem.inserirPostagem')
+->middleware('auth');

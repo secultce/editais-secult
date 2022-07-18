@@ -98,7 +98,7 @@
         <div class="row gx-0">
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"></i>Governo Do Estado Do Ceará -> Acesso restrito para: {{ Session::get('id') ? auth()->user()->name : null }}<b
+                    <small class="me-3 text-light"></i>Governo Do Estado Do Ceará -> Acesso restrito para: {{ auth()->user()->name }}<b
                             style="text-transform: uppercase;"></b></small>
                 </div>
             </div>
@@ -138,10 +138,6 @@
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <h5 class="fw-bold text-primary text-uppercase">Cadastros</h5>
         </div>
-
-
-
-
         <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">

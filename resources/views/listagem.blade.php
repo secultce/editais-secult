@@ -133,7 +133,7 @@
                                     <p class="mb-0">
 
                                         <li id="0" class="widget-list-item"><span><a
-                                                    href="/links">Lista
+                                                    href="/links/{{$post->id}}">Lista
                                                     de Links</a></span><img src="img/logo/mouse.png" width="20">
                                         </li>
 

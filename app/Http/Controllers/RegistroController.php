@@ -30,7 +30,7 @@ class RegistroController extends Controller
 
     public function listagem()
     {
-        $postagem = Postagens::paginate(2);
+        $postagem = Postagens::simplePaginate(5);
 
         return view('listagem', compact('postagem'));
     }

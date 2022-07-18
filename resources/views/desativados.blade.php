@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
                                         <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>Nº:}</p>
+                                                class="fa fa-arrow-right text-primary me-3"></i>Nº:</p>
                                         <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
                                             R$:
                                         </p>

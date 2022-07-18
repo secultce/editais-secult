@@ -179,35 +179,38 @@
         <h1 class="mb-0">Editais em Conhecimento público </h1>
     </div>
 
+    
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
-        
+        @foreach ($postagem as $post)
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
                             <div class="nova">
-                                <img id="dimensao" src="img/imagensEditais/">
+                                <img id="dimensao" src="{{asset('public/Editais/'.$post->arquivo )}}"> 
                             </div>
                             <div
                                 class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                Edital aberto</div>
+                                {{ $post->nome }}</div>
                         </div>
                         <div class="p-4">
                             <a class="text-width-g "
-                                href="#">Inscreva-se<i
+                                href="/single/{{$post->id}}">Inscreva-se<i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div><br>
             </div>
 
-          
+           @endforeach
         </div>
     </div>
+    <div class="d-flex justify-content-center wow fadeInUp" data-wow-delay="0.1s">
+        {!! $postagem->links() !!}
+        </div>
 
-  
-
+   <br>
 
     <!-- se existir editais abertos -->
     <!-- Mostre isso -->

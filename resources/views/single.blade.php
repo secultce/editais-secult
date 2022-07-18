@@ -71,10 +71,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="http://localhost/EditaisMVC/editais/pagina" class="nav-item nav-link">Editais</a>
-                <a href="http://localhost/EditaisMVC/equipamentos/equipamentos" class="nav-item nav-link" >Equipamentos</a>
-                <a href="http://localhost/EditaisMVC/servico/service" class="nav-item nav-link">Serviços</a>
-                <a href="http://localhost/EditaisMVC/cefic/cefic" class="nav-item nav-link ">Cefic</a>
+                <a href="/editais" class="nav-item nav-link">Editais</a>
+                <a href="/equipamentos" class="nav-item nav-link" >Equipamentos</a>
+                <a href="/servico" class="nav-item nav-link">Serviços</a>
+                <a href="/cefic" class="nav-item nav-link ">Cefic</a>
             </div>
         </div>
     </nav>
@@ -98,32 +98,32 @@
 
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-        <h5 class="fw-bold text-primary text-uppercase">{{nome}} </h5>
+        <h5 class="fw-bold text-primary text-uppercase">@nome </h5>
     </div>
     <div class="container py-5">
        
         <div class="row g-5">
             <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute rounded wow zoomIn" data-wow-delay="0.1s" src="../../img/imagensEditais/{{arquivo}}"  width="300" style="object-fit: cover;">
+                    <img class="position-absolute rounded wow zoomIn" data-wow-delay="0.1s" src="../../img/imagensEditais/@arquivo"  width="300" style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="row g-5">
                     <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
                         <h4>Etapas de Execução</h4>
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>{{etapas}}</p>
+                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>@etapas</p>
 
                     </div>
                     <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
                         <h4>Valor do Edital</h4>
-                        <p class="mb-0">R$ {{valor|number_format(2, '.', ',') }}</p>
+                        <p class="mb-0">R$ @valor</p>
                     </div>
 
                     <div class="col-lg-12 mb-20">
                         <h4>Contato sobre o Edital</h4>
                         <p class="mb-0">Mais informações poderão ser obtidas prioritariamente pelo e-mail:
-                            -{{contatos}} e pelo telefone {{telefone}}</p>
+                            -@email e pelo telefone @telefone</p>
                     </div>
                 </div>
             </div>
@@ -132,9 +132,9 @@
                 <div class="row g-5">
                     <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
                         <h4>Publicações do Edital</h4>
-                        {% for post in anexos %}
-                            <li><a href="{{post.link}}" target="_blank"> {{post.texto}}</a><br></li>
-                        {% endfor %}
+                      
+                            <li><a href="@link" target="_blank"> @texto</a><br></li>
+                     
                     </div>
                 </div>
             </div>  

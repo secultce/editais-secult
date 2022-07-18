@@ -20,9 +20,17 @@ class PostagensController extends Controller
             'telefone' => $request->telefone,
             'categoria' => $request->categoria,
             'flag' => $request->flag,
-            'arquivo' => $request->arquivo,
+            'arquivo' => $request->arquivo
+            
+        ]; 
 
-        ];
+        if($request->hasFile('arquivo')){
+            $destination_path = 'public/Editais';
+            $image = $request->file('arquivo');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('arquivo')->storeAs($destination_path, $image_name);
+            $input['arquivo'] = $image_name;
+        }
 
         if ($data) {
             $postg = Postagens::create($data);
@@ -35,12 +43,18 @@ class PostagensController extends Controller
 
             if ($anexoData) {
                 Anexos::create($anexoData);
-            }
 
-            
-            redirect()->to('/postagem');
+                return redirect('/listagem');
+            }
+ 
         } else {
             dd('Dados incongruentes!');
         }
+    }
+
+    public function listagemEditais()
+    {
+        $postagem = Postagens::simplePaginate(8);
+        return view('editais', compact('postagem'));
     }
 }
