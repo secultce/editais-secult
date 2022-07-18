@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\SessaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('editais');
-});
+})->middleware('auth');
 
 Route::get('/editais', function () {
     return view('editais');
@@ -35,10 +37,6 @@ Route::get('/servico', function () {
 
 Route::get('/cefic', function () {
     return view('cefic');
-});
-
-Route::get('/ZonaDeEditais', function () {
-    return view('ZonaDeEditais');
 });
 
 Route::get('/postagem', function () {
@@ -61,5 +59,21 @@ Route::get('/links', function () {
     return view('links');
 });
 
+Route::get('/registro',[RegistroController::class,'create'])
+->middleware('guest')
+->name('registro.index');
 
+Route::get('/login',[SessaoController::class,'create'])
+->middleware('guest')
+->name('login.index');
+
+Route::post('/login',[SessaoController::class,'store'])
+->name('login.store');
+
+Route::post('/registro',[RegistroController::class,'store'])
+->name('registro.store');
+
+Route::get('/logout',[SessaoController::class,'destroy'])
+->middleware('auth')
+->name('login.destroy');
 
