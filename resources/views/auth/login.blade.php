@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Editais culturais</title>
+    <title>Login</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Governo Do Estado Do Ceará" name="keywords">
     <meta content="Governo Do Estado Do Ceará" name="description">
@@ -43,10 +43,11 @@
                     <small class="me-3 text-light"></i>Governo Do Estado Do Ceará</small>
                 </div>
             </div>
-            
+
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <img src="img/logo/secult-escura.png" width="180">
+                    <a href="/editais" class="nav-item nav-link text-light bg-dark">Retornar</a>
                 </div>
             </div>
         </div>
@@ -60,50 +61,52 @@
             <img id="identidade-govbr" src="img/logo/logoNova.png" />
         </aside>
         <main id="main-signin">
-            <form method="POST" action="route{{('auth.user)}}">
-                
+            <form method="POST" action="">
+                @csrf
+
                 <div class="card" id="login-cpf">
-                    <div class="item-login-signup-ways" onclick="accordion('accordion-panel-id')">
+                    <div class="item-login-signup-ways">
                         <img src="img/logo/logoNova.png"><br>
 
                     </div>
                     <div class="accordion-panel" id="accordion-panel-id">
                         <p>Digite seu <strong>login</strong> e <strong>senha</strong> para acessar sua conta do editais culturais</p>
-                        
-                        <label for="cpf">Usuário</label>
-                        <input id="user" name="usuario" autocomplete="ON" tabindex="1" type="text" value="" placeholder="Digite seu login" aria-invalid="false">
 
-                        <label for="cpf">Senha</label>
-                        <input id="password" name="senha" autocomplete="OFF" tabindex="1" type="password" value="" placeholder="Digite sua senha" aria-invalid="false">
-                        
+                        <label for="email">Usuário</label>
+                        <input id="email" name="email" autocomplete="ON" tabindex="1" type="text" value="" placeholder="Digite seu email" aria-invalid="false">
+
+                        <label for="password">Senha</label>
+                        <input id="password" name="password" autocomplete="OFF" tabindex="1" type="password" value="" placeholder="********" aria-invalid="false">
+
                         <div class="button-panel" id="login-button-panel">
                             <button name="action" value="enterAccountId" class="button-continuar" type="submit" tabindex="2">Acessar</button>
                         </div>
+
+                        <div>
+                            @error('message')
+                            <p class="text-danger"><i class="fa fa-key fa-fw"></i>*E-mail ou senha inválidos</p>
+                            @enderror
+                        </div>
                     </div>
 
-                    <div class="accordion-panel" id="accordion-panel-id">
-                       <!--  {% if error != '' %} -->
-				             <span class="msg_error"><i class="fa fa-key fa-fw" style="font-size: 16px; color: #FF6D6D; padding-right: 5px;"></i> <p>Usuário ou senha inválidos</p></span>
-			          <!--   {% endif %} -->
-                    </div>
-
-                   
                     <hr id="hr-outras-op" style="margin: 0 0 0">
 
                     <div class="item-login-signup-ways">
-                        <img src="img/logo/acesso.png" onclick="showModal('modal-bancos-credenciados')" width="42em" />
-                        <!-- Para voltar a cor normal, basta apagar o style do link e remover o 'green' do nome da imagem acima. -->
+                        <img src="img/logo/acesso.png" width="42em" />
+
                         <a tabindex="5" href="#" onclick="showModal('modal-bancos-credenciados')" style="color:#008C32">O login e senha devem ser fornecidos pelo admin
                             <span style="font-size: 7px; background-color: #008C32; color: white; padding: 3px; top: -3px; position: relative; margin-left: 8px;">SOMENTE USUÁRIOS SAS</span>
                         </a>
                     </div>
                 </div>
+                <button type="button"><a href="/kkkk"></a></button>
+                </button>
             </form>
-          
+
         </main>
     </div>
    <!-- Áred de login Fim -->
-    <br> <br><br>  <br><br>   
+    <br> <br><br>  <br><br>
     <!-- Rodapé -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">

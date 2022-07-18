@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Editais culturais</title>
+    <title>Registro</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Governo Do Estado Do Ceará" name="keywords">
     <meta content="Governo Do Estado Do Ceará" name="description">
@@ -47,6 +47,7 @@
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <img src="img/logo/secult-escura.png" width="180">
+                    <a href="/editais" class="nav-item nav-link text-light bg-dark" >Retornar</a>
                 </div>
             </div>
         </div>
@@ -60,7 +61,8 @@
             <img id="identidade-govbr" src="img/logo/logoNova.png" />
         </aside>
         <main id="main-signin">
-            <form method="POST" action="route{{('auth.user)}}">
+            <form method="POST" action="">
+                @csrf
                 
                 <div class="card" id="login-cpf">
                     <div class="item-login-signup-ways" onclick="accordion('accordion-panel-id')">
@@ -68,25 +70,42 @@
 
                     </div>
                     <div class="accordion-panel" id="accordion-panel-id">
-                        <p>Digite seu <strong>login</strong> e <strong>senha</strong> para acessar sua conta do editais culturais</p>
+                        <p>A adição de novos <strong>Usuários</strong> requer a senha de <strong>Permissão</strong></p>
                         
-                        <label for="cpf">Usuário</label>
-                        <input id="user" name="usuario" autocomplete="ON" tabindex="1" type="text" value="" placeholder="Digite seu login" aria-invalid="false">
+                        <label for="name">Usuário*</label>
+                        <input id="name" name="name" autocomplete="ON" tabindex="1" type="text" value="" placeholder="Digite o nome do usuário" aria-invalid="false">
+                        <div>
+                            @error('name')
+                            <p class="text-danger"><i class="fa fa-user-circle" aria-hidden="true"></i>*Nenhum nome foi informado!</p>
+                            @enderror
+                        </div>
 
-                        <label for="cpf">Senha</label>
-                        <input id="password" name="senha" autocomplete="OFF" tabindex="1" type="password" value="" placeholder="Digite sua senha" aria-invalid="false">
+                        <label for="email">E-mail*</label>
+                        <input id="email" name="email" autocomplete="ON" tabindex="1" type="email" value="" placeholder="Digite seu email" aria-invalid="false">
+                        <div>
+                            @error('email')
+                            <p class="text-danger"><i class="fa fa-envelope-open" aria-hidden="true"></i>*Nenhum e-mail foi informado!</p>
+                            @enderror
+                        </div>
+
+
+                        <label for="senha">Senha*</label>
+                        <input id="password" name="password" autocomplete="OFF" tabindex="1" type="password" value="" placeholder="****" aria-invalid="false">
+                    
+                        <label for="senha">Repita sua senha*</label>
+                        <input id="password_confirmation" name="password_confirmation" autocomplete="OFF" tabindex="1" type="password" value="" placeholder="****" aria-invalid="false">
+                        <div>
+                            @error('password')
+                            <p class="text-danger"><i class="fa fa-key" aria-hidden="true"></i>*É necessário inserir a mesma senha nos dois campos!</p>
+                            @enderror
+                        </div>
+                        <!-- <label for="senha">Chave de permisão</label>
+                        <input id="chave" name="chave" autocomplete="OFF" tabindex="1" type="password" value="" placeholder="chave de acesso" aria-invalid="false"> -->
                         
                         <div class="button-panel" id="login-button-panel">
-                            <button name="action" value="enterAccountId" class="button-continuar" type="submit" tabindex="2">Acessar</button>
+                            <button name="action" value="enterAccountId" class="button-continuar" type="submit" tabindex="3">Cadastrar</button>
                         </div>
                     </div>
-
-                    <div class="accordion-panel" id="accordion-panel-id">
-                       <!--  {% if error != '' %} -->
-				             <span class="msg_error"><i class="fa fa-key fa-fw" style="font-size: 16px; color: #FF6D6D; padding-right: 5px;"></i> <p>Usuário ou senha inválidos</p></span>
-			          <!--   {% endif %} -->
-                    </div>
-
                    
                     <hr id="hr-outras-op" style="margin: 0 0 0">
 
@@ -99,11 +118,10 @@
                     </div>
                 </div>
             </form>
-          
         </main>
     </div>
    <!-- Áred de login Fim -->
-    <br> <br><br>  <br><br>   
+ 
     <!-- Rodapé -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">

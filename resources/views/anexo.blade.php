@@ -89,12 +89,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="http://localhost/EditaisMVC/" class="nav-item nav-link active"><b>Início</b></a>
-                    <a href="http://localhost/EditaisMVC/listagem/listaNova"
+                    <a href="/postagem" class="nav-item nav-link active"><b>Início</b></a>
+                    <a href="/listagem"
                         class="nav-item nav-link active"><b>Editais</b></a>
-                    <a href="http://localhost/EditaisMVC/desativados/desativados"
+                    <a href="/desativados"
                         class="nav-item nav-link active"><b>Encerrados</b></a>
-                    <a href="http://localhost/EditaisMVC/postagem/logout"
+                    <a href="{{route('login.destroy')}}"
                         class="nav-item nav-link active "><b>Sair</b></a>
                 </div>
             </div>
@@ -152,7 +152,7 @@
                         class=" border-1 bg-light px-4" required value="{{link}}">
                 </div>
                 <br>
-                <button class="btn btn-secondary w-100 py-3" type="submit" name="submit">Atualizar</button>
+                <button class="btn btn-secondary w-100 py-3" type="submit" name="submit">Atualiza</button>
 
             </form>
         </div>

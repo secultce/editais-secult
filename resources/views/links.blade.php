@@ -89,12 +89,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="http://localhost/EditaisMVC/" class="nav-item nav-link active"><b>Início</b></a>
-                    <a href="http://localhost/EditaisMVC/listagem/listaNova"
+                    <a href="/postagem" class="nav-item nav-link active"><b>Início</b></a>
+                    <a href="/listagem"
                         class="nav-item nav-link active"><b>Editais</b></a>
-                    <a href="http://localhost/EditaisMVC/desativados/desativados"
+                    <a href="/desativados"
                         class="nav-item nav-link active"><b>Encerrados</b></a>
-                    <a href="http://localhost/EditaisMVC/postagem/logout"
+                    <a href="{{route('login.destroy')}}"
                         class="nav-item nav-link active "><b>Sair</b></a>
                 </div>
             </div>
@@ -139,7 +139,7 @@
     <!-- Full Screen Search End -->
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h5 class="fw-bold text-primary text-uppercase">{{nome}} </h5>
+            <h5 class="fw-bold text-primary text-uppercase"> </h5>
         </div>
         <div class="container py-5">
 
@@ -147,7 +147,7 @@
                 <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
                     <div class="position-relative h-100">
                         <img class="position-absolute rounded wow zoomIn" data-wow-delay="0.1s"
-                            src="../../img/imagensEditais/{{arquivo}}" width="300" style="object-fit: cover;">
+                            src="../../img/imagensEditais/" width="300" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -155,18 +155,18 @@
                     <div class="row g-5">
                         <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
                             <h4>Etapas de Execução</h4>
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>{{etapas}}</p>
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>@etapas</p>
 
                         </div>
                         <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
                             <h4>Valor do Edital</h4>
-                            <p class="mb-0">R$ {{valor|number_format(2, '.', ',') }}</p>
+                            <p class="mb-0">R$ @valor</p>
                         </div>
 
                         <div class="col-lg-12 mb-20">
                             <h4>Contato sobre o Edital</h4>
                             <p class="mb-0">Mais informações poderão ser obtidas prioritariamente pelo e-mail:
-                                -{{contatos}} e pelo telefone {{telefone}}</p>
+                                @email e pelo telefone @telefone</p>
                         </div>
                     </div>
                 </div>
@@ -183,8 +183,8 @@
                 </div>
 
 
-                <form method="POST" action="http://localhost/EditaisMVC/links/anexos/{{id}}">
-                    <input type="hidden" name="id" value="{{id}}">
+                <form method="POST" action="http://localhost/EditaisMVC/links/anexos/">
+                    <input type="hidden" name="id" value="">
                     <label>Texto:</label>
                     <input type="text" name="texto[]" placeholder="Ex: Novo Link" class='border-1 bg-light px-4'
                         required>
@@ -229,27 +229,27 @@
             <div class="row g-5">
                 
                 <div id="cadastros"></div>
-                {% for post in anexos %}
+                
                 <div class="col-lg-4" id="linkpostagem">
                     <div class="row g-5">
                         <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
-                            <h6>Anexo nº {{post.id}}</h6>
+                            <h6>Anexo nº </h6>
                             <h4>
                                 <div style="overflow: hidden; width:320px; border:1px; white-space:nowrap;">
-                                    {{post.texto}}
+                                    @texto
                                 </div>
                             </h4>
                             <p class="mb-0">
                             <div style="overflow: hidden; width:320px; border:1px; white-space:nowrap;">
-                                <a href="{{post.link}}" target="_blank">{{post.link}}<h6>...</h6></a>
+                                <a href="" target="_blank"><h6>...</h6></a>
                             </div>
                             </p>
-                            <a href="http://localhost/EditaisMVC/links/carregaAnexo/{{post.id}}"> <input type="submit"
+                            <a href="http://localhost/EditaisMVC/links/carregaAnexo/"> <input type="submit"
                                     value="Mudar"></a>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+              
             </div>
         </div>
     </div>
