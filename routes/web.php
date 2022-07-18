@@ -21,6 +21,7 @@ Route::get('/editais', function () {
     return view('editais');
 });
 
+
 Route::get('/single', function () {
     return view('single');
 });
