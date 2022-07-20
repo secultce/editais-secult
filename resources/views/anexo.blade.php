@@ -89,12 +89,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="/postagem" class="nav-item nav-link active"><b>Início</b></a>
-                    <a href="/listagem"
+                    <a href="http://localhost/EditaisMVC/" class="nav-item nav-link active"><b>Início</b></a>
+                    <a href="http://localhost/EditaisMVC/listagem/listaNova"
                         class="nav-item nav-link active"><b>Editais</b></a>
-                    <a href="/desativados"
+                    <a href="http://localhost/EditaisMVC/desativados/desativados"
                         class="nav-item nav-link active"><b>Encerrados</b></a>
-                    <a href="{{route('login.destroy')}}"
+                    <a href="http://localhost/EditaisMVC/postagem/logout"
                         class="nav-item nav-link active "><b>Sair</b></a>
                 </div>
             </div>

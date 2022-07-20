@@ -67,7 +67,7 @@
                         class="nav-item nav-link "><b>Editais</b></a>
                     <a href="/desativados"
                         class="nav-item nav-link active"><b>Encerrados</b></a>
-                    <a href="{{route('login.destroy')}}" class="nav-item nav-link  "><b>Sair</b></a>
+                    <a href="" class="nav-item nav-link  "><b>Sair</b></a>
                 </div>
             </div>
         </nav>
@@ -81,8 +81,6 @@
         <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-5">
                 <!--Conteúdo central fim-->
-
-                @foreach ($desativados as $des)
                         <div class="row g-5">
                             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
                                 <div class="blog-item bg-light rounded overflow-hidden">
@@ -99,7 +97,7 @@
                             <div class="col-lg-4">
                                 <div class="row g-5">
                                     <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
-                                        <h4>{{$des->nome}}</h4>
+                                        <h4>@nome</h4>
 
                                         <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas:
                                             
@@ -107,7 +105,7 @@
                                     </div>
                                     <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
                                         <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>Nº:</p>
+                                                class="fa fa-arrow-right text-primary me-3"></i>Nº:}</p>
                                         <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
                                             R$:
                                         </p>
@@ -152,7 +150,7 @@
                             </div>
                             <hr>
                         </div>
-                 @endforeach  
+                   
             </div>
         </div>
     </div>

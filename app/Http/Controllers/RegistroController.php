@@ -25,7 +25,7 @@ class RegistroController extends Controller
         $user = User::create(request(['name', 'email', 'password']));
 
         auth()->login($user);
-        return view('auth.registro');
+        return redirect('/login');
     }
 
     

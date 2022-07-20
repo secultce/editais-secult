@@ -94,7 +94,7 @@
                             </div>
                             <div
                                 class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                {{ $post->nome }}</div>
+                                Edital aberto</div>
                         </div>
                     </div>
                 </div><br>

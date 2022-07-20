@@ -70,10 +70,10 @@
 
                     </div>
                     <div class="accordion-panel" id="accordion-panel-id">
-                        <p>Digite seu <strong>usuário</strong> e <strong>senha</strong> para acessar sua conta do editais culturais</p>
+                        <p>Digite seu <strong>login</strong> e <strong>senha</strong> para acessar sua conta do editais culturais</p>
 
-                        <label for="name">Usuário</label>
-                        <input id="name" name="name" autocomplete="ON" tabindex="1" type="text" value="" placeholder="Digite seu email" aria-invalid="false">
+                        <label for="email">Usuário</label>
+                        <input id="email" name="email" autocomplete="ON" tabindex="1" type="text" value="" placeholder="Digite seu email" aria-invalid="false">
 
                         <label for="password">Senha</label>
                         <input id="password" name="password" autocomplete="OFF" tabindex="1" type="password" value="" placeholder="********" aria-invalid="false">
@@ -84,7 +84,7 @@
 
                         <div>
                             @error('message')
-                            <p class="text-danger"><i class="fa fa-key fa-fw"></i>*Usuário ou senha inválidos</p>
+                            <p class="text-danger"><i class="fa fa-key fa-fw"></i>*E-mail ou senha inválidos</p>
                             @enderror
                         </div>
                     </div>

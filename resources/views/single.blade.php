@@ -105,7 +105,7 @@
         <div class="row g-5">
             <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute rounded wow zoomIn" data-wow-delay="0.1s" src="/storage/Editais/{{$post->arquivo}}"  width="300" style="object-fit: cover;">
+                    <img class="position-absolute rounded wow zoomIn" data-wow-delay="0.1s" src="{{ asset('/storage/Editais/'.$post->arquivo)}}"  width="300" style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-4">
