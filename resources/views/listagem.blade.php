@@ -62,12 +62,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="http://localhost/EditaisMVC/" class="nav-item nav-link"><b>Início</b></a>
-                    <a href="http://localhost/EditaisMVC/listagem/listaNova"
-                        class="nav-item nav-link active"><b>Editais</b></a>
-                    <a href="http://localhost/EditaisMVC/desativados/desativados"
-                        class="nav-item nav-link "><b>Encerrados</b></a>
-                    <a href="http://localhost/EditaisMVC/postagem/logout" class="nav-item nav-link  "><b>Sair</b></a>
+                    <a href="/postagem" class="nav-item nav-link"><b>Início</b></a>
+                    <a href="/listagem" class="nav-item nav-link active"><b>Editais</b></a>
+                    <a href="/desativados" class="nav-item nav-link "><b>Encerrados</b></a>
+                    <a href="{{route('login.destroy')}}" class="nav-item nav-link  "><b>Sair</b></a>
                 </div>
             </div>
 
@@ -81,168 +79,93 @@
             <h5 class="fw-bold text-primary text-uppercase">Editais Lançados</h5>
         </div>
 
-        <div class="container-fluid position-relative p-0">
+       
+        @foreach ($postagem as $post)
             <div class="container py-6">
-                <form action="#" method="post">
-                    <input type="text" name="Buscar" id="busca" placeholder="Faça uma busca" required>
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </form>
-
-            </div>
-        </div>
-        <!--Se não houver registros no banco -->
-        <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-
-            {% if postagens == null %}
-            <!-- Conteúdo central -->
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase">Nenhum registro foi encontrado no banco!</h5>
-            </div>
-            <br><br>
-            <br><br>
-            <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <img src="img/logo/erro.png" width="180">
+                <!--Conteúdo central fim-->
+                <div class="container py-">
+                    <div class="row g-5">
+                    <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
+                <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="blog-item bg-light rounded overflow-hidden">
+                        <div class="blog-img position-relative overflow-hidden">
+                            <div class="nova">
+                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}"> 
+                            </div>
+                            <div
+                                class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                                Edital aberto</div>
+                        </div>
+                    </div>
+                </div><br>
             </div>
 
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto " style="max-width: 600px;">
-                <label>
-                    <h2>Ops! parece que não foram registrados dados com postagens de editais.</h2>
-                </label>
-            </div>
+                        <div class="col-lg-4">
+                            <div class="row g-4">
+                                <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
+                                    <h4>{{ $post->nome }}</h4>
 
-            <br>
-            {% endif %}
-        </div>
-
-        <br>
-
-        <!-- Criando páginação de editais -->
-        
-
-        {% for post in postagens %}
-        {% if post.flag == 'Ativado' %}
-        <div class="container py-6">
-            <!--Conteúdo central fim-->
-            <div class="container py-">
-                <div class="row g-5">
-                    <div class="col-lg-3  wow zoomIn" data-wow-delay="0.3s" style="min-height: 350px;">
-                        <div class="blog-item bg-light rounded overflow-hidden">
-                            <div class="blog-img position-relative overflow-hidden">
-                                <div class="nova">
-                                    <img id="dimensao" src="img/imagensEditais/{{post.arquivo}}">
+                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas: {{ $post->etapa }}
+                                    </p>
                                 </div>
-                                <div
-                                    class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                    Edital aberto</div>
-                            </div>
+                                <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Nº: {{ $post->id }}
+                                    </p>
 
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="row g-4">
-                            <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
-                                <h4>{{post.nome}}</h4>
-
-                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas:
-                                    {{post.etapas}}
-                                </p>
-                            </div>
-                            <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
-                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Nº:{{post.id}}
-                                </p>
-                                <!-- <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Nome:{{post.nome}}
-                                </p> -->
-                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
-                                    R$:{{post.valor|number_format(2, '.', ',')}}
-                                </p>
-                                <p class="mb-0"><i
-                                        class="fa fa-arrow-right text-primary me-3"></i>Contato:{{post.contatos}}
-                                </p>
-                                <p class="mb-0"><i
-                                        class="fa fa-arrow-right text-primary me-3"></i>Telefone:{{post.telefone}}
-                                </p>
-                                <p class="mb-0"><i
-                                        class="fa fa-arrow-right text-primary me-3"></i>Categoria:{{post.categoria}}
-                                </p>
-                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>status:{{post.flag}}
-                                </p>
-                                <br>
+                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
+                                        R$:{{ $post->valor }}
+                                    </p>
+                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>E-mail:{{ $post->email }}
+                                    </p>
+                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Telefone:{{ $post->telefone }}
+                                    </p>
+                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Categoria:{{ $post->categoria }}
+                                    </p>
+                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>status:{{ $post->flag }}
+                                    </p>
+                                    <br>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="row g-5">
-                            <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
-                                <h4>Publicações do Edital</h4>
-                                <p class="mb-0">
-                                    <!-- <li id="file-3625034" class="widget-list-item"><a title="" href="{{post.link}}" target="_blank"><span>{{post.texto}}</span></a></li></p><p class="mb-0">     -->
-                                    <li id="0" class="widget-list-item"><span><a
-                                                href="http://localhost/EditaisMVC/links/listaDeLinks/{{post.id}}">Lista
-                                                de Links</a></span><img src="img/logo/mouse.png" width="20">
-                                    </li>
+                        <div class="col-lg-4">
+                            <div class="row g-5">
+                                <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
+                                    <h4>Publicações do Edital</h4>
+                                    <p class="mb-0">
 
-                                </p>
-                            </div>
+                                        <li id="0" class="widget-list-item"><span><a
+                                                    href="/links/{{$post->id}}">Lista
+                                                    de Links</a></span><img src="img/logo/mouse.png" width="20">
+                                        </li>
 
-                            <div id="login-button-panel" class="col-lg-12">
-                                <a href="http://localhost/EditaisMVC/atualizacao/change/{{post.id}}"> <button
-                                        name="action" value="enterAccountId" class="button-continuar" type="submit"
-                                        tabindex="1">Alterar</button></a>
-                                <a href="http://localhost/EditaisMVC/desativados/desativa/{{post.id}}"> <button
-                                        name="action" value="enterAccountId" class="button-continuar" type="submit"
-                                        tabindex="1" style="background: rgb(251, 138, 8);">Encerrar</button> </a>
+                                    </p>
+                                </div>
+
+                                <div id="login-button-panel" class="col-lg-12">
+                                    <a href="/atualizacao"> <button
+                                            name="action" value="enterAccountId" class="button-continuar"
+                                            type="submit" tabindex="1">Alterar</button></a>
+                                    <a href="http://localhost/EditaisMVC/desativados/desativa/@id"> <button
+                                            name="action" value="enterAccountId" class="button-continuar"
+                                            type="submit" tabindex="1"
+                                            style="background: rgb(251, 138, 8);">Encerrar</button> </a>
+                                </div>
                             </div>
                         </div>
+                        <hr>
                     </div>
-                    <hr>
                 </div>
             </div>
+        @endforeach
 
-            <!--Fim da Área de listagem dos editais-->
+        <div class="d-flex justify-content-center">
+            {!! $postagem->links() !!}
         </div>
 
-    </div>
-    {% endif %}
-    {% endfor %}
-
 
     </div>
-
-    {% set verificador = true %}
-    {% for post in postagens %}
-    {% if post.flag == 'Ativado' %}
-
-    {% set verificador = false %}
-    {% endif %}
-    {% endfor %}
-
-    <!-- Mostre isso -->
-
-    {% if verificador == true %}
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class=" text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <img src="img/logo/logotipo.png" width="180">
-            </div>
-            <div class=" text-center position-relative pb-3 mb-5 mx-auto " style="max-width: 600px;">
-                <label>
-                    <h2>Não existe nenhum edital publicado</h2>
-                </label>
-            </div>
-        </div>
     </div>
-    {% endif %}
-
-    <nav aria-label="Navegação de página exemplo">
-        <ul class="pagination" style="justify-content:center">
-            <li class="page-item"><a class="page-link" href="#">Anterior</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
-        </ul>
-    </nav>
+    <br> <br>
 
 
     <!-- Rodapé -->
@@ -310,7 +233,8 @@
 
 
     <!-- Botão topo -->
-    <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScripts -->

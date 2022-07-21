@@ -152,7 +152,7 @@
                         class=" border-1 bg-light px-4" required value="{{link}}">
                 </div>
                 <br>
-                <button class="btn btn-secondary w-100 py-3" type="submit" name="submit">Atualizar</button>
+                <button class="btn btn-secondary w-100 py-3" type="submit" name="submit">Atualiza</button>
 
             </form>
         </div>

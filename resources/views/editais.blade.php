@@ -46,12 +46,16 @@
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <small class="me-3 text-light"></i>Governo Do Estado Do Ceará</small>
+                   
                 </div>
             </div>
+
+           
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-
-                    <img src="img/logo/secult-escura.png" width="180">
+                    <img src="img/logo/secult-escura.png" width="180"> &nbsp;
+                    <a href="{{ route('login.index')}}" class="nav-item nav-link text-light bg-dark" >Login</a>
+                    <a href="{{ route('registro.index')}}" class="nav-item nav-link text-light bg-dark" >Registro</a>
                 </div>
             </div>
         </div>
@@ -69,12 +73,12 @@
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/editais" class="nav-item nav-link active">Editais</a>
                     <a href="/equipamentos" class="nav-item nav-link ">Equipamentos</a>
-                    <a href="/service" class="nav-item nav-link">Servicos</a>
+                    <a href="/servico" class="nav-item nav-link">Servicos</a>
                     <a href="/cefic" class="nav-item nav-link ">Cefic</a>
                 </div>
             </div>
         </nav>
-
+       
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -175,35 +179,38 @@
         <h1 class="mb-0">Editais em Conhecimento público </h1>
     </div>
 
+    
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
-        
+        @foreach ($postagem as $post)
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
                             <div class="nova">
-                                <img id="dimensao" src="img/imagensEditais/">
+                                <img id="dimensao" src="{{ url('/storage/Editais/'.$post->arquivo)}}"> 
                             </div>
                             <div
                                 class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                Edital aberto</div>
+                                {{ $post->nome }}</div>
                         </div>
                         <div class="p-4">
                             <a class="text-width-g "
-                                href="#">Inscreva-se<i
+                                href="/single/{{$post->id}}">Inscreva-se<i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div><br>
             </div>
 
-          
+           @endforeach
         </div>
     </div>
+    <div class="d-flex justify-content-center wow fadeInUp" data-wow-delay="0.1s">
+        {!! $postagem->links() !!}
+        </div>
 
-  
-
+   <br>
 
     <!-- se existir editais abertos -->
     <!-- Mostre isso -->
@@ -278,38 +285,7 @@
     </div>
 
 
-    <!-- Caso não exista nenhum edital
-    
-    {% set valor = false %}
-    {% for post in postagens %}
-    {% if post.categoria == 'Seleção' %}
-    {% if post.flag == 'Desativado' %}
-    {% if post.categoria == 'Público' %}
-    {% if post.flag == 'Desativado' %}
-    {% if post.categoria == 'Seleção' %}
-    {% if post.flag == 'Desativado' %}
-
-    {% set valor = true %}
-
-    {% endif %}
-    {% endif %}
-    {% endif %}
-    {% endif %}
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-    <br> -->
-    <!--Mostre isso 
-    {% if valor == true %}-->
-    <!-- Editais em Processo de Seleção 
-    <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-        <h5 class="fw-bold text-dark text-uppercase">Aguarde só mais um pouco!</h5>
-        <h1 class="mb-0">Editais ainda não foram lançados esse período</h1>
-    </div>
-    
-    </div>
-    {% endif %} -->
-
+  
 
     <!-- Rodapé   -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
