@@ -89,7 +89,7 @@
                             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
                                 <div class="blog-item bg-light rounded overflow-hidden">
                                     <div class="blog-img position-relative overflow-hidden">
-                                        <img class="img-fluid" src="img/imagensEditais/@arquivo" alt="">
+                                        <img class="img-fluid" src="{{ asset('/storage/Editais/'.$des->arquivo)}}" alt="">
                                         <div
                                             class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">
                                             Edital encerrado</div>
@@ -103,24 +103,27 @@
                                     <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
                                         <h4>{{ $des->nome }}</h4>
 
-                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas:
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas:{{ $des->etpas }}
                                             
                                         </p>
                                     </div>
                                     <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
                                         <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>Nº:}</p>
+                                                class="fa fa-arrow-right text-primary me-3"></i>Nº:{{ $des->id }}</p>
                                         <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
-                                            R$:
+                                            R$:{{ $des->valor }}
                                         </p>
                                         <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>Contato:
+                                                class="fa fa-arrow-right text-primary me-3"></i>E-mail:{{ $des->email }}
                                         </p>
                                         <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>Categoria:
+                                                class="fa fa-arrow-right text-primary me-3"></i>telefone:{{ $des->telefone }}
                                         </p>
                                         <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>status:</p>
+                                                class="fa fa-arrow-right text-primary me-3"></i>Categoria:{{ $des->categoria }}
+                                        </p>
+                                        <p class="mb-0"><i
+                                                class="fa fa-arrow-right text-primary me-3"></i>status: {{ $des->flag }}</p>
 
                                         <br>
 

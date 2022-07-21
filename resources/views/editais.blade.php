@@ -188,7 +188,7 @@
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
                             <div class="nova">
-                                <img id="dimensao" src="{{ url('/storage/Editais/'.$post->arquivo)}}"> 
+                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}"> 
                             </div>
                             <div
                                 class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">

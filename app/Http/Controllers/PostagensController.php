@@ -49,7 +49,7 @@ class PostagensController extends Controller
                 $request->session()->flash(
                     'Mensagem',"Edital inserido com sucesso!"
                 );
-                
+
                 return redirect('/listagem');
             }
 
@@ -62,6 +62,7 @@ class PostagensController extends Controller
     public function listagemEditais()
     {
         $postagem = Postagens::orderBy('id', 'desc')
+        ->where('flag', 'Ativado')
         -> simplePaginate(16);
         return view('editais', compact('postagem'));
     }
@@ -69,11 +70,8 @@ class PostagensController extends Controller
     //listagem para pagina do admin
     public function listagem()
     {
-        //Se flag == 'desativados mostre na lista
-      /*   if(){
-
-        } */
         $postagem = Postagens::orderBy('id', 'desc')
+        ->where('flag', 'Ativado')
         ->simplePaginate(16);
 
         return view('listagem', compact('postagem'));
@@ -82,12 +80,8 @@ class PostagensController extends Controller
 
     public function editaisDesativados()
     {
-        $desativados = Postagens::query('flag', '=', 'Desativado');
-
-        if($desativados == true){
-            return view('desativados', compact('desativados'));
-        }
-
+        $desativados = Postagens::where('flag', 'Desativado')->get();
+        return view('/desativados', compact('desativados'));
     }
 
     public function paginaSimples($id)
@@ -100,6 +94,11 @@ class PostagensController extends Controller
         $anexos = Anexos::find($id);
 
         return view('/single', compact('post', 'anexos'));
+    }
+
+    public function desativarEdital($id){
+        Postagens::where('flag', 'Ativado')
+        ->update(['flag' => 'Desativado']);
     }
 
 }

@@ -89,3 +89,5 @@ Route::post('/inserir-postagem', [PostagensController::class, 'inserirPostagem']
 Route::get('/atualizacao', function(){
     return view('/atualizacao');
 })->middleware('auth');
+
+
