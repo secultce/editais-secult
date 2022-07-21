@@ -142,7 +142,7 @@
                                 </div>
 
                                 <div id="login-button-panel" class="col-lg-12">
-                                    <a href="http://localhost/EditaisMVC/atualizacao/change/@id"> <button
+                                    <a href="/atualizacao"> <button
                                             name="action" value="enterAccountId" class="button-continuar"
                                             type="submit" tabindex="1">Alterar</button></a>
                                     <a href="http://localhost/EditaisMVC/desativados/desativa/@id"> <button

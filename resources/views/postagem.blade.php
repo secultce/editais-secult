@@ -98,7 +98,7 @@
         <div class="row gx-0">
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"></i>Governo Do Estado Do Ceará -> Acesso restrito para: {{ Session::get('id') ? auth()->user()->name : null }}<b
+                    <small class="me-3 text-light"></i>Governo Do Estado Do Ceará -> Acesso restrito para: {{auth()->user()->name }}<b
                             style="text-transform: uppercase;"></b></small>
                 </div>
             </div>

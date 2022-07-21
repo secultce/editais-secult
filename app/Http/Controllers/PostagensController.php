@@ -46,6 +46,10 @@ class PostagensController extends Controller
             if ($anexoData) {
                 Anexos::create($anexoData);
 
+                $request->session()->flash(
+                    'Mensagem',"Edital inserido com sucesso!"
+                );
+                
                 return redirect('/listagem');
             }
 
@@ -57,26 +61,31 @@ class PostagensController extends Controller
     //listagem para pagina inicial dos editais
     public function listagemEditais()
     {
-        $postagem = Postagens::simplePaginate(8);
+        $postagem = Postagens::orderBy('id', 'desc')
+        -> simplePaginate(16);
         return view('editais', compact('postagem'));
     }
 
     //listagem para pagina do admin
     public function listagem()
     {
-        $postagem = Postagens::simplePaginate(16);
+        //Se flag == 'desativados mostre na lista
+      /*   if(){
+
+        } */
+        $postagem = Postagens::orderBy('id', 'desc')
+        ->simplePaginate(16);
 
         return view('listagem', compact('postagem'));
     }
 
+
     public function editaisDesativados()
     {
-        $desativados = Postagens::simplePaginate(10);
+        $desativados = Postagens::query('flag', '=', 'Desativado');
 
-        if (request(['flag']) == 'Desativado') {
+        if($desativados == true){
             return view('desativados', compact('desativados'));
-        } else {
-            dd('Não existe nenhum edital desativado');
         }
 
     }

@@ -84,3 +84,8 @@ Route::get('/logout', [SessaoController::class, 'destroy'])
 Route::post('/inserir-postagem', [PostagensController::class, 'inserirPostagem'])
 ->name('postagem.inserirPostagem')
 ->middleware('auth');
+
+
+Route::get('/atualizacao', function(){
+    return view('/atualizacao');
+})->middleware('auth');
