@@ -41,7 +41,9 @@
             controleCampo++;
             //console.log(controleCampo);
 
-            document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: * </label><input type="text" name="texto" placeholder="Ex: Link de inscrições" class="border-1 bg-light px-4" required</br><label>Link *: </label><input type="url" name="link" placeholder="Ex: www.culturaCE/inscricoes" class=" border-1 bg-light px-4" required> <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
+
+            //aqui a unica modificação para funcionar foi deixar os names dos inputs de link e texto como arrays(link[], texto[])
+            document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: * </label><input type="text" name="texto[]" placeholder="Ex: Link de inscrições" class="border-1 bg-light px-4" required</br><label>Link *: </label><input type="url" name="link[]" placeholder="Ex: www.culturaCE/inscricoes" class=" border-1 bg-light px-4" required> <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
         }
 
         function removerCampo(idCampo) {
@@ -226,11 +228,11 @@
                                 <div id="formulario">
                                     <div class="col-lg-12 form-group">
                                         <label>Digite um texto para associar ao link: *</label>
-                                        <input type="text" name="texto" placeholder="Ex: Link de inscrições"
+                                        <input type="text" name="texto[]" placeholder="Ex: Link de inscrições"
                                             class='border-1 bg-light px-4' required>
 
                                         <label>Link: *</label>
-                                        <input type="url" name="link" placeholder="Ex: www.culturaCE/inscricoes"
+                                        <input type="url" name="link[]" placeholder="Ex: www.culturaCE/inscricoes"
                                             class=" border-1 bg-light px-4" required>
                                     </div>
                                 </div>
