@@ -14,9 +14,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -27,7 +25,7 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    
+
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
@@ -46,16 +44,16 @@
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <small class="me-3 text-light"></i>Governo Do Estado Do Ceará</small>
-                   
+
                 </div>
             </div>
 
-           
+
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <img src="img/logo/secult-escura.png" width="180"> &nbsp;
-                    <a href="{{ route('login.index')}}" class="nav-item nav-link text-light bg-dark" >Login</a>
-                    <a href="{{ route('registro.index')}}" class="nav-item nav-link text-light bg-dark" >Registro</a>
+                    <a href="{{ route('login.index')}}" class="nav-item nav-link text-light bg-dark">Login</a>
+                    <a href="{{ route('registro.index')}}" class="nav-item nav-link text-light bg-dark">Registro</a>
                 </div>
             </div>
         </div>
@@ -78,7 +76,7 @@
                 </div>
             </div>
         </nav>
-       
+
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -98,10 +96,8 @@
         <div class="container py-5 pt-lg-0">
             <div class="row gx-0">
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.6s">
-                    <div class="bg-secondary shadow d-flex align-items-center justify-content-center p-4"
-                        style="height: 150px;">
-                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2"
-                            style="width: 60px; height: 60px;">
+                    <div class="bg-secondary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                             <i class="fa fa-award text-primary"></i>
                         </div>
                         <div class="ps-4">
@@ -113,43 +109,37 @@
                     </div>
                 </div>
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="bg-white shadow d-flex align-items-center justify-content-center p-4"
-                        style="height: 150px;">
-                        <div class="bg-dark d-flex align-items-center justify-content-center rounded mb-2"
-                            style="width: 60px; height: 60px;">
+                    <div class="bg-white shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-dark d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                             <i class="fa fa-check text-white"></i>
                         </div>
                         <div class="ps-4">
                             <h5 class="text-black mb-0">Conhecimento Público</h5>
-                          
+
                             <h1 class="text-black mb-0" data-toggle="counter-up">@valor</h1>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="bg-white shadow d-flex align-items-center justify-content-center p-4"
-                        style="height: 150px;">
-                        <div class="bg-dark d-flex align-items-center justify-content-center rounded mb-2"
-                            style="width: 60px; height: 60px;">
+                    <div class="bg-white shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-dark d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                             <i class="fa fa-check text-white"></i>
                         </div>
                         <div class="ps-4">
                             <h5 class="text-black mb-0">Processo de Seleção</h5>
-                           
+
                             <h1 class="text-black mb-0" data-toggle="counter-up">@valor</h1>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.6s">
-                    <div class="bg-secondary shadow d-flex align-items-center justify-content-center p-4"
-                        style="height: 150px;">
-                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2"
-                            style="width: 60px; height: 60px;">
+                    <div class="bg-secondary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
                             <i class="fa fa-award text-primary"></i>
                         </div>
                         <div class="ps-4">
                             <h5 class="text-white mb-0">Inscrições encerradas</h5>
-                         
+
                             <h1 class="text-white mb-0" data-toggle="counter-up">@valor</h1>
                         </div>
                     </div>
@@ -160,7 +150,7 @@
 
 
     <!-- Se não existir editais publicados -->
-<!--     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <!--     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h1 class="mb-0">Ops! parece que não temos novos editais publicados. </h1>
@@ -174,84 +164,88 @@
 
     <!-- se existir editais de conhecimento público -->
     <!-- Mostre isso -->
-   
+
     <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
         <h1 class="mb-0">Editais em Conhecimento público </h1>
     </div>
 
-    
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
-        @foreach ($postagem as $post)
+            @foreach ($postagem as $post)
+            @if($post->categoria =='Público')
+            @if($post->flag =='Ativado')
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
                             <div class="nova">
-                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}"> 
+                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
                             </div>
-                            <div
-                                class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                {{ $post->nome }}</div>
+                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                                {{ $post->nome }}
+                            </div>
                         </div>
                         <div class="p-4">
-                            <a class="text-width-g "
-                                href="/single/{{$post->id}}">Inscreva-se<i
-                                    class="bi bi-arrow-right"></i></a>
+                            <a class="text-width-g " href="/single/{{$post->id}}">Inscreva-se<i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div><br>
             </div>
-
-           @endforeach
+            @endif
+            @endif
+            @endforeach
         </div>
     </div>
     <div class="d-flex justify-content-center wow fadeInUp" data-wow-delay="0.1s">
         {!! $postagem->links() !!}
-        </div>
+    </div>
 
-   <br>
+    <br>
 
     <!-- se existir editais abertos -->
     <!-- Mostre isso -->
-   
+
     <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
         <h1 class="mb-0">Editais com inscrições abertas </h1>
     </div>
 
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
-           
+
+            @foreach ($postagem as $post)
+            @if($post->categoria =='Aberto')
+            @if($post->flag =='Ativado')
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
                             <div class="nova">
-                                <img id="dimensao" src="img/imagensEditais/">
+                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
                             </div>
-                            <div
-                                class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                Edital aberto</div>
+                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                                {{ $post->nome }}
+                            </div>
                         </div>
                         <div class="p-4">
-                            <a class="text-width-g "
-                                href="#">Inscreva-se<i
-                                    class="bi bi-arrow-right"></i></a>
+                            <a class="text-width-g " href="/single/{{$post->id}}">Inscreva-se<i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div><br>
             </div>
+            @endif
+            @endif
+            @endforeach
 
-           
+
         </div>
     </div>
 
-  
+
     <!--Se existir algum edital em processo de seleção -->
-  
+
     <br>
     <!--Mostre isso -->
-   
+
     <!-- Editais em Processo de Seleção  -->
     <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
         <h5 class="fw-bold text-dark text-uppercase">Em breve</h5>
@@ -259,33 +253,64 @@
     </div>
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
-           
+            @foreach ($postagem as $post)
+            @if($post->categoria =='Seleção')
+            @if($post->flag =='Ativado')
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
                             <div class="nova">
-                                <img id="dimensao" src="img/imagensEditais/">
+                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
                             </div>
-                            <div
-                                class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                Edital aberto</div>
+                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                                {{ $post->nome }}
+                            </div>
                         </div>
                         <div class="p-4">
-                            <a class="text-width-g "
-                                href="#">Inscreva-se<i
-                                    class="bi bi-arrow-right"></i></a>
+                            <a class="text-width-g " href="/single/{{$post->id}}">Inscreva-se<i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div><br>
             </div>
-
-            
+            @endif
+            @endif
+            @endforeach
         </div>
     </div>
 
 
-  
+    <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+        <h1 class="mb-0">Editais encerrados </h1>
+    </div>
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            @foreach ($postagem as $post)
+            @if($post->flag =='Desativado')
+            <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
+                <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="blog-item bg-light rounded overflow-hidden">
+                        <div class="blog-img position-relative overflow-hidden">
+                            <div class="nova">
+                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
+                            </div>
+                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                                {{ $post->nome }}
+                            </div>
+                        </div>
+                        <div class="p-4">
+                             <a class="text-width-g " href="/single/{{$post->id}}">Ver informações <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div><br>
+            </div>
+            @endif
+            @endforeach
+        </div>
+    </div>
+
+
+
 
     <!-- Rodapé   -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -332,15 +357,9 @@
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="d-flex mt-4">
-                                <a class="btn btn-secondary btn-square me-2"
-                                    href="https://www.facebook.com/secultceara/"><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-secondary btn-square me-2"
-                                    href="https://www.instagram.com/secultceara/"><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-secondary btn-square"
-                                    href="https://www.youtube.com/channel/UCVckZREupHqHkoS7MmxwH9w"><i
-                                        class="fab fa-youtube fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square me-2" href="https://www.facebook.com/secultceara/"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square me-2" href="https://www.instagram.com/secultceara/"><i class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square" href="https://www.youtube.com/channel/UCVckZREupHqHkoS7MmxwH9w"><i class="fab fa-youtube fw-normal"></i></a>
                             </div>
                         </div>
                     </div>

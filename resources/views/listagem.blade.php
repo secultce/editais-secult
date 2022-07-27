@@ -14,9 +14,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -72,100 +70,96 @@
     </div>
     <br><br>
 
-    <!-- Menu de navegação Fim -->
-    <div class="container-fluid py-6 wow fadeInUp" data-wow-delay="0.1s">
 
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h5 class="fw-bold text-primary text-uppercase">Editais Lançados</h5>
+            <h5 class="fw-bold text-primary text-uppercase">Editais lançados</h5>
         </div>
+        <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container py-5">
 
-       
-        @foreach ($postagem as $post)
-            <div class="container py-6">
-                <!--Conteúdo central fim-->
-                <div class="container py-">
-                    <div class="row g-5">
-                    <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
-                <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-                    <div class="blog-item bg-light rounded overflow-hidden">
-                        <div class="blog-img position-relative overflow-hidden">
-                            <div class="nova">
-                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}"> 
+                @foreach ($postagem as $post)
+                <div class="container py-6">
+                    <!--Conteúdo central fim-->
+                    <div class="container py-">
+                        <div class="row g-5">
+                            <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
+                                <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                                    <div class="blog-item bg-light rounded overflow-hidden">
+                                        <div class="blog-img position-relative overflow-hidden">
+                                            <div class="blog-img position-relative overflow-hidden">
+                                                <img class="img-fluid" src="{{ asset('/storage/Editais/'.$post->arquivo)}}" alt="">
+                                                <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">
+                                                    Edital aberto</div>
+                                            </div>
+                                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                                                Edital aberto</div>
+                                        </div>
+                                    </div>
+                                </div><br>
                             </div>
-                            <div
-                                class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                Edital aberto</div>
-                        </div>
-                    </div>
-                </div><br>
-            </div>
 
-                        <div class="col-lg-4">
-                            <div class="row g-4">
-                                <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
-                                    <h4>{{ $post->nome }}</h4>
+                            <div class="col-lg-4">
+                                <div class="row g-4">
+                                    <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
+                                        <h4>{{ $post->nome }}</h4>
 
-                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas: {{ $post->etapa }}
-                                    </p>
-                                </div>
-                                <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
-                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Nº: {{ $post->id }}
-                                    </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas: {{ $post->etapa }}
+                                        </p>
+                                    </div>
+                                    <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Nº: {{ $post->id }}
+                                        </p>
 
-                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
-                                        R$:{{ $post->valor }}
-                                    </p>
-                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>E-mail:{{ $post->email }}
-                                    </p>
-                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Telefone:{{ $post->telefone }}
-                                    </p>
-                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Categoria:{{ $post->categoria }}
-                                    </p>
-                                    <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>status:{{ $post->flag }}
-                                    </p>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="row g-5">
-                                <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
-                                    <h4>Publicações do Edital</h4>
-                                    <p class="mb-0">
-
-                                        <li id="0" class="widget-list-item"><span><a
-                                                    href="/links/{{$post->id}}">Lista
-                                                    de Links</a></span><img src="img/logo/mouse.png" width="20">
-                                        </li>
-
-                                    </p>
-                                </div>
-
-                                <div id="login-button-panel" class="col-lg-12">
-                                    <a href="/atualizacao"> <button
-                                            name="action" value="enterAccountId" class="button-continuar"
-                                            type="submit" tabindex="1">Alterar</button></a>
-                                    <a href="http://localhost/EditaisMVC/desativados/desativa/@id"> <button
-                                            name="action" value="enterAccountId" class="button-continuar"
-                                            type="submit" tabindex="1"
-                                            style="background: rgb(251, 138, 8);">Encerrar</button> </a>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
+                                        {{  'R$ '.number_format( $post->valor , 2, ',', '.') }}  
+                                        </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>E-mail:{{ $post->email }}
+                                        </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Telefone:{{ $post->telefone }}
+                                        </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Categoria:{{ $post->categoria }}
+                                        </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>status:{{ $post->flag }}
+                                        </p>
+                                        <br>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-lg-4">
+                                <div class="row g-5">
+                                    <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
+                                        <h4>Publicações do Edital</h4>
+                                        <p class="mb-0">
+
+                                            <li id="0" class="widget-list-item"><span><a href="/links">Lista
+                                                        de Links</a></span><img src="img/logo/mouse.png" width="20">
+                                            </li>
+
+                                        </p>
+                                    </div>
+
+                                    <div id="login-button-panel" class="col-lg-12">
+                                        <a href="/atualizacao/{{$post->id}}"> <button name="action" value="enterAccountId" class="button-continuar" type="submit" tabindex="1">Alterar</button></a>
+                                        <a href="/desativar/{{$post->id}}"> <button name="action" value="enterAccountId" class="button-continuar" type="submit" tabindex="1" style="background: rgb(251, 138, 8);">Encerrar</button> </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
                         </div>
-                        <hr>
                     </div>
                 </div>
+                @endforeach
+
+                <div class="d-flex justify-content-center">
+                    {!! $postagem->links() !!}
+                </div>
+
             </div>
-        @endforeach
-
-        <div class="d-flex justify-content-center">
-            {!! $postagem->links() !!}
         </div>
-
-
     </div>
     </div>
-    <br> <br>
+
 
 
     <!-- Rodapé -->
@@ -213,15 +207,9 @@
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="d-flex mt-4">
-                                <a class="btn btn-secondary btn-square me-2"
-                                    href="https://www.facebook.com/secultceara/"><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-secondary btn-square me-2"
-                                    href="https://www.instagram.com/secultceara/"><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-secondary btn-square"
-                                    href="https://www.youtube.com/channel/UCVckZREupHqHkoS7MmxwH9w"><i
-                                        class="fab fa-youtube fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square me-2" href="https://www.facebook.com/secultceara/"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square me-2" href="https://www.instagram.com/secultceara/"><i class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square" href="https://www.youtube.com/channel/UCVckZREupHqHkoS7MmxwH9w"><i class="fab fa-youtube fw-normal"></i></a>
                             </div>
                         </div>
                     </div>
@@ -233,8 +221,7 @@
 
 
     <!-- Botão topo -->
-    <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i
-            class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScripts -->

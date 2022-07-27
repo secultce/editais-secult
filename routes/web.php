@@ -50,15 +50,20 @@ Route::get('/desativados', function () {
 Route::get('/single/{id}',[PostagensController::class, 'paginaSimples'])
 ->name('postagens.simples');
 
-//testes areas
+Route::get('/desativar/{id}',[PostagensController::class, 'desativarEdital'])
+->name('postagens.desativados');
+
+Route::get('/ativar/{id}',[PostagensController::class, 'ativarEdital'])
+->name('postagens.ativar');
+
+
 Route::get('/desativados', [PostagensController::class, 'editaisDesativados'])
     ->middleware('auth')
     ->name('postagens.desativados');
-//fim de testes
 
 
-Route::get('/anexos', function () {
-    return view('anexos');
+Route::get('/anexo', function () {
+    return view('anexo');
 });
 
 Route::get('/links', function () {
@@ -86,10 +91,13 @@ Route::post('/inserir-postagem', [PostagensController::class, 'inserirPostagem']
 ->middleware('auth');
 
 
-Route::get('/atualizacao', function(){
-    return view('/atualizacao');
-})->middleware('auth');
+Route::get('/atualizacao/{id}',[PostagensController::class, 'getDados'])
+->name('postagem.editarEdital')
+->middleware('auth');
 
+Route::post('/alterar/{id}',[PostagensController::class, 'alterar'])
+->name('postagem.alterar')
+->middleware('auth');
 
 
 

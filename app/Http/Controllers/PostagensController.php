@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\Anexos;
 use App\Models\Postagens;
 use Illuminate\Http\Request;
@@ -74,44 +74,93 @@ class PostagensController extends Controller
   //listagem para pagina inicial dos editais
   public function listagemEditais()
   {
-    $postagem = Postagens::orderBy('id', 'desc')
-      ->where('flag', 'Ativado')
-      ->simplePaginate(16);
-    return view('editais', compact('postagem'));
+      $postagem = Postagens::orderBy('id', 'desc')
+      -> simplePaginate(16);
+      return view('editais', compact('postagem'));
   }
 
   //listagem para pagina do admin
   public function listagem()
   {
-    $postagem = Postagens::orderBy('id', 'desc')
+      $postagem = Postagens::orderBy('id', 'desc')
       ->where('flag', 'Ativado')
       ->simplePaginate(16);
 
-    return view('listagem', compact('postagem'));
+      return view('listagem', compact('postagem'));
   }
 
 
   public function editaisDesativados()
   {
-    $desativados = Postagens::where('flag', 'Desativado')->get();
-    return view('/desativados', compact('desativados'));
+      $desativados = Postagens::orderBy('created_at', 'desc')
+      ->where('flag', 'Desativado')
+      ->simplePaginate(10);
+      return view('/desativados', compact('desativados'));
+      
   }
 
   public function paginaSimples($id)
   {
-    if (!$post = Postagens::find($id)) {
+      if(!$post = Postagens::find($id)){
+          return redirect()->back();
+      }
+      $anexos = Anexos::find($id);
+      return view('/single', compact('post', 'anexos'));
+  }
+
+  public function desativarEdital($id){
+      Postagens::where('id', $id)
+      ->update(['flag' =>  'Desativado']);
+
       return redirect()->back();
-    }
-
-    /* $post = Postagens::find($id); */
-    $anexos = Anexos::find($id);
-
-    return view('/single', compact('post', 'anexos'));
   }
 
-  public function desativarEdital($id)
-  {
-    Postagens::where('flag', 'Ativado')
-      ->update(['flag' => 'Desativado']);
+  public function ativarEdital($id){
+      Postagens::where('id', $id)
+      ->update(['flag' =>  'Ativado']);
+
+      return redirect()->back();
   }
+
+  public function getDados($id){
+     $atual = Postagens::find($id);
+     return view('/atualizacao',compact('atual', 'atual'));
+  }
+
+  public function alterar(Request $request, $id){
+      $postagem = Postagens::FindOrFail($id);
+      $imagemAtual = $postagem->arquivo;
+      //dd($imagemAtual);
+      Storage::disk('public')->delete($imagemAtual);
+    
+
+      if ($request->hasFile('arquivo')) {
+        $nomeExtensao = $request->file('arquivo')->getClientOriginalName();
+        $nomeArq = pathinfo($nomeExtensao, PATHINFO_FILENAME);
+        $extensao = $request->file('arquivo')->getClientOriginalExtension();
+        $novoNome = $nomeArq . '_' . time() . '.' . $extensao;
+        $path = $request->file('arquivo')->storeAs('Editais', $novoNome);
+      } else {
+        $novoNome = $postagem->arquivo;
+      }
+
+      $postagem->update([
+          'nome' => $request->nome,
+          'etapa' => $request->etapa,
+          'valor' => $request->valor,
+          'email' => $request->email,
+          'telefone' => $request->telefone,
+          'categoria' => $request->categoria,
+          'flag' => $request->flag,
+          'arquivo' => $novoNome,
+          
+          
+      ]);
+
+      return redirect('/listagem');
+  }
+
 }
+
+
+    

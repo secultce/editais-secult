@@ -14,9 +14,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -63,10 +61,8 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/postagem" class="nav-item nav-link"><b>Início</b></a>
-                    <a href="/listagem"
-                        class="nav-item nav-link "><b>Editais</b></a>
-                    <a href="/desativados"
-                        class="nav-item nav-link active"><b>Encerrados</b></a>
+                    <a href="/listagem" class="nav-item nav-link "><b>Editais</b></a>
+                    <a href="/desativados" class="nav-item nav-link active"><b>Encerrados</b></a>
                     <a href="{{route('login.destroy')}}" class="nav-item nav-link  "><b>Sair</b></a>
                 </div>
             </div>
@@ -85,85 +81,77 @@
 
 
                 @foreach ($desativados as $des)
-                        <div class="row g-5">
-                            <div class="col-lg-3  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
-                                <div class="blog-item bg-light rounded overflow-hidden">
-                                    <div class="blog-img position-relative overflow-hidden">
-                                        <img class="img-fluid" src="{{ asset('/storage/Editais/'.$des->arquivo)}}" alt="">
-                                        <div
-                                            class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">
-                                            Edital encerrado</div>
-                                    </div>
-
-                                </div>
+                <div class="row g-5">
+                    <div class="col-lg-3  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
+                        <div class="blog-item bg-light rounded overflow-hidden">
+                            <div class="blog-img position-relative overflow-hidden">
+                                <img class="img-fluid" src="{{ asset('/storage/Editais/'.$des->arquivo)}}" alt="">
+                                <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">
+                                    Edital encerrado</div>
                             </div>
 
-                            <div class="col-lg-4">
-                                <div class="row g-5">
-                                    <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
-                                        <h4>{{ $des->nome }}</h4>
-
-                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas:{{ $des->etpas }}
-                                            
-                                        </p>
-                                    </div>
-                                    <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
-                                        <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>Nº:{{ $des->id }}</p>
-                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
-                                            R$:{{ $des->valor }}
-                                        </p>
-                                        <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>E-mail:{{ $des->email }}
-                                        </p>
-                                        <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>telefone:{{ $des->telefone }}
-                                        </p>
-                                        <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>Categoria:{{ $des->categoria }}
-                                        </p>
-                                        <p class="mb-0"><i
-                                                class="fa fa-arrow-right text-primary me-3"></i>status: {{ $des->flag }}</p>
-
-                                        <br>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <div class="row g-5">
-                                    <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
-                                        <h4>Publicações do Edital</h4>
-
-                                        <p class="mb-0">
-                                            <li id="0" class="widget-list-item"><span>Somente editais ativos podem ser
-                                                    atualizados</span>
-                                            </li>
-                                        </p>
-                                    </div>
-
-                                    <div id="login-button-panel" class="col-lg-12">
-                                        <a href="http://localhost/EditaisMVC/atualizacao/change/@id"> <button
-                                                name="action" value="enterAccountId" class="button-continuar"
-                                                type="submit" tabindex="1" style="background: rgb(102, 99, 96)"
-                                                disabled>Alterar</button></a>
-                                        <a href="http://localhost/EditaisMVC/desativados/ativa/@id"> <button
-                                                name="action" value="enterAccountId" class="button-continuar"
-                                                type="submit" tabindex="1"
-                                                style="background: rgb(34, 175, 15);">Reativar</button> </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
                         </div>
-                 @endforeach  
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="row g-5">
+                            <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
+                                <h4>{{ $des->nome }}</h4>
+
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas:{{ $des->etpas }}
+
+                                </p>
+                            </div>
+                            <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Nº:{{ $des->id }}</p>
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
+                                    R$:{{ $des->valor }}
+                                </p>
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>E-mail:{{ $des->email }}
+                                </p>
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>telefone:{{ $des->telefone }}
+                                </p>
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Categoria:{{ $des->categoria }}
+                                </p>
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>status: {{ $des->flag }}</p>
+
+                                <br>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="row g-5">
+                            <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
+                                <h4>Publicações do Edital</h4>
+
+                                <p class="mb-0">
+                                    <li id="0" class="widget-list-item"><span>Somente editais ativos podem ser
+                                            atualizados</span>
+                                    </li>
+                                </p>
+                            </div>
+
+                            <div id="login-button-panel" class="col-lg-12">
+                                <a href="http://localhost/EditaisMVC/atualizacao/change/@id"> <button name="action" value="enterAccountId" class="button-continuar" type="submit" tabindex="1" style="background: rgb(102, 99, 96)" disabled>Alterar</button></a>
+                                <a href="/ativar/{{$des->id}}"> <button name="action" value="enterAccountId" class="button-continuar" type="submit" tabindex="1" style="background: rgb(34, 175, 15);">Reativar</button> </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
+
+
+    <div class="d-flex justify-content-center">
+        {!! $desativados->links() !!}
     </div>
 
-    
+
     <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         Se não existir editais desativados mostre isso abaixo
         {% set valor = false %}
@@ -237,15 +225,9 @@
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="d-flex mt-4">
-                                <a class="btn btn-secondary btn-square me-2"
-                                    href="https://www.facebook.com/secultceara/"><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-secondary btn-square me-2"
-                                    href="https://www.instagram.com/secultceara/"><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-secondary btn-square"
-                                    href="https://www.youtube.com/channel/UCVckZREupHqHkoS7MmxwH9w"><i
-                                        class="fab fa-youtube fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square me-2" href="https://www.facebook.com/secultceara/"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square me-2" href="https://www.instagram.com/secultceara/"><i class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square" href="https://www.youtube.com/channel/UCVckZREupHqHkoS7MmxwH9w"><i class="fab fa-youtube fw-normal"></i></a>
                             </div>
                         </div>
                     </div>

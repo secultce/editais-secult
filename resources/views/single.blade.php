@@ -117,7 +117,8 @@
                     </div>
                     <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
                         <h4>Valor do Edital</h4>
-                        <p class="mb-0">R$ {{ $post->valor }}</p>
+                        <p class="mb-0"></p>
+                        {{  'R$ '.number_format( $post->valor , 2, ',', '.') }}  
                     </div>
 
                     <div class="col-lg-12 mb-20">
@@ -133,9 +134,9 @@
                     <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
                         <h4>Publicações do Edital</h4>
                         
-                        <li><a href="{{ $anexos->links }}" target="_blank">{{ $anexos->texto }} </a><br></li> 
+                        <li><a href="{{ url($anexos->link)}}" target="_blank">{{ $anexos->texto }} </a><br></li> 
                       
-                          
+                       
                     </div>
                 </div>
             </div>

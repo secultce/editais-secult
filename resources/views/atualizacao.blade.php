@@ -152,47 +152,47 @@
                     </iframe>
                 </div>
                 <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
-                    <form method="POST" action="http://localhost/EditaisMVC/atualizacao/update"
-                        enctype="multipart/form-data">
+                    <form method="POST" action="/alterar/{{$atual->id}}" enctype="multipart/form-data">
+                        @csrf
                         <div class="row g-3">
                             <div class="col-12">
                                 <input type="hidden" name="id" value="">
                                 Nome:
                                 <input type="text" name="nome" class="form-control border-1 bg-light px-4"
-                                    value="" style="height: 55px;" required>
+                                    value="{{ $atual->nome }}" style="height: 55px;" required>
                             </div>
 
                             <div class="col-12">
                                 Etapas:
-                                <textarea name="etapas" class="form-control border-1 bg-light px-4 py-4" rows="4"
-                                    required></textarea>
+                                <textarea name="etapa" class="form-control border-1 bg-light px-4 py-4" rows="4"
+                                    required>{{ $atual->etapa }}</textarea>
                             </div>
 
                             <div class="col-12">
                                 Valor:
                                 <input type="text" name="valor" class="form-control border-1 bg-light px-4"
-                                    value="" style="height: 55px;" onkeypress="return numerais()">
+                                    value="{{ $atual->valor }}" style="height: 55px;" onkeypress="return numerais()">
                             </div>
 
                             <div class="col-12">
-                                Contato:
-                                <input type="email" name="contatos" class="form-control border-1 bg-light px-4"
-                                    value="" style="height: 55px;">
+                                E-mail:
+                                <input type="email" name="email" class="form-control border-1 bg-light px-4"
+                                    value="{{ $atual->email }}" style="height: 55px;">
                             </div>
 
                             <div class="col-12">
                                 Telefone:
                                 <input type="tel" name="telefone" id="telefone"
                                     class="form-control border-1 bg-light px-4" placeholder="(00) 9 - 0000-0000"
-                                    value="" placeholder="(00) 9 - 0000-0000" style="height: 55px;">
+                                    value="{{ $atual->telefone }}" placeholder="(00) 9 - 0000-0000" style="height: 55px;">
                             </div>
 
                             <div class="col-12">
                                 <label>Selecione uma categoria: </label><br />
-                                <select name="categorias" class="form-control border-1 bg-light px-4"
+                                <select name="categoria" class="form-control border-1 bg-light px-4"
                                     style="opacity: calc(1)">
                                     <p style="opacity: calc(0.5)">
-                                        <option disable selected hidden></option>
+                                        <option disable selected hidden>{{ $atual->categoria }}</option>
                                     </p>
                                     <option value="Aberto">Inscrições abertas</option>
                                     <option value="Público">Conhecimento público</option>
@@ -201,10 +201,10 @@
                             </div>
                             <div class="col-12">
                                 <label>Status do Edital: </label><br />
-                                <select name="flags" class="form-control border-1 bg-light px-4"
+                                <select name="flag" class="form-control border-1 bg-light px-4"
                                     style="opacity: calc(1)">
                                     <p style="opacity: calc(0.5)">
-                                        <option disable selected hidden></option>
+                                        <option disable selected hidden>{{ $atual->flag }}</option>
                                     </p>
                                     <option value="Ativado">Ativado</option>
                                     <option value="Desativado">Desativado</option>
@@ -214,7 +214,7 @@
                             <div class="col-12">
                                 Selecione uma imagem para o edital
                                 <input type="file" name="arquivo" accept="image/png,image/jpg, image/jpeg"
-                                    class="form-control border-1 bg-light px-4"><br />
+                                    class="form-control border-1 bg-light px-4">{{ $atual->arquivo }}<br />
 
                             </div>
                             <div class="col-12">

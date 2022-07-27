@@ -41,12 +41,10 @@
             //console.log(controleCampo);
             document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: </label><input type="text" name="texto[]" placeholder="Documento da secretaria" class="border-1 bg-light px-4" required</br><label>Link: </label><input type="url" name="link[]" placeholder="www.cultura/documento.PDF" class=" border-1 bg-light px-4" required> <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
         }
-
         function removerCampo(idCampo) {
             //console.log("Campo remover: " + idCampo);
             document.getElementById('campo' + idCampo).remove();
         }
-
     </script>
 </head>
 

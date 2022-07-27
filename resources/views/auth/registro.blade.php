@@ -96,7 +96,7 @@
                         <input id="password_confirmation" name="password_confirmation" autocomplete="OFF" tabindex="1" type="password" value="" placeholder="****" aria-invalid="false">
                         <div>
                             @error('password')
-                            <p class="text-danger"><i class="fa fa-key" aria-hidden="true"></i>*É necessário inserir a mesma senha nos dois campos!</p>
+                            <p class="text-danger"><i class="fa fa-key" aria-hidden="true"></i>*É necessário inserir a mesma senha nos dois campos e possuir pelo menos 8 caracteres!</p>
                             @enderror
                         </div>
                         <!-- <label for="senha">Chave de permisão</label>
