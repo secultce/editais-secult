@@ -146,9 +146,9 @@
                 <div class="col-lg-12 form-group">
                     <br>
                     <input type="hidden" name="id" value="{{id}}">
-                    <input type="text" name="texto" placeholder="Documento da secretaria" class='border-1 bg-light px-4'
+                    <input type="text" name="texto[]" placeholder="Documento da secretaria" class='border-1 bg-light px-4'
                         required value="{{texto}}"> <label><br></label>
-                    <input type="url" name="link" placeholder="www.cultura/documento.PDF"
+                    <input type="url" name="link[]" placeholder="www.cultura/documento.PDF"
                         class=" border-1 bg-light px-4" required value="{{link}}">
                 </div>
                 <br>
