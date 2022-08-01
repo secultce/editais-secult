@@ -32,9 +32,7 @@
 
     <link rel="shortcut icon" type="imagex/png" href="img/logo/iconCe.ico">
 </head>
-
 <body>
-
     <!-- Topo -->
     <div class="container-fluid bg-secondary px-5 d-none d-lg-block">
         <div class="row gx-0">
@@ -51,7 +49,6 @@
         </div>
     </div>
     <!-- Top fim -->
-
     <!-- Menu de navegação -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
@@ -66,18 +63,14 @@
                     <a href="{{route('login.destroy')}}" class="nav-item nav-link  "><b>Sair</b></a>
                 </div>
             </div>
-
     </div>
     <br><br>
-
-
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <h5 class="fw-bold text-primary text-uppercase">Editais lançados</h5>
         </div>
         <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-5">
-
                 @foreach ($postagem as $post)
                 <div class="container py-6">
                     <!--Conteúdo central fim-->
@@ -98,7 +91,6 @@
                                     </div>
                                 </div><br>
                             </div>
-
                             <div class="col-lg-4">
                                 <div class="row g-4">
                                     <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
@@ -110,7 +102,6 @@
                                     <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
                                         <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Nº: {{ $post->id }}
                                         </p>
-
                                         <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
                                         {{  'R$ '.number_format( $post->valor , 2, ',', '.') }}  
                                         </p>
@@ -132,7 +123,7 @@
                                         <h4>Publicações do Edital</h4>
                                         <p class="mb-0">
 
-                                            <li id="0" class="widget-list-item"><span><a href="/links">Lista
+                                            <li id="0" class="widget-list-item"><span><a href="/links/{{$post->id}}">Lista
                                                         de Links</a></span><img src="img/logo/mouse.png" width="20">
                                             </li>
 
@@ -150,18 +141,13 @@
                     </div>
                 </div>
                 @endforeach
-
                 <div class="d-flex justify-content-center">
                     {!! $postagem->links() !!}
                 </div>
-
             </div>
         </div>
     </div>
     </div>
-
-
-
     <!-- Rodapé -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
@@ -179,7 +165,6 @@
                                     Fortaleza, CE
                                     CEP: 60.025-100</p>
                             </div>
-
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
@@ -192,7 +177,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
                                 <h4 class="text-light mb-0">Horário de atendimento</h4>
@@ -218,12 +202,8 @@
         </div>
     </div>
     <!-- Rodapé fim -->
-
-
     <!-- Botão topo -->
     <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
     <!-- JavaScripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -232,9 +212,7 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-
 </html>

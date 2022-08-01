@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostagensController;
+use App\Http\Controllers\AnexosController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\SessaoController;
 use Illuminate\Support\Facades\Route;
@@ -20,19 +21,23 @@ Route::get('/', [PostagensController::class, 'listagemEditais'])
 ->name('postagens.editais');
 
 
-Route::get('/equipamentos', function () {
+Route::get('/equipamentos', function () 
+{
     return view('equipamentos');
 });
 
-Route::get('/servico', function () {
+Route::get('/servico', function () 
+{
     return view('servico');
 });
 
-Route::get('/cefic', function () {
+Route::get('/cefic', function () 
+{
     return view('cefic');
 });
 
-Route::get('/postagem', function () {
+Route::get('/postagem', function () 
+{
     return view('postagem');
 })->middleware('auth');
 
@@ -43,7 +48,8 @@ Route::get('/listagem', [PostagensController::class, 'listagem'])
 Route::get('/editais', [PostagensController::class, 'listagemEditais'])
 ->name('postagens.editais');
 
-Route::get('/desativados', function () {
+Route::get('/desativados', function () 
+{
     return view('desativados');
 })->middleware('auth');
 
@@ -56,19 +62,28 @@ Route::get('/desativar/{id}',[PostagensController::class, 'desativarEdital'])
 Route::get('/ativar/{id}',[PostagensController::class, 'ativarEdital'])
 ->name('postagens.ativar');
 
-
 Route::get('/desativados', [PostagensController::class, 'editaisDesativados'])
     ->middleware('auth')
     ->name('postagens.desativados');
 
-
-Route::get('/anexo', function () {
+Route::get('/anexo', function () 
+{
     return view('anexo');
 });
 
-Route::get('/links', function () {
+/* Route::get('/links', function()
+{
     return view('links');
-});
+}); */
+
+Route::get('/links/{id}', [AnexosController::class, 'exibirAnexos'])
+->name('anexos.exibir')
+->middleware('auth');
+
+Route::get('/anexo', [AnexosController::class, 'getAnexo'])
+->name('anexos.mostrarMudanca')
+->middleware('auth');
+/* Route::get('inserirLinks/{id}',  $id. 'inserirLinks'); */
 
 Route::get('/registro', [RegistroController::class, 'create'])
     ->name('registro.index');
@@ -90,7 +105,6 @@ Route::post('/inserir-postagem', [PostagensController::class, 'inserirPostagem']
 ->name('postagem.inserirPostagem')
 ->middleware('auth');
 
-
 Route::get('/atualizacao/{id}',[PostagensController::class, 'getDados'])
 ->name('postagem.editarEdital')
 ->middleware('auth');
@@ -99,5 +113,14 @@ Route::post('/alterar/{id}',[PostagensController::class, 'alterar'])
 ->name('postagem.alterar')
 ->middleware('auth');
 
+Route::post('/inserir-links', [AnexosController::class, 'inserirLinks'])
+->name('anexos.inserirLinks')
+->middleware('auth');
 
+Route::get('/anexo/{id}',[AnexosController::class, 'getAnexo'])
+->name('anexo.mudarAnexo')
+->middleware('auth');
 
+Route::post('/alterarAnexo/{id}',[AnexosController::class, 'atualizaAnexos'])
+->name('anexo.atualizaAnexos')
+->middleware('auth');

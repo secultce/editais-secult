@@ -12,4 +12,9 @@ class Anexos extends Model
         'texto',
         'id_postagens'
     ];
+
+    public function postagens(): BelongsToMany
+    {
+        return $this->belongsToMany(Postagens::class);
+    }
 }

@@ -133,10 +133,10 @@
                 <div class="row g-5">
                     <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
                         <h4>Publicações do Edital</h4>
-                        
-                        <li><a href="{{ url($anexos->link)}}" target="_blank">{{ $anexos->texto }} </a><br></li> 
+                        @foreach($anexos as $nexos)
+                        <li><a href="{{$nexos->link}}" target="_blank">{{$nexos->texto}} </a><br></li> 
                       
-                       
+                       @endforeach
                     </div>
                 </div>
             </div>

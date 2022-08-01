@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Governo Do Estado Do Ceará" name="keywords">
     <meta content="Governo Do Estado Do Ceará" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -147,9 +148,7 @@
 
                     <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
                         <form method="POST" action="{{route('postagem.inserirPostagem')}}" enctype="multipart/form-data">
-
                             @csrf
-
                             <div class="col-12">
                                 <h6>Campos com * (asterisco) são obrigatórios;</h6>
                             </div>
@@ -190,7 +189,6 @@
                                         <option value="Seleção">Processo de seleção</option>
                                     </select>
                                 </div>
-
                                 <div class="col-12">
                                     <label>Status do Edital: *</label><br />
                                     <select name="flag" class="form-control border-1 bg-light px-4" style="opacity: calc(1)">
@@ -205,7 +203,6 @@
                                     Selecione uma imagem para o edital *
                                     <input type="file" name="arquivo" accept="image/png,image/jpg, image/jpeg" class="form-control border-1 bg-light px-4" required>
                                 </div>
-
                                 <div id="formulario">
                                     <div class="col-lg-12 form-group">
                                         <label>Digite um texto para associar ao link: *</label>
@@ -216,23 +213,18 @@
                                     </div>
                                 </div>
                                 <label> Clique no botão abaixo para adicionar novos campos</label>
-
                                 <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);" onclick="adicionarCampo()">+</button>&nbsp;
-
                                 <button class="btn btn-secondary w-100 py-3" type="submit" name="submit">Adicionar
                                     edital</button>
                             </div>
                         </form>
                         <br>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
     <!--acesso rapido end-->
-
     <!-- Rodapé -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
@@ -250,7 +242,6 @@
                                     Fortaleza, CE
                                     CEP: 60.025-100</p>
                             </div>
-
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
@@ -263,7 +254,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
                                 <h4 class="text-light mb-0">Horário de atendimento</h4>
@@ -289,12 +279,8 @@
         </div>
     </div>
     <!-- Rodapé fim -->
-
-
     <!-- Botão topo -->
     <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
     <!-- JavaScripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -303,9 +289,7 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-
 </html>

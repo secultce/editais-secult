@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Governo Do Estado Do Ceará" name="keywords">
     <meta content="Governo Do Estado Do Ceará" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -26,32 +26,32 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 
     <link rel="shortcut icon" type="imagex/png" href="img/logo/iconCe.ico">
 
     <script>
         var controleCampo = 1;
 
-        function adicionarCampo() {
+        function adicionarCampo() 
+        {
             controleCampo++;
             //console.log(controleCampo);
             //aqui a unica modificação para funcionar foi deixar os names dos inputs de link e texto como arrays(link[], texto[])
-            document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: * </label><input type="text" name="texto[]" placeholder="Ex: Link de inscrições" class="border-1 bg-light px-4" required</br><label>Link *: </label><input type="url" name="link[]" placeholder="Ex: www.culturaCE/inscricoes" class=" border-1 bg-light px-4" required> <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
+            document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: * </label><input type="text" name="texto[]" placeholder="Ex: Link de inscrições" class="border-1 bg-light px-4" required</br><label>Link *: </label><input type="url" name="link[]" placeholder="Ex: www.culturaCE/inscricoes" class=" border-1 bg-light px-4" required> <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Remover campos</label></button></div>');
         }
 
-        function removerCampo(idCampo) {
+        function removerCampo(idCampo) 
+        {
             //console.log("Campo remover: " + idCampo);
             document.getElementById('campo' + idCampo).remove();
         } 
     </script>
 </head>
-
 <body>
-
     <!-- Topo -->
     <div class="container-fluid bg-secondary px-5 d-none d-lg-block">
         <div class="row gx-0">
@@ -68,7 +68,6 @@
         </div>
     </div>
     <!-- Top fim -->
-
     <!-- Menu de navegação -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
@@ -83,85 +82,65 @@
                     <a href="{{route('login.destroy')}}" class="nav-item nav-link  "><b>Sair</b></a>
                 </div>
             </div>
-
     </div>
     <br><br>
-
-
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-       
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">       
         <div class="container-fluid py-4 wow fadeInUp" data-wow-delay="0.1s">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Área de controle de links </h5>
             </div>
             <div class="row g-5">
-
-                <form method="POST" action="">
-                    <input type="hidden" name="id" value="">
+                <form method="POST" action="/inserir-links">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$postagens->id}}">
+                    {{$postagens->id}}
                     <label>Texto:</label>
                     <input type="text" name="texto[]" placeholder="Ex: Novo Link" class='border-1 bg-light px-4' required>
-
                     <label>Link:</label>
                     <input type="url" name="link[]" placeholder="www.culturaCE/Ficha" class=" border-1 bg-light px-4" required>
-
                     <label> Clique no botão abaixo para adicionar novos links</label><br>
-                    <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);" onclick="adicionarCampo()">+</button>&nbsp;
-
+                    
                     <div id="formulario">
                         <!--Area de novos links clonados-->
                     </div>
                     <br>
+                    <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);" onclick="adicionarCampo()">+</button>&nbsp;
+                    <br><br>
                     <input type='submit' value='Adicionar novos links' class="col-lg-12" type="button" style="background-color: rgb(52, 173, 84); " />
                 </form>
             </div>
         </div>
-
         <div class="container-fluid py-4 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-6">
                 <input type='button' value='Voltar' onclick='history.go(-1)' />
             </div>
         </div>
-
-
         <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Área para atualização de links</h5>
             </div>
-
             <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="row g-5">
-
+                @foreach($anexos as $nexos)                   
                     <div class="col-lg-4" id="linkpostagem">
-                        <div class="row g-5">
-                            <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
-                                <h6>Anexo nº </h6>
-                                <h4>
+                        <div class="row g-5">                            
+                            <div class="col-12 wow zoomIn" data-wow-delay="0.4s">                                
+                                <h6>Anexo nº:  </h6>
+                                <h4> 
                                     <div style="overflow: hidden; width:320px; border:1px; white-space:nowrap;">
-                                        @nome
-                                    </div>
-                                </h4>
-                                <p class="mb-0">
-                                <div style="overflow: hidden; width:320px; border:1px; white-space:nowrap;">
-                                    <a href="" target="_blank">
-                                        <h6>...</h6>
-                                    </a>
-                                </div>
-                                </p>
-                                <a href="/anexo"> <input type="submit" value="Mudar"></a>
-                            </div>
+                                        <a href="{{$nexos->link}}" target="_blank">{{$nexos->texto}}</a>
+                                    </div>                                   
+                                </h4>                               
+                                <a href="/anexo/{{$nexos->id}}"> <input type="submit" value="Mudar"></a>
+                            </div>                        
                         </div>
                     </div>
-
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
-
     </div>
     </div>
-
-
-
     <!-- Rodapé -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
@@ -179,7 +158,6 @@
                                     Fortaleza, CE
                                     CEP: 60.025-100</p>
                             </div>
-
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
@@ -192,7 +170,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
                                 <h4 class="text-light mb-0">Horário de atendimento</h4>
@@ -218,12 +195,8 @@
         </div>
     </div>
     <!-- Rodapé fim -->
-
-
     <!-- Botão topo -->
     <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
     <!-- JavaScripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -232,9 +205,7 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-
 </html>

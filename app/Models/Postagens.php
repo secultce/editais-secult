@@ -21,4 +21,9 @@ class Postagens extends Model
         'flag',
         'arquivo',
     ];
+
+    public function postagens():BelongsToMany
+    {
+        return $this->belongsToMany(Anexos::class);
+    }
 }
