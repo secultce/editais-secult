@@ -64,15 +64,13 @@ class AnexosController extends Controller
   public function atualizaAnexos(Request $request, $id)
   {
     $anexo = Anexos::FindOrFail($id);
-      /* dd($anexo); */
-      $anexo->update([
-          'link'  => $request->link,
-          'texto' => $request->texto,/* 
-          'id'    => $request->id */
-      ]);
+    /* dd($anexo); */
+    $anexo->update([
+        'link'  => $request->link,
+        'texto' => $request->texto,/* 
+        'id'    => $request->id */
+    ]);
 
-      return redirect('/listagem');
-  }
-
-  
+    return redirect('/listagem')->with('msg', 'Link atualizado com sucesso. ');
+  }  
 }

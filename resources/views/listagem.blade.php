@@ -68,7 +68,20 @@
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <h5 class="fw-bold text-primary text-uppercase">Editais lançados</h5>
-        </div>
+        </div>  
+        @if(session('msg'))
+            <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <main>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="msg">{{session('msg')}}</p>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        @endif
         <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-5">
                 @foreach ($postagem as $post)
@@ -126,10 +139,8 @@
                                             <li id="0" class="widget-list-item"><span><a href="/links/{{$post->id}}">Lista
                                                         de Links</a></span><img src="img/logo/mouse.png" width="20">
                                             </li>
-
                                         </p>
                                     </div>
-
                                     <div id="login-button-panel" class="col-lg-12">
                                         <a href="/atualizacao/{{$post->id}}"> <button name="action" value="enterAccountId" class="button-continuar" type="submit" tabindex="1">Alterar</button></a>
                                         <a href="/desativar/{{$post->id}}"> <button name="action" value="enterAccountId" class="button-continuar" type="submit" tabindex="1" style="background: rgb(251, 138, 8);">Encerrar</button> </a>
@@ -147,7 +158,7 @@
             </div>
         </div>
     </div>
-    </div>
+    </div>    
     <!-- Rodapé -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">

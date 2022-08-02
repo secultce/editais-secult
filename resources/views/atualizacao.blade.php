@@ -37,55 +37,63 @@
     <!-- fim do javascript botão + -->
     <script>
         var controleCampo = 1;
-        function adicionarCampo() {
+        function adicionarCampo() 
+        {
             controleCampo++;
             //console.log(controleCampo);
 
             document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: </label><input type="text" name="texto[]" placeholder="Documento da secretaria" class="border-1 bg-light px-4"</br><label>Link: </label><input type="text" name="link[]" placeholder="www.cultura/documento.PDF" class=" border-1 bg-light px-4" > <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
         }
 
-        function removerCampo(idCampo) {
+        function removerCampo(idCampo) 
+        {
             //console.log("Campo remover: " + idCampo);
             document.getElementById('campo' + idCampo).remove();
         }
 
-        function numerais(evt) {
+        function numerais(evt) 
+        {
             var theEvent = evt || window.event;
             var key = theEvent.keyCode || theEvent.which;
             key = String.fromCharCode(key);
             //var regex = /^[0-9.,]+$/;
             var regex = /^[0-9]+$/;
-            if (!regex.test(key)) {
+            if (!regex.test(key)) 
+            {
                 theEvent.returnValue = false;
                 if (theEvent.preventDefault) theEvent.preventDefault();
                 alert("Apenas números podem ser inseridos");
             }
         }
 
-        function mascara(o, f) {
+        function mascara(o, f) 
+        {
             v_obj = o
             v_fun = f
             setTimeout("execmascara()", 1)
         }
-        function execmascara() {
+        function execmascara() 
+        {
             v_obj.value = v_fun(v_obj.value)
         }
-        function mtel(v) {
+        function mtel(v) 
+        {
             v = v.replace(/\D/g, ""); //Remove tudo o que não é dígito
             v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
             v = v.replace(/(\d)(\d{4})$/, "$1-$2"); //Coloca hífen entre o quarto e o quinto dígitos
             return v;
         }
-        function id(el) {
+        function id(el) 
+        {
             return document.getElementById(el);
         }
-        window.onload = function () {
-            id('telefone').onkeyup = function () {
+        window.onload = function () 
+        {
+            id('telefone').onkeyup = function () 
+            {
                 mascara(this, mtel);
             }
         }
-
-
     </script>
     <!--fim do javascript botão + -->
 </head>

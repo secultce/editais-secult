@@ -61,11 +61,13 @@ class PostagensController extends Controller
           'Mensagem',
           "Edital inserido com sucesso!"
         );
-        return redirect('/listagem');
-      } catch (\Exception $e) {
+        return redirect('/listagem')->with('msg', 'Postagem inserida com sucesso.');
+      } 
+      catch (\Exception $e) 
+      {
         $request->session()->flash(
           'Mensagem',
-          "OOOPS!" . $e
+          "Edital não inserido." . $e
         );
       }
     }
@@ -112,14 +114,14 @@ class PostagensController extends Controller
   {
     Postagens::where('id', $id)
     ->update(['flag' =>  'Desativado']);
-    return redirect()->back();
+    return redirect()->back()->with('msg', 'Edital desativado com sucesso.');
   }
 
   public function ativarEdital($id)
   {
     Postagens::where('id', $id)
     ->update(['flag' =>  'Ativado']);
-    return redirect()->back();
+    return redirect()->back()->with('msg', 'Edital reativado com sucesso.');;
   }
 
   public function getDados($id)
@@ -133,10 +135,11 @@ class PostagensController extends Controller
     $postagem = Postagens::FindOrFail($id);
     $imagemAtual = $postagem->arquivo;
     //dd($imagemAtual);
-    Storage::disk('public')->delete($imagemAtual);
+    //Storage::disk('public')->delete($imagemAtual);
 
     if ($request->hasFile('arquivo')) 
     {
+      Storage::disk('public')->delete('Editais/'.$imagemAtual);
       $nomeExtensao = $request->file('arquivo')->getClientOriginalName();
       $nomeArq = pathinfo($nomeExtensao, PATHINFO_FILENAME);
       $extensao = $request->file('arquivo')->getClientOriginalExtension();
@@ -158,6 +161,6 @@ class PostagensController extends Controller
       'flag' => $request->flag,
       'arquivo' => $novoNome,        
     ]);
-    return redirect('/listagem');
+    return redirect('/listagem')->with('msg', 'Edital '.'" ' .$request->nome.' "'.' alterado com sucesso.');
   }
 }    

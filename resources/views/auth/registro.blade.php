@@ -53,9 +53,20 @@
         </div>
     </div>
     <!-- Topo fim -->
-
-
       <!-- Área de login -->
+      @if(session('msg'))
+            <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <main>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="msg">{{session('msg')}}</p>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        @endif
     <div class="container">
         <aside id="aside-signin">
             <img id="identidade-govbr" src="img/logo/logoNova.png" />

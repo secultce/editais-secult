@@ -134,7 +134,7 @@
         <div class=" text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <div class="col-lg-2">
                 <div class="row g-4">
-                    <input type='button' value='Voltar' onclick='history.go(-1)' />
+                    <input type='button' value='Voltar' onclick='history.go(-1)' class="btn btn-outline-success" />
                 </div>
             </div>
         </div>

@@ -70,8 +70,13 @@
 
                     </div>
                     <div class="accordion-panel" id="accordion-panel-id">
+                        @if(session('msg'))
+                            <div class="row">
+                               <p class="msg">{{session('msg')}}</p>
+                            </div>                                            
+                        @endif
                         <p>Digite seu <strong>login</strong> e <strong>senha</strong> para acessar sua conta do editais culturais</p>
-
+                        
                         <label for="email">Usuário</label>
                         <input id="email" name="email" autocomplete="ON" tabindex="1" type="text" value="" placeholder="Digite seu email" aria-invalid="false">
 

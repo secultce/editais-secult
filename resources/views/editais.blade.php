@@ -101,8 +101,16 @@
                             <i class="fa fa-award text-primary"></i>
                         </div>
                         <div class="ps-4">
+                            <?php $a = 0; ?>
+                            @foreach ($postagem as $post)
+                            @if($post->categoria =='Aberto')
+                            @if($post->flag =='Ativado')
+                            <?php $a = $a + 1; ?>
+                            @endif
+                            @endif
+                            @endforeach
                             <h5 class="text-white mb-0">Inscrições Abertas</h5>
-                            <h1 class="text-white mb-0" data-toggle="counter-up">@valor</h1>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">{{$a}}</h1>
                         </div>
 
 
@@ -114,9 +122,18 @@
                             <i class="fa fa-check text-white"></i>
                         </div>
                         <div class="ps-4">
+
+                            <?php $p = 0; ?>
+                            @foreach ($postagem as $post)
+                            @if($post->categoria =='Público')
+                            @if($post->flag =='Ativado')
+                            <?php $p = $p + 1; ?>
+                            @endif
+                            @endif
+                            @endforeach
                             <h5 class="text-black mb-0">Conhecimento Público</h5>
 
-                            <h1 class="text-black mb-0" data-toggle="counter-up">@valor</h1>
+                            <h1 class="text-black mb-0" data-toggle="counter-up">{{$p}}</h1>
                         </div>
                     </div>
                 </div>
@@ -127,8 +144,15 @@
                         </div>
                         <div class="ps-4">
                             <h5 class="text-black mb-0">Processo de Seleção</h5>
-
-                            <h1 class="text-black mb-0" data-toggle="counter-up">@valor</h1>
+                            <?php $s = 0; ?>
+                            @foreach ($postagem as $post)
+                            @if($post->categoria =='Seleção')
+                            @if($post->flag =='Ativado')
+                            <?php $s = $s + 1; ?>
+                            @endif
+                            @endif
+                            @endforeach
+                            <h1 class="text-black mb-0" data-toggle="counter-up">{{$s}}</h1>
                         </div>
                     </div>
                 </div>
@@ -138,9 +162,15 @@
                             <i class="fa fa-award text-primary"></i>
                         </div>
                         <div class="ps-4">
+                            <?php $e = 0; ?>
+                            @foreach ($postagem as $post)
+                            @if($post->flag =='Desativado')
+                            <?php $e = $e + 1; ?>
+                            @endif
+                            @endforeach
                             <h5 class="text-white mb-0">Inscrições encerradas</h5>
 
-                            <h1 class="text-white mb-0" data-toggle="counter-up">@valor</h1>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">{{$e}}</h1>
                         </div>
                     </div>
                 </div>
@@ -174,6 +204,7 @@
             @foreach ($postagem as $post)
             @if($post->categoria =='Público')
             @if($post->flag =='Ativado')
+
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
@@ -181,8 +212,8 @@
                             <div class="nova">
                                 <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
                             </div>
-                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                {{ $post->nome }}
+                            <div class="position-absolute top-0 start-0 bg-secondary text-dark rounded-end mt-5 py-2 px-4 bg-warning">
+                                Edital público
                             </div>
                         </div>
                         <div class="p-4">
@@ -191,6 +222,7 @@
                     </div>
                 </div><br>
             </div>
+            <hr>
             @endif
             @endif
             @endforeach
@@ -215,6 +247,7 @@
             @foreach ($postagem as $post)
             @if($post->categoria =='Aberto')
             @if($post->flag =='Ativado')
+
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
@@ -223,20 +256,19 @@
                                 <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
                             </div>
                             <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                {{ $post->nome }}
+                                Edital aberto
                             </div>
                         </div>
                         <div class="p-4">
                             <a class="text-width-g " href="/single/{{$post->id}}">Inscreva-se<i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
-                </div><br>
+                </div>
             </div>
+            <hr>
             @endif
             @endif
             @endforeach
-
-
         </div>
     </div>
 
@@ -263,8 +295,8 @@
                             <div class="nova">
                                 <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
                             </div>
-                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                {{ $post->nome }}
+                            <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">
+                                Edital em seleção
                             </div>
                         </div>
                         <div class="p-4">
@@ -273,6 +305,7 @@
                     </div>
                 </div><br>
             </div>
+            <hr>
             @endif
             @endif
             @endforeach
@@ -287,6 +320,7 @@
         <div class="container py-5">
             @foreach ($postagem as $post)
             @if($post->flag =='Desativado')
+
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
@@ -294,16 +328,17 @@
                             <div class="nova">
                                 <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
                             </div>
-                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                {{ $post->nome }}
+                            <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4 bg-danger">
+                                Edital encerrado
                             </div>
                         </div>
                         <div class="p-4">
-                             <a class="text-width-g " href="/single/{{$post->id}}">Ver informações <i class="bi bi-arrow-right"></i></a>
+                            <a class="text-width-g " href="/single/{{$post->id}}">Ver informações<i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div><br>
             </div>
+            <hr>
             @endif
             @endforeach
         </div>

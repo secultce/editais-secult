@@ -13,10 +13,10 @@ class RegistroController extends Controller
     public function create()
     { 
         return view('auth.registro');
-    }    
+    }
+    
     public function store()
     {
-
         $this->validate(request(), [
             'name' => 'required',
             'email' => 'required|email',
@@ -26,8 +26,6 @@ class RegistroController extends Controller
         $user = User::create(request(['name', 'email', 'password']));
 
         auth()->login($user);
-        return redirect('/login');
+        return redirect('/login')->with('msg', 'Usuario registrado com sucesso.');
     }
-
-    
 }

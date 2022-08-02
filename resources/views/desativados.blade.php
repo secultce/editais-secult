@@ -74,12 +74,36 @@
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <h5 class="fw-bold text-primary text-uppercase">Editais encerrados</h5>
         </div>
+        @if(session('msg'))
+            <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <main>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="msg">{{session('msg')}}</p>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        @endif
+        @if(isset($desativados) && $desativados->count() == 0)  
+        <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                        <img src="img/logo/logotipo.png" width="180">
+                    </div>
+                    <div class=" text-center position-relative pb-3 mb-5 mx-auto " style="max-width: 600px;">
+                        <label>
+                            <h2>Não existe nenhum edital encerrado</h2>
+                        </label>
+                     </div>
+            </div>
+        </div>                
+    @endif
         <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-5">
                 <!--Conteúdo central fim-->
-
-
-
                 @foreach ($desativados as $des)
                 <div class="row g-5">
                     <div class="col-lg-3  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
@@ -146,40 +170,10 @@
         </div>
     </div>
 
-
     <div class="d-flex justify-content-center">
         {!! $desativados->links() !!}
     </div>
 
-
-    <!-- <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        Se não existir editais desativados mostre isso abaixo
-        {% set valor = false %}
-        {% for post in postagens %}
-        {% if post.flag == 'Desativado' %}
-
-        {% set valor = true %}
-        {% endif %}
-        {% endfor %}
-
-        {% if valor == false %}
-        <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <img src="img/logo/logotipo.png" width="180">
-            </div>
-
-            <div class=" text-center position-relative pb-3 mb-5 mx-auto " style="max-width: 600px;">
-                <label>
-                    <h2>Não existe nenhum edital encerrado</h2>
-                </label>
-            </div>
-
-        </div>
-    </div>
-    {% endif %}
-    </div>
-
- -->
     <!-- Rodapé -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
