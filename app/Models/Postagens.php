@@ -20,7 +20,10 @@ class Postagens extends Model
         'categoria',
         'flag',
         'arquivo',
-        'link',
-        'texto',
     ];
+
+    public function postagens():BelongsToMany
+    {
+        return $this->belongsToMany(Anexos::class);
+    }
 }

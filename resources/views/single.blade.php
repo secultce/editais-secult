@@ -117,7 +117,8 @@
                     </div>
                     <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
                         <h4>Valor do Edital</h4>
-                        <p class="mb-0">R$ {{ $post->valor }}</p>
+                        <p class="mb-0"></p>
+                        {{  'R$ '.number_format( $post->valor , 2, ',', '.') }}  
                     </div>
 
                     <div class="col-lg-12 mb-20">
@@ -132,10 +133,10 @@
                 <div class="row g-5">
                     <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
                         <h4>Publicações do Edital</h4>
-                        
-                        <li><a href="{{ $anexos->links }}" target="_blank">{{ $anexos->texto }} </a><br></li> 
+                        @foreach($anexos as $nexos)
+                        <li><a href="{{$nexos->link}}" target="_blank">{{$nexos->texto}} </a><br></li> 
                       
-                          
+                       @endforeach
                     </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Governo Do Estado Do Ceará" name="keywords">
     <meta content="Governo Do Estado Do Ceará" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -14,9 +15,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -37,11 +36,12 @@
     <!-- fim do javascript botão + -->
     <script>
         var controleCampo = 1;
+
         function adicionarCampo() {
             controleCampo++;
             //console.log(controleCampo);
-
-            document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: * </label><input type="text" name="texto" placeholder="Ex: Link de inscrições" class="border-1 bg-light px-4" required</br><label>Link *: </label><input type="url" name="link" placeholder="Ex: www.culturaCE/inscricoes" class=" border-1 bg-light px-4" required> <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
+            //aqui a unica modificação para funcionar foi deixar os names dos inputs de link e texto como arrays(link[], texto[])
+            document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: * </label><input type="text" name="texto[]" placeholder="Ex: Link de inscrições" class="border-1 bg-light px-4" required</br><label>Link *: </label><input type="url" name="link[]" placeholder="Ex: www.culturaCE/inscricoes" class=" border-1 bg-light px-4" required> <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
         }
 
         function removerCampo(idCampo) {
@@ -82,13 +82,11 @@
         function id(el) {
             return document.getElementById(el);
         }
-
-        window.onload = function () {
-            id('telefone').onkeyup = function () {
+        window.onload = function() {
+            id('telefone').onkeyup = function() {
                 mascara(this, mtel);
             }
         }
-
     </script>
 </head>
 
@@ -98,8 +96,7 @@
         <div class="row gx-0">
             <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-                    <small class="me-3 text-light"></i>Governo Do Estado Do Ceará -> Acesso restrito para: {{auth()->user()->name }}<b
-                            style="text-transform: uppercase;"></b></small>
+                    <small class="me-3 text-light"></i>Governo Do Estado Do Ceará -> Acesso restrito para: {{auth()->user()->name }}<b style="text-transform: uppercase;"></b></small>
                 </div>
             </div>
             <div class="col-lg-4 text-center text-lg-end">
@@ -119,12 +116,10 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
                     <a href="/postagem" class="nav-item nav-link active"><b>Início</b></a>
-                    <a href="/listagem"
-                        class="nav-item nav-link "><b>Editais</b></a>
-                    <a href="/desativados"
-                        class="nav-item nav-link "><b>Encerrados</b></a>
+                    <a href="/listagem" class="nav-item nav-link "><b>Editais</b></a>
+                    <a href="/desativados" class="nav-item nav-link "><b>Encerrados</b></a>
 
-                         <a href="{{route('login.destroy')}}" class="nav-item nav-link"><b>Sair</b></a>
+                    <a href="{{route('login.destroy')}}" class="nav-item nav-link"><b>Sair</b></a>
 
                 </div>
             </div>
@@ -141,62 +136,51 @@
 
 
 
+      
 
         <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
-                        <iframe class="position-relative rounded w-100 h-100"
-                            src="img/logo/Secretaria-da-Cultura-INVERTIDA-WEB-branca-2.png" width="120" frameborder="0"
-                            style="min-height: 30px; border:0;" aria-hidden="false" tabindex="0">
+                        <iframe class="position-relative rounded w-100 h-100" src="img/logo/Secretaria-da-Cultura-INVERTIDA-WEB-branca-2.png" width="120" frameborder="0" style="min-height: 30px; border:0;" aria-hidden="false" tabindex="0">
                         </iframe>
                     </div>
 
                     <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
-                        <form method="POST" action="{{route('postagem.inserirPostagem')}}"enctype="multipart/form-data">
-
+                        <form method="POST" action="{{route('postagem.inserirPostagem')}}" enctype="multipart/form-data">
                             @csrf
-
                             <div class="col-12">
                                 <h6>Campos com * (asterisco) são obrigatórios;</h6>
                             </div>
                             <div class="row g-3">
                                 <div class="col-12">
                                     Nome: *
-                                    <input type="text" id="nome" name="nome"  class="form-control border-1 bg-light px-4"
-                                        placeholder="Ex: Edital Secult" style="height: 55px;" required>
+                                    <input type="text" id="nome" name="nome" class="form-control border-1 bg-light px-4" placeholder="Ex: Edital Secult" style="height: 55px;" required>
                                 </div>
 
                                 <div class="col-12">
                                     Etapas: *
-                                    <textarea name="etapa" class="form-control border-1 bg-light px-4 py-4" rows="4"
-                                        placeholder="Ex: Inscrições de 00/00/000 até 00/00/0000" required></textarea>
+                                    <textarea name="etapa" class="form-control border-1 bg-light px-4 py-4" rows="4" placeholder="Ex: Inscrições de 00/00/000 até 00/00/0000" required></textarea>
                                 </div>
 
                                 <div class="col-12">
                                     Valor: *
-                                    <input type="text" name="valor" class="form-control border-1 bg-light px-4"
-                                        onpaste="return false" ondrop="return false" placeholder="EX: R$: 00.00,00"
-                                        style="height: 55px;" onkeypress="return numerais()" ; required>
+                                    <input type="text" name="valor" class="form-control border-1 bg-light px-4" onpaste="return false" ondrop="return false" placeholder="EX: R$: 00.00,00" style="height: 55px;" onkeypress="return numerais()" ; required>
                                 </div>
 
                                 <div class="col-12">
                                     E-mail:
-                                    <input type="email" name="email" class="form-control border-1 bg-light px-4"
-                                        placeholder="Ex: editais@gmail.com" style="height: 55px;">
+                                    <input type="email" name="email" class="form-control border-1 bg-light px-4" placeholder="Ex: editais@gmail.com" style="height: 55px;">
                                 </div>
 
                                 <div class="col-12">
                                     Telefone:
-                                    <input type="tel" name="telefone" id="telefone"
-                                        class="form-control border-1 bg-light px-4" placeholder="Ex: (00) 0 - 0000-0000"
-                                        style="height: 55px;">
+                                    <input type="tel" name="telefone" id="telefone" class="form-control border-1 bg-light px-4" placeholder="Ex: (00) 0 - 0000-0000" style="height: 55px;">
                                 </div>
 
                                 <div class="col-12">
                                     <label>Selecione uma categoria: *</label><br />
-                                    <select name="categoria" class="form-control border-1 bg-light px-4"
-                                        style="opacity: calc(1)" required>
+                                    <select name="categoria" class="form-control border-1 bg-light px-4" style="opacity: calc(1)" required>
                                         <p style="opacity: calc(0.5)">
                                             <option value="" disable selected hidden>Escolha uma categoria</option>
                                         </p>
@@ -205,11 +189,9 @@
                                         <option value="Seleção">Processo de seleção</option>
                                     </select>
                                 </div>
-
                                 <div class="col-12">
                                     <label>Status do Edital: *</label><br />
-                                    <select name="flag" class="form-control border-1 bg-light px-4"
-                                        style="opacity: calc(1)">
+                                    <select name="flag" class="form-control border-1 bg-light px-4" style="opacity: calc(1)">
                                         <p style="opacity: calc(0.5)">
                                             <option value="" disable selected hidden>Escolha o status do edital</option>
                                         </p>
@@ -219,40 +201,30 @@
                                 </div>
                                 <div class="col-12">
                                     Selecione uma imagem para o edital *
-                                    <input type="file" name="arquivo" accept="image/png,image/jpg, image/jpeg"
-                                        class="form-control border-1 bg-light px-4" required>
+                                    <input type="file" name="arquivo" accept="image/png,image/jpg, image/jpeg" class="form-control border-1 bg-light px-4" required>
                                 </div>
-
                                 <div id="formulario">
                                     <div class="col-lg-12 form-group">
                                         <label>Digite um texto para associar ao link: *</label>
-                                        <input type="text" name="texto" placeholder="Ex: Link de inscrições"
-                                            class='border-1 bg-light px-4' required>
+                                        <input type="text" name="texto[]" placeholder="Ex: Link de inscrições" class='border-1 bg-light px-4' required>
 
                                         <label>Link: *</label>
-                                        <input type="url" name="link" placeholder="Ex: www.culturaCE/inscricoes"
-                                            class=" border-1 bg-light px-4" required>
+                                        <input type="url" name="link[]" placeholder="Ex: www.culturaCE/inscricoes" class=" border-1 bg-light px-4" required>
                                     </div>
                                 </div>
                                 <label> Clique no botão abaixo para adicionar novos campos</label>
-
-                                <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);"
-                                    onclick="adicionarCampo()">+</button>&nbsp;
-
+                                <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);" onclick="adicionarCampo()">+</button>&nbsp;
                                 <button class="btn btn-secondary w-100 py-3" type="submit" name="submit">Adicionar
                                     edital</button>
                             </div>
                         </form>
                         <br>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-
     <!--acesso rapido end-->
-
     <!-- Rodapé -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
@@ -270,7 +242,6 @@
                                     Fortaleza, CE
                                     CEP: 60.025-100</p>
                             </div>
-
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
@@ -283,7 +254,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
                                 <h4 class="text-light mb-0">Horário de atendimento</h4>
@@ -298,15 +268,9 @@
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="d-flex mt-4">
-                                <a class="btn btn-secondary btn-square me-2"
-                                    href="https://www.facebook.com/secultceara/"><i
-                                        class="fab fa-facebook-f fw-normal"></i></a>
-                                <a class="btn btn-secondary btn-square me-2"
-                                    href="https://www.instagram.com/secultceara/"><i
-                                        class="fab fa-instagram fw-normal"></i></a>
-                                <a class="btn btn-secondary btn-square"
-                                    href="https://www.youtube.com/channel/UCVckZREupHqHkoS7MmxwH9w"><i
-                                        class="fab fa-youtube fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square me-2" href="https://www.facebook.com/secultceara/"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square me-2" href="https://www.instagram.com/secultceara/"><i class="fab fa-instagram fw-normal"></i></a>
+                                <a class="btn btn-secondary btn-square" href="https://www.youtube.com/channel/UCVckZREupHqHkoS7MmxwH9w"><i class="fab fa-youtube fw-normal"></i></a>
                             </div>
                         </div>
                     </div>
@@ -315,12 +279,8 @@
         </div>
     </div>
     <!-- Rodapé fim -->
-
-
     <!-- Botão topo -->
     <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
     <!-- JavaScripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -329,9 +289,7 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-
 </html>
