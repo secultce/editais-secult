@@ -1,0 +1,7 @@
+"13","2014_10_12_000000_create_users_table","1"
+"14","2014_10_12_100000_create_password_resets_table","1"
+"15","2019_08_19_000000_create_failed_jobs_table","1"
+"16","2019_12_14_000001_create_personal_access_tokens_table","1"
+"17","2022_07_16_184611_create_postagens_table","1"
+"18","2022_07_16_184647_create_anexos_table","1"
+"1","secult","secult@secult.com",NULL,"$2y$10$zyeqg7c5RKo62I0pKrlt.uPB7KNYbCUkmyb1zLt.zjso/k5w.P9au","@secult22",NULL,NULL,NULL

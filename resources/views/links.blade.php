@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Editais culturais</title>
+    <title>Links</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Governo Do Estado Do Ceará" name="keywords">
     <meta content="Governo Do Estado Do Ceará" name="description">
@@ -33,12 +33,13 @@
     <link href="../../css/style.css" rel="stylesheet">
 
     <link rel="shortcut icon" type="imagex/png" href="../../img/logo/iconCe.ico">
-
     <script>
         var controleCampo = 1;
+
         function adicionarCampo() {
             controleCampo++;
             //console.log(controleCampo);
+            //aqui a unica modificação para funcionar foi deixar os names dos inputs de link e texto como arrays(link[], texto[])
             document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: * </label><input type="text" name="texto[]" placeholder="Ex: Link de inscrições" class="border-1 bg-light px-4" required</br><label>Link *: </label><input type="url" name="link[]" placeholder="Ex: www.culturaCE/inscricoes" class=" border-1 bg-light px-4" required> <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
         }
 
@@ -46,22 +47,17 @@
             //console.log("Campo remover: " + idCampo);
             document.getElementById('campo' + idCampo).remove();
         }
-
     </script>
+
 </head>
-
 <body>
-
-
-
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner"></div>
+        <div class="spinner">
+        </div>
     </div>
     <!-- Spinner End -->
-
-
     <!-- Topbar Start -->
     <div class="container-fluid bg-secondary px-5 d-none d-lg-block">
         <div class="row gx-0">
@@ -72,15 +68,12 @@
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-
                     <img src="../../img/logo/secult-escura.png" width="180">
                 </div>
             </div>
         </div>
     </div>
     <!-- Topbar End -->
-
-
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
@@ -89,35 +82,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="http://localhost/EditaisMVC/" class="nav-item nav-link active"><b>Início</b></a>
-                    <a href="http://localhost/EditaisMVC/listagem/listaNova"
+                    <a href="/postagem" class="nav-item nav-link active"><b>Início</b></a>
+                    <a href="/listagem"
                         class="nav-item nav-link active"><b>Editais</b></a>
-                    <a href="http://localhost/EditaisMVC/desativados/desativados"
+                    <a href="/desativados"
                         class="nav-item nav-link active"><b>Encerrados</b></a>
-                    <a href="http://localhost/EditaisMVC/postagem/logout"
+                    <a href="{{route('login.destroy')}}"
                         class="nav-item nav-link active "><b>Sair</b></a>
                 </div>
             </div>
         </nav>
-
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img class="w-100" src="../../img/logo/logoNova.png" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <!-- <h5 class="text-white text-uppercase mb-3 animated slideInDown">Lançamentos</h5>
-                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Editais culturais</h1>-->
+                        <div class="p-3" style="max-width: 900px;">                           
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
     <!-- Topbar End -->
-
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
@@ -137,123 +124,65 @@
         </div>
     </div>
     <!-- Full Screen Search End -->
+    <br>
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h5 class="fw-bold text-primary text-uppercase">{{nome}} </h5>
+        <div class=" text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+            <h5 class="fw-bold text-primary text-uppercase">Área de controle de links </h5>
         </div>
-        <div class="container py-5">
+        <div class="position-relative pb-3 mb-5 mx-auto" style="max-width: 900px;">
+            <form method="POST" action="/inserir-links">
+                @csrf
+                <input type="hidden" name="id" value="{{$postagens->id}}">
 
-            <div class="row g-5">
-                <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
-                    <div class="position-relative h-100">
-                        <img class="position-absolute rounded wow zoomIn" data-wow-delay="0.1s"
-                            src="../../img/imagensEditais/{{arquivo}}" width="300" style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="col-lg-4">
-
-                    <div class="row g-5">
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
-                            <h4>Etapas de Execução</h4>
-                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>{{etapas}}</p>
-
-                        </div>
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
-                            <h4>Valor do Edital</h4>
-                            <p class="mb-0">R$ {{valor|number_format(2, '.', ',') }}</p>
-                        </div>
-
-                        <div class="col-lg-12 mb-20">
-                            <h4>Contato sobre o Edital</h4>
-                            <p class="mb-0">Mais informações poderão ser obtidas prioritariamente pelo e-mail:
-                                -{{contatos}} e pelo telefone {{telefone}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="row g-5">
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
-                            <a href="#cadastros">
-                                <h5>Clique aqui caso deseje alterar algum link! </h5><img src="../../img/logo/link.png"
-                                    width="60">
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-
-
-                <form method="POST" action="http://localhost/EditaisMVC/links/anexos/{{id}}">
-                    <input type="hidden" name="id" value="{{id}}">
-                    <label>Texto:</label>
-                    <input type="text" name="texto[]" placeholder="Ex: Novo Link" class='border-1 bg-light px-4'
-                        required>
-
-                    <label>Link:</label>
-                    <input type="url" name="link[]" placeholder="www.culturaCE/Ficha" class=" border-1 bg-light px-4"
-                        required>
-
-                    <label> Clique no botão abaixo para adicionar novos links</label><br>
-                    <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);"
-                        onclick="adicionarCampo()">+</button>&nbsp;
-
-                    <div id="formulario">
-                        <!--Area de novos links clonados-->
-                    </div>
-                    <br>
-                    <input type='submit' value='Adicionar novos links' class="col-lg-12" type="button"
-                        style="background-color: rgb(52, 173, 84); " />
-                </form>
-
-                <br><br>
-                <br><br>
-
-
-                <div class="col-lg-2">
-                    <div class="row g-4">
-                        <input type='button' value='Voltar' onclick='history.go(-1)' />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h5 class="fw-bold text-primary text-uppercase">Área para atualização de links</h5>
-        </div>
-
-        <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="row g-5">
+                <label></label>
+                <input type="text" name="texto[]" placeholder="Ex: Novo Link" class='border-1 bg-light px-4' required>
+                <label></label>
+                <input type="url" name="link[]" placeholder="www.culturaCE/Ficha" class=" border-1 bg-light px-4" required>
                 
-                <div id="cadastros"></div>
-                {% for post in anexos %}
-                <div class="col-lg-4" id="linkpostagem">
+                <div id="formulario">
+                    <!--Area de novos links clonados-->
+                </div>
+                <br>
+                <label> Clique no botão abaixo para adicionar novos links</label><br>
+                <br>
+                <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);" onclick="adicionarCampo()">+</button>&nbsp;
+                <br><br>
+                <input type='submit' value='Adicionar novos links' class="col-lg-12" type="button" style="background-color: rgb(52, 173, 84); " />
+            </form>
+            <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <h5 class="fw-bold text-primary text-uppercase">Área para atualização de links</h5>
+                </div>
+                <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="row g-5">
-                        <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
-                            <h6>Anexo nº {{post.id}}</h6>
-                            <h4>
-                                <div style="overflow: hidden; width:320px; border:1px; white-space:nowrap;">
-                                    {{post.texto}}
+                        @foreach($anexos as $nexos)                   
+                            <div class="col-lg-4" id="linkpostagem">
+                                <div class="row g-5">                            
+                                    <div class="col-12 wow zoomIn" data-wow-delay="0.4s">                                
+                                        
+                                        <h4> 
+                                        <div style="overflow: hidden; width:250px; border:1px; white-space:nowrap;">
+                                        <a href="{{$nexos->link}}" target="_blank">{{$nexos->texto}}</a>
+                                        </div>
+                                                                             
+                                        </h4>                               
+                                        <a href="/anexo/{{$nexos->id}}"> <input type="submit" value="Alterar link" class="btn btn-outline-success"> </a>
+
+                                        <!-- <form action="/apagaAnexo/{{$nexos->id}}" method="POST">
+                                        @csrf
+                                        
+                                         <Button class="btn btn-outline-danger">Apagar</Button> -->
+                                        </form>   
+                                                                        
+                                    </div>                        
                                 </div>
-                            </h4>
-                            <p class="mb-0">
-                            <div style="overflow: hidden; width:320px; border:1px; white-space:nowrap;">
-                                <a href="{{post.link}}" target="_blank">{{post.link}}<h6>...</h6></a>
                             </div>
-                            </p>
-                            <a href="http://localhost/EditaisMVC/links/carregaAnexo/{{post.id}}"> <input type="submit"
-                                    value="Mudar"></a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-                {% endfor %}
             </div>
         </div>
     </div>
-    
 
     <!-- Rodapé   -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -272,7 +201,6 @@
                                     Fortaleza, CE
                                     CEP: 60.025-100</p>
                             </div>
-
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
@@ -285,7 +213,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
                                 <h4 class="text-light mb-0">Horário de atendimento</h4>
@@ -317,12 +244,8 @@
         </div>
     </div>
     <!-- Rodapé fim -->
-
-
     <!-- Botão topo -->
     <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
     <!-- JavaScrips -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -331,9 +254,7 @@
     <script src="../../lib/waypoints/waypoints.min.js"></script>
     <script src="../../lib/counterup/counterup.min.js"></script>
     <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
-
     <!-- Template Javascript -->
     <script src="../../js/main.js"></script>
 </body>
-
 </html>

@@ -34,34 +34,14 @@
 
     <link rel="shortcut icon" type="imagex/png" href="../../img/logo/iconCe.ico">
 
-    <script>
-        var controleCampo = 1;
-        function adicionarCampo() {
-            controleCampo++;
-            //console.log(controleCampo);
-            document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: </label><input type="text" name="texto[]" placeholder="Documento da secretaria" class="border-1 bg-light px-4" required</br><label>Link: </label><input type="url" name="link[]" placeholder="www.cultura/documento.PDF" class=" border-1 bg-light px-4" required> <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
-        }
-
-        function removerCampo(idCampo) {
-            //console.log("Campo remover: " + idCampo);
-            document.getElementById('campo' + idCampo).remove();
-        }
-
-    </script>
 </head>
-
 <body>
-
-
-
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner"></div>
     </div>
     <!-- Spinner End -->
-
-
     <!-- Topbar Start -->
     <div class="container-fluid bg-secondary px-5 d-none d-lg-block">
         <div class="row gx-0">
@@ -72,15 +52,12 @@
             </div>
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
-
                     <img src="../../img/logo/secult-escura.png" width="180">
                 </div>
             </div>
         </div>
     </div>
     <!-- Topbar End -->
-
-
     <!-- Navbar & Carousel Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
@@ -89,17 +66,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="http://localhost/EditaisMVC/" class="nav-item nav-link active"><b>Início</b></a>
-                    <a href="http://localhost/EditaisMVC/listagem/listaNova"
+                    <a href="/postagem" class="nav-item nav-link active"><b>Início</b></a>
+                    <a href="/listagem"
                         class="nav-item nav-link active"><b>Editais</b></a>
-                    <a href="http://localhost/EditaisMVC/desativados/desativados"
+                    <a href="/desativados"
                         class="nav-item nav-link active"><b>Encerrados</b></a>
-                    <a href="http://localhost/EditaisMVC/postagem/logout"
+                    <a href="{{route('login.destroy')}}"
                         class="nav-item nav-link active "><b>Sair</b></a>
                 </div>
             </div>
         </nav>
-
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -111,13 +87,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
     <!-- Topbar End -->
-
     <!-- Full Screen Search Start -->
     <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
@@ -137,43 +110,35 @@
         </div>
     </div>
     <!-- Full Screen Search End -->
-
     <br>
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class=" text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h5 class="fw-bold text-primary text-uppercase">Atualização de link nº:{{id}}</h5>
-            <form method="POST" action="http://localhost/EditaisMVC/links/atualizaAnexo/{{id}}">
+            <h5 class="fw-bold text-primary text-uppercase">Atualização de link nº:{{$anexo->id}}</h5>
+            <form method="POST" action="/alterarAnexo/{{$anexo->id}}">
+                @csrf
                 <div class="col-lg-12 form-group">
                     <br>
-                    <input type="hidden" name="id" value="{{id}}">
+                    <input type="hidden" name="id" value="">
                     <input type="text" name="texto" placeholder="Documento da secretaria" class='border-1 bg-light px-4'
-                        required value="{{texto}}"> <label><br></label>
+                        required value="{{$anexo->texto}}"> <label><br></label>
                     <input type="url" name="link" placeholder="www.cultura/documento.PDF"
-                        class=" border-1 bg-light px-4" required value="{{link}}">
+                        class=" border-1 bg-light px-4" required value="{{$anexo->link}}">
                 </div>
                 <br>
                 <button class="btn btn-secondary w-100 py-3" type="submit" name="submit">Atualiza</button>
-
             </form>
         </div>
     </div>
-
     </div>
-
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class=" text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <div class="col-lg-2">
                 <div class="row g-4">
-                    <input type='button' value='Voltar' onclick='history.go(-1)' />
+                    <input type='button' value='Voltar' onclick='history.go(-1)' class="btn btn-outline-success" />
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
     <!-- Rodapé   -->
     <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
@@ -191,7 +156,6 @@
                                     Fortaleza, CE
                                     CEP: 60.025-100</p>
                             </div>
-
                         </div>
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
@@ -204,7 +168,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-3 col-md-12 pt-0 pt-lg-5 mb-5">
                             <div class="section-title section-title-sm position-relative pb-3 mb-4">
                                 <h4 class="text-light mb-0">Horário de atendimento</h4>
@@ -236,12 +199,8 @@
         </div>
     </div>
     <!-- Rodapé fim -->
-
-
     <!-- Botão topo -->
     <a href="#" class="btn btn-lg btn-secondary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-
     <!-- JavaScrips -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -250,9 +209,7 @@
     <script src="../../lib/waypoints/waypoints.min.js"></script>
     <script src="../../lib/counterup/counterup.min.js"></script>
     <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
-
     <!-- Template Javascript -->
     <script src="../../js/main.js"></script>
 </body>
-
 </html>
