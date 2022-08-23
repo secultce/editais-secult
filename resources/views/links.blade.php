@@ -147,7 +147,7 @@
                 <br>
                 <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);" onclick="adicionarCampo()">+</button>&nbsp;
                 <br><br>
-                <input type='submit' value='Adicionar novos links' class="col-lg-12" type="button" style="background-color: rgb(52, 173, 84); " />
+                <input type='submit' value='Adicionar novos links' class="col-lg-12 text-white" type="button" style="background-color: rgb(52, 173, 84); " />
             </form>
             <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">

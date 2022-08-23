@@ -17,8 +17,7 @@
                        <butaton onclick="NovoUser()" type="button" class="btn text-light bg-dark ms-3"><i class="fa fa-user-circle-o" aria-hidden="true"></i><i class="fa fa-user-plus" aria-hidden="true"></i></butaton></a>
                     @endif
                     &nbsp &nbsp &nbsp
-                    <button onclick="sair()" class="btn btn-sm btn-outline-light btn-sm-square bg-success border-danger" ><i class="fa fa-window-close bg-secondary" aria-hidden="true"></i></button>
-                </div>
+                    <button onclick="sair()" class="btn btn-outline-light  bg-danger border-danger" >Sair</button>                </div>
             </div>
         </div>
     </div>    

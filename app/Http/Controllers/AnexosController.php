@@ -33,7 +33,8 @@ class AnexosController extends Controller
         'Mensagem',
         "Edital inserido com sucesso!"
       );
-      return redirect('/listagem');
+      return redirect('/listagem')->with('msg', 'Link(s) inserido(s) com sucesso. ');
+;
     } catch (\Exception $e) {
       $request->session()->flash(
         'Mensagem',

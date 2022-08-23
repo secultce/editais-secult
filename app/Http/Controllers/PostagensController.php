@@ -82,7 +82,7 @@ class PostagensController extends Controller
   public function listagemEditais()
   {
     $postagem = Postagens::orderBy('id', 'desc')
-    -> simplePaginate(16);
+    -> simplePaginate(100);
     return view('editais', compact('postagem'));
   }
   //listagem para pagina do admin
@@ -188,6 +188,8 @@ class PostagensController extends Controller
   {
     $posts = Postagens::where('nome', 'LIKE', "%{$request->name}%")
     ->where('flag', 'ativado')
+->orderBy('id', 'desc')
+
     ->simplePaginate(10);
     
     return view('listagem', compact('posts'));

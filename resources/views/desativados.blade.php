@@ -47,10 +47,9 @@
                        <butaton onclick="NovoUser()" type="button" class="btn text-light bg-dark ms-3"><i class="fa fa-user-circle-o" aria-hidden="true"></i><i class="fa fa-user-plus" aria-hidden="true"></i></butaton></a>
                     @endif
                     &nbsp &nbsp &nbsp
-                    <button onclick="sair()" class="btn btn-sm btn-outline-light btn-sm-square bg-success border-danger" ><i class="fa fa-window-close bg-secondary" aria-hidden="true"></i></button>
-                </div>
+                    <button onclick="sair()" class="btn btn-outline-light  bg-danger border-danger" >Sair</button>                </div>
+                 </div>
             </div>
-        </div>
     </div>
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
@@ -128,7 +127,7 @@
                         <div class="blog-item bg-light rounded overflow-hidden">
                             <div class="blog-img position-relative overflow-hidden">
                                 <img id="dimensao" class="img-fluid" src="{{ asset('/storage/Editais/'.$des->arquivo)}}" alt="">
-                                <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">
+                                <div class="position-absolute top-0 start-0 bg-danger text-white rounded-end mt-5 py-2 px-4">
                                     Edital encerrado</div>
                             </div>
                         </div>
