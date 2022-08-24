@@ -12,7 +12,7 @@
             <div class="col-lg-4 text-center text-lg-end">
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <img src="img/logo/secult-escura.png" width="180">&nbsp &nbsp &nbsp
-                    <a class="btn btn-sm btn-outline-light btn-sm-square bg-success border-danger" href="/listagem"><i class="fa fa-arrow-right" aria-hidden="true" bg-secondary" aria-hidden="true"></a></i>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square bg-success border-danger" href="/listagem"><i class="fa fa-arrow-right" aria-hidden="true" bg-secondary aria-hidden="true"></a></i>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
             <img id="identidade-govbr" src="img/logo/logoNova.png" />
         </aside>
         <main id="main-signin">
-            <form method="POST" action="">
+            <form method="POST" action="/registro">
                 @csrf                
                 <div class="card" id="login-cpf">
                     <div class="item-login-signup-ways" onclick="accordion('accordion-panel-id')">

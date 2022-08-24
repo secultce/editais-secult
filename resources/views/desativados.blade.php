@@ -136,7 +136,7 @@
                         <div class="row g-5">
                             <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
                                 <h4>{{ $des->nome }}</h4>
-                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas:{{ $des->etpas }}                                </p>
+                                <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas:{{ $des->etapas }}                                </p>
                             </div>
                             <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
                                 <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Nº:{{ $des->id }}</p>

@@ -75,18 +75,20 @@ Route::get('/anexo', [AnexosController::class, 'getAnexo'])
 ->name('anexos.mostrarMudanca')
 ->middleware('auth');
 
+
+
 Route::get('/registro', [RegistroController::class, 'create'])
     ->name('registro.index');
+    
+Route::post('/registro', [RegistroController::class, 'store'])
+->name('registro.store')
+->middleware('auth');
 
 Route::get('/login', [SessaoController::class, 'create'])
     ->name('login.index');
 
 Route::post('/login', [SessaoController::class, 'store'])
     ->name('login.store');
-
-Route::post('/registro', [RegistroController::class, 'store'])
-    ->name('registro.store')
-    ->middleware('auth');
 
 Route::get('/logout', [SessaoController::class, 'destroy'])
     ->middleware('auth')

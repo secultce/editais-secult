@@ -133,7 +133,7 @@
                     <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                     <div class="modal-body d-flex align-items-center justify-content-center">
-                        <form action="{{url('/listagem')}}" method="GET">
+                        <form method="GET" action="/listagem" >
                         @csrf
                             <div class="input-group" style="max-width: 400px;">
                                 <input type="text" name="name" class="form-control bg-white border-primary p-3" placeholder="Nome do edital">
@@ -162,9 +162,10 @@
                         </iframe>
                     </div>
                     <div class="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
-                        <form method="POST" action="{{route('postagem.inserirPostagem')}}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="col-12">
+
+                    <form method="POST" action="/inserir-postagem" enctype="multipart/form-data">
+                    @csrf      
+                    <div class="col-12">
                                 <h6>Campos com * (asterisco) são obrigatórios;</h6>
                             </div>
                             <div class="row g-3">
@@ -227,8 +228,10 @@
                                 <button class="col-lg-1" type="button" style="background-color: rgb(52, 173, 84);" onclick="adicionarCampo()">+</button>&nbsp;
                                 <button class="btn btn-secondary w-100 py-3" type="submit" name="submit">Adicionar
                                     edital</button>
-                            </div>
-                        </form>
+                            </div>          
+                
+                 </form>
+                        
                         <br>
                     </div>
                 </div>

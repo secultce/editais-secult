@@ -24,7 +24,7 @@
             <img id="identidade-govbr" src="img/logo/logoNova.png" />
         </aside>
         <main id="main-signin">
-            <form method="POST" action="">
+            <form method="POST" action="/login">
                 @csrf
                 <div class="card" id="login-cpf">
                     <div class="item-login-signup-ways">
@@ -63,7 +63,6 @@
                         </a>
                     </div>
                 </div>
-                <button type="button"><a href="/kkkk"></a></button>
                 </button>
             </form>
         </main>

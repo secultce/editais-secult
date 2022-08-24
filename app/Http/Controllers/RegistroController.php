@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Postagens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use App\Models\User;
 use Illuminate\Auth\Events\Failed;
 use Illuminate\Support\Facades\DB;
-use Auth;
+
 
 class RegistroController extends Controller
 {
