@@ -83,7 +83,12 @@ class PostagensController extends Controller
   {
     $postagem = Postagens::orderBy('id', 'desc')
     -> simplePaginate(100);
-    return view('editais', compact('postagem'));
+
+    $desativados = Postagens::orderBy('id', 'desc')
+    ->where('flag', 'Desativado')
+    -> simplePaginate(50);
+
+    return view('editais', compact('postagem', 'desativados'));
   }
   //listagem para pagina do admin
   public function listagem()

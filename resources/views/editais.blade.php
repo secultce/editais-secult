@@ -239,8 +239,7 @@
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">  
             @endif             
-            @foreach ($postagem as $post)
-            @if($post->flag =='Desativado')
+            @foreach ($desativados as $post)
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
@@ -260,10 +259,16 @@
                 </div>
             </div>
             <hr>
-            @endif
+            
             @endforeach   
-            @if($e > 0)                     
+            @if($e > 0)   
+                              
         </div>
     </div>    
+    <div class="d-flex justify-content-center">
+        {!! $desativados->links() !!}
+    </div>
+    <br>
+    
     @endif
 @endsection
