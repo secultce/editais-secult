@@ -75,7 +75,7 @@
                     <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                     <div class="modal-body d-flex align-items-center justify-content-center">
-                        <form action="{{url('/listagemDes')}}" method="GET">
+                        <form method="GET" action="{{url('/listagemDes')}}" >
                         @csrf
                             <div class="input-group" style="max-width: 400px;">
                                 <input type="text" name="name" class="form-control bg-white border-primary p-3" placeholder="Edital encerrado">

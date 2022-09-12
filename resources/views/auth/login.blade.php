@@ -63,11 +63,11 @@
                         </a>
                     </div>
                 </div>
-                </button>
+                
             </form>
         </main>
     </div>
-    <br><br>
+    <br><br><br>
    <!-- Áred de login Fim -->
     
 @endsection

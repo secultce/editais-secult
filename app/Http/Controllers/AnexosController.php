@@ -74,4 +74,13 @@ class AnexosController extends Controller
 
     return redirect('/listagem')->with('msg', 'Link atualizado com sucesso. ');
   }  
+
+
+  public function apagarLink($id){
+    $anexo = Anexos::FindOrFail($id);
+    $anexo->delete();
+
+    return redirect('/listagem')->with('msg', 'Link apagado com sucesso. ');
+  }
 }
+
