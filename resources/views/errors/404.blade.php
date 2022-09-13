@@ -1,6 +1,6 @@
 @extends('errors::minimal')
 
-@section('title', __('Problema'))
+@section('title', __('Editais culturais'))
 @section('code', '404')
 
 

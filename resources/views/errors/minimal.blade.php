@@ -7,6 +7,7 @@
         <title>@yield('title')</title>
 
         <!-- Fonts -->
+        <link rel="shortcut icon" type="imagex/png" href="img/logo/iconCe.ico">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
@@ -20,7 +21,8 @@
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body>
+   
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
             <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex items-center pt-8 sm:justify-start sm:pt-0">
@@ -38,7 +40,6 @@
                   <a href="/cefic">Cefic</a>
                 </div>
             </div>
-            
         </div>
     </body>
 </html>

@@ -104,7 +104,7 @@ class PostagensController extends Controller
   {
     $desativados = Postagens::orderBy('created_at', 'desc')
     ->where('flag', 'Desativado')
-    ->simplePaginate(10);
+    ->paginate(10);
     return view('/desativados', compact('desativados'));      
   }
 

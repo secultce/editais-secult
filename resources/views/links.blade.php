@@ -47,6 +47,22 @@
             //console.log("Campo remover: " + idCampo);
             document.getElementById('campo' + idCampo).remove();
         }
+
+        function apagarLink()
+        {
+            var r=confirm("Você deseja realmente Apagar?");
+            if (r==true)
+            {
+                window.location.href='/';
+            }
+            else
+            {
+            window.location.href='/postagem';
+            }
+            document.getElementById("demo").innerHTML=x;
+        }
+
+
     </script>
 
 </head>
@@ -172,7 +188,7 @@
                                         <form method="post" action="/apagarAnexo/{{$nexos->id}}">
                                             {{method_field('DELETE')}}
                                             @csrf
-                                            <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+                                            <button  type="submit" class="btn btn-danger btn-sm">Deletar</button>
                                         </form>
                                                                                                             
                                     </div>                        

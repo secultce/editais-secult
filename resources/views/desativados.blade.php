@@ -177,6 +177,6 @@
         </div>
     </div>
     <div class="d-flex justify-content-center">
-        {!! $desativados->links() !!}
+        {{ $desativados->links('shared.pagination') }}
     </div>
 @endsection
