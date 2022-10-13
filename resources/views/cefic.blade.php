@@ -15,6 +15,8 @@
                     <a href="/cefic" class="nav-item nav-link active">Cefic</a>
                 </div>
             </div>
+            <butaton type="button" class="btn text-light bg-dark ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"> Pesquisar</i></butaton>
+
         </nav>
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -22,16 +24,37 @@
                     <img class="w-100" src="img/logo/logoNova.png" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                        <!-- <h5 class="text-white text-uppercase mb-3 animated slideInDown">Lançamentos</h5>
-                        <h1 class="display-1 text-white mb-md-4 animated zoomIn">Editais culturais</h1>-->
+                      
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Navbar End -->
-    <!-- Features Start -->
+
+    
+    <!-- Pesquisa -->
+
+    <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(13, 13, 13, 0.7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <form method="GET" action="/listagemTodos" >
+                        @csrf
+                            <div class="input-group" style="max-width: 400px;">
+                                <input type="text" name="name" class="form-control bg-white border-primary p-3" placeholder="Nome do edital">
+                                <button type="submit" value="Buscar" class="btn btn-secondary px-4"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-1">
             <div class="row g-3">

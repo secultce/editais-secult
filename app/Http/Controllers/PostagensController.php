@@ -208,6 +208,15 @@ class PostagensController extends Controller
     
     return view('listagem', compact('posts'));
   }
+
+  
+  public function buscarTodos(Request $request)
+  {
+    $posts = Postagens::where('nome', 'LIKE', "%{$request->name}%")
+    ->simplePaginate(10);
+    
+    return view('pesquisa', compact('posts'));
+  }
 }    
 
 

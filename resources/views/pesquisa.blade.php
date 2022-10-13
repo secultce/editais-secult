@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Editais culturais</title>
+    <title>Pesquisa</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Governo Do Estado Do Ceará" name="keywords">
     <meta content="Governo Do Estado Do Ceará" name="description">
@@ -87,18 +87,16 @@
                 <img class="w-100" src="../../img/logo/logoNova.png" alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
-
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
 </div>
 
-
  <!-- Pesquisa -->
+
  <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" style="background: rgba(13, 13, 13, 0.7);">
@@ -106,7 +104,7 @@
                     <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                     <div class="modal-body d-flex align-items-center justify-content-center">
-                        <form method="GET" action="/listagem" >
+                        <form method="GET" action="/listagemTodos" >
                         @csrf
                             <div class="input-group" style="max-width: 400px;">
                                 <input type="text" name="name" class="form-control bg-white border-primary p-3" placeholder="Nome do edital">
@@ -120,57 +118,99 @@
     </div>
 
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-        <h5 class="fw-bold text-primary text-uppercase">{{ $post->nome }} </h5>
-    </div>
-    <div class="container py-5">
+            <div class="container py-5">
+            @if($posts->isNotEmpty())
+                    @foreach ($posts as $post)
+                <div class="container py-6">
+                    <!--Conteúdo central fim-->
+                    <div class="container py-">
+                        <div class="row g-5">
+                            <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
+                                <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                                    <div class="blog-item bg-light rounded overflow-hidden">
+                                        <div class="blog-img position-relative overflow-hidden">
+                                            <div class="blog-img position-relative overflow-hidden">
+                                                <img id="dimensao" class="img-fluid" src="{{ asset('/storage/Editais/'.$post->arquivo)}}" alt="">
+                                                <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">
+                                                    Edital aberto</div>
+                                            </div>
+                                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                                                Edital aberto</div>
+                                        </div>
+                                    </div>
+                                </div><br>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="row g-4">
+                                    <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
+                                        <h4>{{ $post->nome }}</h4>
 
-        <div class="row g-5">
-            <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
-            <div class="blog-img position-relative overflow-hidden">
-                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
-                <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                    Edital aberto
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Etapas: {{ $post->etapa }}
+                                        </p>
+                                    </div>
+                                    <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Nº: {{ $post->id }}
+                                        </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Valor
+                                        {{  'R$ '.number_format( $post->valor , 2, ',', '.') }}
+                                        </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>E-mail:{{ $post->email }}
+                                        </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Telefone:{{ $post->telefone }}
+                                        </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>Categoria:{{ $post->categoria }}
+                                        </p>
+                                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>status:{{ $post->flag }}
+                                        </p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="row g-5">
+                                    <div class="col-12 wow zoomIn" data-wow-delay="0.1s">
+                                        <h4>Publicações do Edital</h4>
+                                        <p class="mb-0">
+                                            @if( $post->flag  == 'Ativado')
+                                            <li id="0" class="widget-list-item"><span><a href="/single/{{$post->id}}">Acompanhar edital</a></span><img src="img/logo/mouse.png" width="20">
+                                            </li>
+                                            @endif
+                                            @if( $post->flag  == 'Desativado')
+                                            <h6>Este edital já foi encerrado</h6>
+                                            @endif
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
                 </div>
+                @endforeach
             </div>
-               
-            </div>
-            <div class="col-lg-4">
-                <div class="row g-5">
-                    <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
-                        <h4>Etapas de Execução</h4>
-                        <p class="mb-0"><i class="fa fa-arrow-right text-primary me-3"></i>{{ $post->etapa }}</p>
-
-                    </div>
-                    <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
-                        <h4>Valor do Edital</h4>
-                        <p class="mb-0"></p>
-                        {{  'R$ '.number_format( $post->valor , 2, ',', '.') }}  
-                    </div>
-
-                    <div class="col-lg-12 mb-20">
-                        <h4>Contato sobre o Edital</h4>
-                        <p class="mb-0">Mais informações poderão ser obtidas prioritariamente pelo e-mail:
-                            {{ $post->email }} e pelo telefone {{ $post->telefone }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="row g-5">
-                    <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
-                        <h4>Publicações do Edital</h4>
-                        @foreach($anexos as $nexos)
-                        <li><a href="{{$nexos->link}}" target="_blank">{{$nexos->texto}} </a><br></li> 
-                      
-                       @endforeach
-                    </div>
-                </div>
-            </div>
-
         </div>
+        <div class="d-flex justify-content-center">
+            {!! $posts->links() !!}
+        </div>
+
+        @else
+        <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <img src="img/logo/logotipo.png" width="180">
+                </div>
+                <div class=" text-center position-relative pb-3 mb-5 mx-auto " style="max-width: 600px;">
+                    <label>
+                        <h2>Nenhum edital foi encontrado</h2>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        @endif
     </div>
-</div>
+    </div>
 
 
     <!-- Rodapé   -->

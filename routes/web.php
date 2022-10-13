@@ -36,10 +36,17 @@ Route::get('/cefic', function ()
     return view('cefic');
 });
 
+Route::get('/pesquisa', function () 
+{
+    return view('pesquisa');
+});
+
+
 Route::get('/postagem', function () 
 {
     return view('postagem');
 })->middleware('auth');
+
 
 Route::get('/editais', [PostagensController::class, 'listagemEditais'])
 ->name('postagens.editais');
@@ -131,6 +138,8 @@ Route::get('/listagemDes', [PostagensController::class, 'buscarDesativados'])
 ->middleware('auth'); 
 
 
+Route::get('/listagemTodos', [PostagensController::class, 'buscarTodos'])
+->name('pesquisa.desativados'); 
 
 Route::delete('/apagarAnexo/{id}',[AnexosController::class, 'apagarLink'])
 ->name('anexo.deletar')

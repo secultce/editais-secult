@@ -126,6 +126,8 @@
             </div>
         </nav>
     </div>
+
+    <!-- Pesquisa -->
     <div class="modal fade" id="searchModal" tabindex="-1">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content" style="background: rgba(13, 13, 13, 0.7);">
