@@ -19,6 +19,14 @@
   overflow: hidden;
 }
 
+#mostrar{
+    display: none;
+    }
+
+    #passar_mouse:hover #mostrar{
+    display:block;
+    }
+
 #dimensao {
   /*border: 1px solid rgb(0, 0, 0);*/
   width: 100%;  

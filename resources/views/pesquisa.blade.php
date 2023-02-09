@@ -131,11 +131,10 @@
                                         <div class="blog-img position-relative overflow-hidden">
                                             <div class="blog-img position-relative overflow-hidden">
                                                 <img id="dimensao" class="img-fluid" src="{{ asset('/storage/Editais/'.$post->arquivo)}}" alt="">
-                                                <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">
-                                                    Edital aberto</div>
+                                                <div class="position-absolute top-0 start-0 bg-danger text-white rounded-end mt-5 py-2 px-4">
+                                                    Edital encerrado</div>
                                             </div>
-                                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                                                Edital aberto</div>
+                                            
                                         </div>
                                     </div>
                                 </div><br>

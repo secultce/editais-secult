@@ -106,7 +106,7 @@
                     <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                     <div class="modal-body d-flex align-items-center justify-content-center">
-                        <form method="GET" action="/listagem" >
+                        <form method="GET" action="/listagemTodos" >
                         @csrf
                             <div class="input-group" style="max-width: 400px;">
                                 <input type="text" name="name" class="form-control bg-white border-primary p-3" placeholder="Nome do edital">
@@ -129,9 +129,22 @@
             <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
             <div class="blog-img position-relative overflow-hidden">
                 <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
-                <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
-                    Edital aberto
+
+                @if( $post->flag == 'Ativado')
+                
+                    <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                        Edital aberto
+                    </div>
+
+                @endif
+
+                @if( $post->flag == 'Desativado')
+                
+                <div class="position-absolute top-0 start-0 bg-danger text-white rounded-end mt-5 py-2 px-4">
+                    Edital encerrado
                 </div>
+
+            @endif
             </div>
                
             </div>

@@ -178,7 +178,7 @@
 
                             <div class="col-12">
                                 Valor: *
-                                <input type="text" name="valor" class="form-control border-1 bg-light px-4"
+                                <input type="text" name="valor" onpaste="return false" ondrop="return false"  class="form-control border-1 bg-light px-4"
                                     value="{{ $atual->valor }}" style="height: 55px;" onkeypress="return numerais()">
                             </div>
 

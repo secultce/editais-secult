@@ -82,13 +82,20 @@ class PostagensController extends Controller
   public function listagemEditais()
   {
     $postagem = Postagens::orderBy('id', 'desc')
-    -> simplePaginate(100);
+    -> simplePaginate(500);
 
     $desativados = Postagens::orderBy('id', 'desc')
-    ->where('flag', 'Desativado')
-    -> simplePaginate(50);
+    ->where('flag', 'Desativado')->where('nome','NOT LIKE', '%ALDIR BLANC%')
+    -> simplePaginate(500);
 
-    return view('editais', compact('postagem', 'desativados'));
+    $aldir = Postagens::orderBy('id', 'desc')
+    ->where('flag', 'Desativado')->where('nome','LIKE', '%ALDIR BLANC%')
+    -> simplePaginate(500);
+
+
+
+    return view('editais', compact('postagem', 'desativados', 'aldir'));
+    
   }
   //listagem para pagina do admin
   public function listagem()
@@ -213,6 +220,9 @@ class PostagensController extends Controller
   public function buscarTodos(Request $request)
   {
     $posts = Postagens::where('nome', 'LIKE', "%{$request->name}%")
+
+    ->where('flag','!=' ,'excluido')
+   
     ->simplePaginate(10);
     
     return view('pesquisa', compact('posts'));

@@ -114,6 +114,21 @@
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class=" text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <h5 class="fw-bold text-primary text-uppercase">Atualização de link nº:{{$anexo->id}}</h5>
+
+         @if(session('msg'))
+            <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <main>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="msg">{{session('msg')}}</p>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        @endif
+        
             <form method="POST" action="/alterarAnexo/{{$anexo->id}}">
                 @csrf
                 <div class="col-lg-12 form-group">
@@ -134,7 +149,7 @@
         <div class=" text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <div class="col-lg-2">
                 <div class="row g-0">
-                    <input type='button' value='Voltar' onclick='history.go(-1)' class="btn btn-outline-success" />
+                   <a href="/listagem" ><input type='button' value='Voltar' class="btn btn-outline-success" /></a>
                 </div>
             </div>
         </div>

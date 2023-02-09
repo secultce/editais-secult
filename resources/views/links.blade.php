@@ -145,6 +145,21 @@
         <div class=" text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <h5 class="fw-bold text-primary text-uppercase">Área de controle de links </h5>
         </div>
+
+        @if(session('msg'))
+            <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                    <main>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="msg">{{session('msg')}}</p>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        @endif
+        
         <div class="position-relative pb-3 mb-5 mx-auto" style="max-width: 900px;">
             <form method="POST" action="/inserir-links">
                 @csrf
@@ -169,6 +184,7 @@
                 <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                     <h5 class="fw-bold text-primary text-uppercase">Área para atualização de links</h5>
                 </div>
+                
                 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="row g-5">
                         @foreach($anexos as $nexos)                   

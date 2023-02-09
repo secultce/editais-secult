@@ -136,47 +136,49 @@
     </div>
     <!-- se existir editais de conhecimento público -->
     <!-- Mostre isso -->
+
     @if($p > 0)
-        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-            <h1 class="mb-0">Editais em Conhecimento público </h1>
-        </div>    
-        <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="container py-5">
+    <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+        <h1 class="mb-0">Editais em Conhecimento público </h1>
+    </div>    
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
     @endif
-    
-                @foreach ($postagem as $post)
+    @foreach ($postagem as $post)
                 @if($post->categoria =='Público')
                 @if($post->flag =='Ativado')
-                <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
-                    <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
-                        <div class="blog-item bg-light rounded overflow-hidden">
-                            <div class="blog-img position-relative overflow-hidden">
-                                <div class="nova">
-                                    <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
-                                </div>
-                                <div class="position-absolute top-0 start-0 bg-secondary text-dark rounded-end mt-5 py-2 px-4 bg-warning">
-                                    Edital público
-                                </div>
-                            </div>
-                            <div class="p-4">
-                                <a class="text-width-g " href="/single/{{$post->id}}">Inscreva-se<i class="bi bi-arrow-right"></i></a>
+            <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
+                <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="blog-item bg-light rounded overflow-hidden">
+                        <div class="blog-img position-relative overflow-hidden">
+                            <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
+                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                                Edital aberto
                             </div>
                         </div>
-                        <br>
+                        
+                    <div class="p-4">
+                        <a class="text-width-g " href="/single/{{$post->id}}" id="passar_mouse">
+                        <div id="passar_mouse">Ver informações
+                            <div id="mostrar">{{$post->nome}}</div>
+                        </div>
+                        <i class="bi bi-hand-index"></i>
+                        </a>
+                    </div>
                     </div>
                     <br>
                 </div>
-                <hr>
-                @endif
-                @endif
-                @endforeach
-
-                @if($p > 0)
             </div>
+            <hr>
+            @endif
+            @endif
+            @endforeach
+            @if($p > 0)
         </div>
+    </div>
     @endif
-    
     <br>
+
     <!-- se existir editais abertos -->
     <!-- Mostre isso -->
     @if($a > 0)
@@ -198,9 +200,17 @@
                                 Edital aberto
                             </div>
                         </div>
-                        <div class="p-4">
-                            <a class="text-width-g " href="/single/{{$post->id}}">Inscreva-se<i class="bi bi-arrow-right"></i></a>
+                        
+                    <div class="p-4">
+                        <a class="text-width-g " href="/single/{{$post->id}}" id="passar_mouse">
+                        <div id="passar_mouse">Ver informações
+                            <div id="mostrar">{{$post->nome}}</div>
                         </div>
+                        <i class="bi bi-hand-index"></i>
+                        </a>
+                    </div>
+
+                        
                     </div>
                     <br>
                 </div>
@@ -213,18 +223,18 @@
         </div>
     </div>
     @endif
+
+
     <!--Se existir algum edital em processo de seleção -->
     <br>
     <!--Mostre isso -->
-    <!-- Editais em Processo de Seleção  -->
     @if($s > 0)
     <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-        <h5 class="fw-bold text-dark text-uppercase">Em breve</h5>
         <h1 class="mb-0">Editais em Processo de Seleção </h1>
     </div>    
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">     
-    @endif       
+        <div class="container py-5">
+        @endif       
             @foreach ($postagem as $post)
             @if($post->categoria =='Seleção')
             @if($post->flag =='Ativado')
@@ -232,67 +242,132 @@
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
-                            <div class="nova">
-                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
-                            </div>
-                            <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">
-                                Edital em seleção
+                            <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
+                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                                Edital aberto
                             </div>
                         </div>
-                        <div class="p-4">
-                            <a class="text-width-g " href="/single/{{$post->id}}">Inscreva-se<i class="bi bi-arrow-right"></i></a>
+                        
+                    <div class="p-4">
+                        <a class="text-width-g " href="/single/{{$post->id}}" id="passar_mouse">
+                        <div id="passar_mouse">Ver informações
+                            <div id="mostrar">{{$post->nome}}</div>
                         </div>
+                        <i class="bi bi-hand-index"></i>
+                        </a>
+                    </div>
                     </div>
                     <br>
                 </div>
-                <br>
             </div>
             <hr>
             @endif
             @endif
-            @endforeach    
-            @if($s > 0)        
+            @endforeach
+            @if($s > 0)
         </div>
     </div>
-    @endif    
+    @endif
+    <!-- Editais em Processo de Seleção  -->
+
+    
+    <!-- ALDIR BLANK INICIO -->
 
     @if($e > 0)
+    <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+        <h1 class="mb-0">Editais Lei Aldir Blanc  </h1>
+    </div>    
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+        @endif             
+            @foreach ($aldir as $aldir)
+            <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
+                <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="blog-item bg-light rounded overflow-hidden">
+                        <div class="blog-img position-relative overflow-hidden">
+                            <img id="dimensao" src="{{ asset('/storage/Editais/'.$aldir->arquivo)}}">
+                            <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4 bg-danger">
+                               Lei Aldir Blanc | Edital encerrado
+                            </div>
+                        </div>
+                        
+                    <div class="p-4">
+                        <a class="text-width-g " href="/single/{{$aldir->id}}" id="passar_mouse">
+                        <div id="passar_mouse">Ver informações
+                            <div id="mostrar">{{$aldir->nome}}</div>
+                        </div>
+                        <i class="bi bi-hand-index"></i>
+                        </a>
+                    </div>
+                </div>
+                    <br>
+                </div>
+            </div>
+            <hr>
+            @endforeach
+            @if($e > 0)
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        {!! $desativados->links() !!}
+    </div>
+    <br>
+    @endif
+
+
+ <!-- ALDIR BLANK FIM -->
+
+
+   <!-- Se existir editais encerrados -->
+@if($e > 0)
     <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
         <h1 class="mb-0">Editais encerrados </h1>
     </div>    
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container py-5">  
-            @endif             
+        <div class="container py-5">
+        @endif             
             @foreach ($desativados as $post)
             <div class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
-                            <div class="nova">
-                                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
-                            </div>
+                            <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
                             <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4 bg-danger">
                                 Edital encerrado
                             </div>
                         </div>
-                        <div class="p-4">
-                            <a class="text-width-g " href="/single/{{$post->id}}">Ver informações<i class="bi bi-arrow-right"></i></a>
-                        </div>
+                        
+                        <style>
+                            #mostrar{
+                                display: none;
+                                }
+
+                                #passar_mouse:hover #mostrar{
+                                display:block;
+                                }
+                        </style>
+
+                        
+                                <div class="p-4">
+                                     <a class="text-width-g " href="/single/{{$post->id}}" id="passar_mouse">
+                                        <div id="passar_mouse">Ver informações
+                                            <div id="mostrar">{{$post->nome}}</div>
+                                        </div>
+                                        <i class="bi bi-hand-index"></i>
+                                    </a>
+                                </div>
                     </div>
                     <br>
                 </div>
             </div>
             <hr>
-            
-            @endforeach   
-            @if($e > 0)   
-                              
+            @endforeach
+            @if($e > 0)
         </div>
-    </div>    
+    </div>
     <div class="d-flex justify-content-center">
         {!! $desativados->links() !!}
     </div>
     <br>
-    
     @endif
-@endsection
+    @endsection

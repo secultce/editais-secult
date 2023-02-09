@@ -33,7 +33,7 @@ class AnexosController extends Controller
         'Mensagem',
         "Edital inserido com sucesso!"
       );
-      return redirect('/listagem')->with('msg', 'Link(s) inserido(s) com sucesso. ');
+      return back()->with('msg', 'Link(s) inserido(s) com sucesso. ');
 ;
     } catch (\Exception $e) {
       $request->session()->flash(
@@ -72,7 +72,7 @@ class AnexosController extends Controller
         'id'    => $request->id */
     ]);
 
-    return redirect('/listagem')->with('msg', 'Link atualizado com sucesso. ');
+    return back()->with('msg', 'Link atualizado com sucesso. ');
   }  
 
 
@@ -80,7 +80,9 @@ class AnexosController extends Controller
     $anexo = Anexos::FindOrFail($id);
     $anexo->delete();
 
-    return redirect('/listagem')->with('msg', 'Link apagado com sucesso. ');
+    return back()->with('msg', 'Link apagado com sucesso. ');
+
   }
+  
 }
 

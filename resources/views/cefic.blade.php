@@ -24,7 +24,7 @@
                     <img class="w-100" src="img/logo/logoNova.png" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                      
+
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    
+
     <!-- Pesquisa -->
 
     <div class="modal fade" id="searchModal" tabindex="-1">
@@ -135,7 +135,25 @@
                             2021</a>
                     </h5>
                 </div>
-            </div>
+
+                    Atualizações
+                    <br>
+               
+                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>
+                            <a href="https://mapacultural.secult.ce.gov.br/files/project/2876/listagem_cefic_janeiro_de_2023.pdf" target="_blank">XIV Edital
+                                Mecenas do Ceará -
+                                2022</a>
+                        </h5>
+
+
+                        <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>
+                            <a href="https://www.secult.ce.gov.br/2022/12/13/secult-divulga-a-lista-dos-cefics-emitidos-no-mes-de-dezembro-de-2022/" target="_blank">XIV Edital
+                                Mecenas do Ceará -
+                                2022</a>
+                        </h5>
+
+                    </div>
+        
         </div>
         <div class="container">
             <div class="row">
