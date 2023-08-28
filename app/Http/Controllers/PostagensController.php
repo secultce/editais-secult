@@ -88,7 +88,8 @@ class PostagensController extends Controller
     ->where('flag', 'Desativado')
     -> simplePaginate(50);
 
-    return view('editais', compact('postagem', 'desativados'));
+    // return view('editais', compact('postagem', 'desativados'));
+    return view('todos-editais');
   }
   //listagem para pagina do admin
   public function listagem()

@@ -21,7 +21,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ mix('css/style.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="imagex/png" href="img/logo/iconCe.ico">
 </head>
 <body>    
@@ -137,7 +137,7 @@
     <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </footer>
 </body>
 </html>
