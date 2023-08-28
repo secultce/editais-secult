@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'super_usuario'
     ];
 
     /**
@@ -45,5 +46,10 @@ class User extends Authenticatable
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function postagens():HasMany
+    {
+        return $this->hasMany(Postagens::class);
     }
 }

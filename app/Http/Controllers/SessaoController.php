@@ -16,7 +16,8 @@ class SessaoController extends Controller
 
     public function store()
     {
-        if (auth()->attempt(request(['email', 'password'])) == false) {
+        if (auth()->attempt(request(['email', 'password'])) == false) 
+        {
             return back()->withErrors([
                 'message' => 'Email ou senha está incorreta'
             ]);

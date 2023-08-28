@@ -36,14 +36,17 @@ Route::get('/cefic', function ()
     return view('cefic');
 });
 
+Route::get('/pesquisa', function () 
+{
+    return view('pesquisa');
+});
+
+
 Route::get('/postagem', function () 
 {
     return view('postagem');
 })->middleware('auth');
 
-Route::get('/listagem', [PostagensController::class, 'listagem'])
-->name('registro.listagem')
-->middleware('auth');
 
 Route::get('/editais', [PostagensController::class, 'listagemEditais'])
 ->name('postagens.editais');
@@ -71,11 +74,6 @@ Route::get('/anexo', function ()
     return view('anexo');
 });
 
-/* Route::get('/links', function()
-{
-    return view('links');
-}); */
-
 Route::get('/links/{id}', [AnexosController::class, 'exibirAnexos'])
 ->name('anexos.exibir')
 ->middleware('auth');
@@ -83,19 +81,21 @@ Route::get('/links/{id}', [AnexosController::class, 'exibirAnexos'])
 Route::get('/anexo', [AnexosController::class, 'getAnexo'])
 ->name('anexos.mostrarMudanca')
 ->middleware('auth');
-/* Route::get('inserirLinks/{id}',  $id. 'inserirLinks'); */
+
+
 
 Route::get('/registro', [RegistroController::class, 'create'])
     ->name('registro.index');
+    
+Route::post('/registro', [RegistroController::class, 'store'])
+->name('registro.store')
+->middleware('auth');
 
 Route::get('/login', [SessaoController::class, 'create'])
     ->name('login.index');
 
 Route::post('/login', [SessaoController::class, 'store'])
     ->name('login.store');
-
-Route::post('/registro', [RegistroController::class, 'store'])
-    ->name('registro.store');
 
 Route::get('/logout', [SessaoController::class, 'destroy'])
     ->middleware('auth')
@@ -124,3 +124,28 @@ Route::get('/anexo/{id}',[AnexosController::class, 'getAnexo'])
 Route::post('/alterarAnexo/{id}',[AnexosController::class, 'atualizaAnexos'])
 ->name('anexo.atualizaAnexos')
 ->middleware('auth');
+
+Route::get('/buscar-postagem', [PostagensController::class, 'buscar'])
+->name('postagem.buscar')
+->middleware('auth');
+
+ Route::get('/listagem', [PostagensController::class, 'buscar'])
+->name('pesquisa.buscar')
+->middleware('auth');
+
+Route::get('/listagemDes', [PostagensController::class, 'buscarDesativados'])
+->name('pesquisa.desativados')
+->middleware('auth'); 
+
+
+Route::get('/listagemTodos', [PostagensController::class, 'buscarTodos'])
+->name('pesquisa.desativados'); 
+
+Route::delete('/apagarAnexo/{id}',[AnexosController::class, 'apagarLink'])
+->name('anexo.deletar')
+->middleware('auth');
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');

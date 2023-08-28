@@ -20,10 +20,18 @@ class Postagens extends Model
         'categoria',
         'flag',
         'arquivo',
+        'id_user_create',
+        'id_user_up',
+        'id_user_disable'
     ];
 
-    public function postagens():BelongsToMany
+    public function anexos():BelongsToMany
     {
         return $this->belongsToMany(Anexos::class);
+    }
+
+    public function usuarios():BelongsToMany
+    {
+        return $this->belongsToMany(Users::class, 'id_users', 'id');
     }
 }

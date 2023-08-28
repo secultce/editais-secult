@@ -23,6 +23,12 @@ class CreatePostagensTable extends Migration
             $table->string('categoria');
             $table->string('flag');
             $table->string('arquivo');
+            $table->bigInteger('id_user_create')->unsigned();
+            $table->foreign('id_user_create')->references('id')->on('users');
+            $table->bigInteger('id_user_up')->unsigned();
+            $table->foreign('id_user_up')->references('id')->on('users');
+            $table->bigInteger('id_user_disable')->unsigned();
+            $table->foreign('id_user_disable')->references('id')->on('users');
             $table->timestamps();
         });
     }

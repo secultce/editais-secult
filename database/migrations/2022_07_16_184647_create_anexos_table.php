@@ -16,7 +16,7 @@ class CreateAnexosTable extends Migration
         Schema::create('anexos', function (Blueprint $table) {
             $table->id();
             $table->text('texto');
-            $table->string('link');
+            $table->text('link');
             $table->bigInteger('id_postagens')->unsigned();
             $table->foreign('id_postagens')->references('id')->on('postagens');
             $table->timestamps();

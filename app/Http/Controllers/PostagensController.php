@@ -6,12 +6,14 @@ use App\Models\Anexos;
 use App\Models\Postagens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Input\Input;
+
 
 class PostagensController extends Controller
 {
   public function inserirPostagem(Request $request)
-  {
+  {    
     //realizando upload da imagem
     if ($request->hasFile('arquivo')) 
     {
@@ -26,15 +28,19 @@ class PostagensController extends Controller
       $novoNome = 'Sem imagem.png';
     }
 
-    $data = [
-      'nome' => $request->nome,
-      'etapa' => $request->etapa,
-      'valor' => $request->valor,
-      'email' => $request->email,
-      'telefone' => $request->telefone,
-      'categoria' => $request->categoria,
-      'flag' => $request->flag,
-      'arquivo' => $novoNome,
+    $id = Auth::User()->id;
+      $data = [
+      'nome'            => $request->nome,
+      'etapa'           => $request->etapa,
+      'valor'           => $request->valor,
+      'email'           => $request->email,
+      'telefone'        => $request->telefone,
+      'categoria'       => $request->categoria,
+      'flag'            => $request->flag,
+      'arquivo'         => $novoNome,
+      'id_user_create'  => $id,
+      'id_user_up'      => $id,
+      'id_user_disable' => $id
     ];
 
     if ($data) 
@@ -61,21 +67,29 @@ class PostagensController extends Controller
           'Mensagem',
           "Edital inserido com sucesso!"
         );
-        return redirect('/listagem');
-      } catch (\Exception $e) {
+        return redirect('/listagem')->with('msg', 'Postagem inserida com sucesso.');
+      } 
+      catch (\Exception $e) 
+      {
         $request->session()->flash(
           'Mensagem',
-          "OOOPS!" . $e
+          "Edital não inserido." . $e
         );
-      }
-    }
+      }      
+    }    
   }
   //listagem para pagina inicial dos editais
   public function listagemEditais()
   {
     $postagem = Postagens::orderBy('id', 'desc')
-    -> simplePaginate(16);
-    return view('editais', compact('postagem'));
+    -> simplePaginate(100);
+
+    $desativados = Postagens::orderBy('id', 'desc')
+    ->where('flag', 'Desativado')
+    -> simplePaginate(50);
+
+    // return view('editais', compact('postagem', 'desativados'));
+    return view('todos-editais');
   }
   //listagem para pagina do admin
   public function listagem()
@@ -91,7 +105,7 @@ class PostagensController extends Controller
   {
     $desativados = Postagens::orderBy('created_at', 'desc')
     ->where('flag', 'Desativado')
-    ->simplePaginate(10);
+    ->paginate(10);
     return view('/desativados', compact('desativados'));      
   }
 
@@ -104,28 +118,41 @@ class PostagensController extends Controller
     $anexos = DB::table('anexos')
     ->where('id_postagens',$id)
     ->from('anexos')->get();
-    return view('/single', compact('post', 'anexos')); 
-  
-   }
+    return view('/single', compact('post', 'anexos'));  
+  }
 
   public function desativarEdital($id)
   {
+    if(!$post = Postagens::find($id))
+    {
+      return redirect()->back();
+    }
+    $id_disable = Auth::User()->id;
     Postagens::where('id', $id)
-    ->update(['flag' =>  'Desativado']);
-    return redirect()->back();
+    ->update(['flag' =>  'Desativado', 'id_user_disable'=>$id_disable]);
+    return redirect()->back()->with('msg', 'Edital desativado com sucesso.');
   }
 
   public function ativarEdital($id)
   {
+    if(!$post = Postagens::find($id))
+    {
+      return redirect()->back();
+    }
+    $id_user = Auth::User()->id;
     Postagens::where('id', $id)
-    ->update(['flag' =>  'Ativado']);
-    return redirect()->back();
+    ->update(['flag' =>  'Ativado', 'id_user_create'=>$id_user]);
+    return redirect()->back()->with('msg', 'Edital reativado com sucesso.');;
   }
 
   public function getDados($id)
   {
+    if(!$post = Postagens::find($id))
+    {
+      return redirect()->back();
+    }
     $atual = Postagens::find($id);
-    return view('/atualizacao',compact('atual', 'atual'));
+    return view('/atualizacao',compact('atual'));
   }
 
   public function alterar(Request $request, $id)
@@ -133,10 +160,10 @@ class PostagensController extends Controller
     $postagem = Postagens::FindOrFail($id);
     $imagemAtual = $postagem->arquivo;
     //dd($imagemAtual);
-    Storage::disk('public')->delete($imagemAtual);
-
+    //Storage::disk('public')->delete($imagemAtual);
     if ($request->hasFile('arquivo')) 
     {
+      Storage::disk('public')->delete('Editais/'.$imagemAtual);
       $nomeExtensao = $request->file('arquivo')->getClientOriginalName();
       $nomeArq = pathinfo($nomeExtensao, PATHINFO_FILENAME);
       $extensao = $request->file('arquivo')->getClientOriginalExtension();
@@ -148,16 +175,47 @@ class PostagensController extends Controller
       $novoNome = $postagem->arquivo;
     }
 
+    $id = Auth::User()->id;
     $postagem->update([
-      'nome' => $request->nome,
-      'etapa' => $request->etapa,
-      'valor' => $request->valor,
-      'email' => $request->email,
-      'telefone' => $request->telefone,
-      'categoria' => $request->categoria,
-      'flag' => $request->flag,
-      'arquivo' => $novoNome,        
+      'nome'        => $request->nome,
+      'etapa'       => $request->etapa,
+      'valor'       => $request->valor,
+      'email'       => $request->email,
+      'telefone'    => $request->telefone,
+      'categoria'   => $request->categoria,
+      'flag'        => $request->flag,
+      'arquivo'     => $novoNome,
+      'id_user_up'  => $id
     ]);
-    return redirect('/listagem');
+    return redirect('/listagem')->with('msg', 'Edital '.'" ' .$request->nome.' "'.' alterado com sucesso.');
+  }
+
+  public function buscar(Request $request)
+  {
+    $posts = Postagens::where('nome', 'LIKE', "%{$request->name}%")
+    ->where('flag', 'ativado')
+->orderBy('id', 'desc')
+
+    ->simplePaginate(10);
+    
+    return view('listagem', compact('posts'));
+  }
+
+  public function buscarDesativados(Request $request)
+  {
+    $posts = Postagens::where('nome', 'LIKE', "%{$request->name}%")
+    ->where('flag', 'desativado')
+    ->simplePaginate(10);
+    
+    return view('listagem', compact('posts'));
+  }
+
+  
+  public function buscarTodos(Request $request)
+  {
+    $posts = Postagens::where('nome', 'LIKE', "%{$request->name}%")
+    ->simplePaginate(10);
+    
+    return view('pesquisa', compact('posts'));
   }
 }    

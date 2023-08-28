@@ -33,7 +33,8 @@ class AnexosController extends Controller
         'Mensagem',
         "Edital inserido com sucesso!"
       );
-      return redirect('/listagem');
+      return redirect('/listagem')->with('msg', 'Link(s) inserido(s) com sucesso. ');
+;
     } catch (\Exception $e) {
       $request->session()->flash(
         'Mensagem',
@@ -43,7 +44,7 @@ class AnexosController extends Controller
   }
   
   public function exibirAnexos($id)
-  {
+  {    
     $postagens = DB::table('postagens')
     ->find($id);
     /* dd($postagens); */
@@ -51,7 +52,7 @@ class AnexosController extends Controller
     ->where('id_postagens',$id)
     ->from('anexos')->get();
 
-    return view('links', compact('anexos', 'postagens'));  
+    return view('links', compact('anexos', 'postagens'));          
   }
 
   public function getAnexo($id)
@@ -64,15 +65,22 @@ class AnexosController extends Controller
   public function atualizaAnexos(Request $request, $id)
   {
     $anexo = Anexos::FindOrFail($id);
-      /* dd($anexo); */
-      $anexo->update([
-          'link'  => $request->link,
-          'texto' => $request->texto,/* 
-          'id'    => $request->id */
-      ]);
+    /* dd($anexo); */
+    $anexo->update([
+        'link'  => $request->link,
+        'texto' => $request->texto,/* 
+        'id'    => $request->id */
+    ]);
 
-      return redirect('/listagem');
+    return redirect('/listagem')->with('msg', 'Link atualizado com sucesso. ');
+  }  
+
+
+  public function apagarLink($id){
+    $anexo = Anexos::FindOrFail($id);
+    $anexo->delete();
+
+    return redirect('/listagem')->with('msg', 'Link apagado com sucesso. ');
   }
-
-  
 }
+

@@ -77,6 +77,8 @@
                 <a href="/cefic" class="nav-item nav-link ">Cefic</a>
             </div>
         </div>
+        <butaton type="button" class="btn text-light bg-dark ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"> Pesquisar</i></butaton>
+
     </nav>
 
     <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -94,7 +96,28 @@
 
     </div>
 </div>
-<!-- Topbar End -->
+
+
+ <!-- Pesquisa -->
+ <div class="modal fade" id="searchModal" tabindex="-1">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content" style="background: rgba(13, 13, 13, 0.7);">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                    <div class="modal-body d-flex align-items-center justify-content-center">
+                        <form method="GET" action="/listagem" >
+                        @csrf
+                            <div class="input-group" style="max-width: 400px;">
+                                <input type="text" name="name" class="form-control bg-white border-primary p-3" placeholder="Nome do edital">
+                                <button type="submit" value="Buscar" class="btn btn-secondary px-4"><i class="bi bi-search"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
@@ -104,9 +127,13 @@
 
         <div class="row g-5">
             <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
-                <div class="position-relative h-100">
-                    <img class="position-absolute rounded wow zoomIn" data-wow-delay="0.1s" src="{{ asset('/storage/Editais/'.$post->arquivo)}}"  width="300" style="object-fit: cover;">
+            <div class="blog-img position-relative overflow-hidden">
+                <img id="dimensao" src="{{ asset('/storage/Editais/'.$post->arquivo)}}">
+                <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                    Edital aberto
                 </div>
+            </div>
+               
             </div>
             <div class="col-lg-4">
                 <div class="row g-5">

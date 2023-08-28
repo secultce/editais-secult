@@ -37,55 +37,63 @@
     <!-- fim do javascript botão + -->
     <script>
         var controleCampo = 1;
-        function adicionarCampo() {
+        function adicionarCampo() 
+        {
             controleCampo++;
             //console.log(controleCampo);
 
             document.getElementById('formulario').insertAdjacentHTML('beforeend', '<div class="col-lg-12 form-group" id="campo' + controleCampo + '"><label>Digite um texto para associar ao link: </label><input type="text" name="texto[]" placeholder="Documento da secretaria" class="border-1 bg-light px-4"</br><label>Link: </label><input type="text" name="link[]" placeholder="www.cultura/documento.PDF" class=" border-1 bg-light px-4" > <button type="button" id="' + controleCampo + '" onclick="removerCampo(' + controleCampo + ')" <label style="background-color: rgb(246, 8, 8);"> Clique para remover campos</label></button></div>');
         }
 
-        function removerCampo(idCampo) {
+        function removerCampo(idCampo) 
+        {
             //console.log("Campo remover: " + idCampo);
             document.getElementById('campo' + idCampo).remove();
         }
 
-        function numerais(evt) {
+        function numerais(evt) 
+        {
             var theEvent = evt || window.event;
             var key = theEvent.keyCode || theEvent.which;
             key = String.fromCharCode(key);
             //var regex = /^[0-9.,]+$/;
             var regex = /^[0-9]+$/;
-            if (!regex.test(key)) {
+            if (!regex.test(key)) 
+            {
                 theEvent.returnValue = false;
                 if (theEvent.preventDefault) theEvent.preventDefault();
                 alert("Apenas números podem ser inseridos");
             }
         }
 
-        function mascara(o, f) {
+        function mascara(o, f) 
+        {
             v_obj = o
             v_fun = f
             setTimeout("execmascara()", 1)
         }
-        function execmascara() {
+        function execmascara() 
+        {
             v_obj.value = v_fun(v_obj.value)
         }
-        function mtel(v) {
+        function mtel(v) 
+        {
             v = v.replace(/\D/g, ""); //Remove tudo o que não é dígito
             v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
             v = v.replace(/(\d)(\d{4})$/, "$1-$2"); //Coloca hífen entre o quarto e o quinto dígitos
             return v;
         }
-        function id(el) {
+        function id(el) 
+        {
             return document.getElementById(el);
         }
-        window.onload = function () {
-            id('telefone').onkeyup = function () {
+        window.onload = function () 
+        {
+            id('telefone').onkeyup = function () 
+            {
                 mascara(this, mtel);
             }
         }
-
-
     </script>
     <!--fim do javascript botão + -->
 </head>
@@ -157,38 +165,38 @@
                         <div class="row g-3">
                             <div class="col-12">
                                 <input type="hidden" name="id" value="">
-                                Nome:
+                                Nome: *
                                 <input type="text" name="nome" class="form-control border-1 bg-light px-4"
                                     value="{{ $atual->nome }}" style="height: 55px;" required>
                             </div>
 
                             <div class="col-12">
-                                Etapas:
+                                Etapas: *
                                 <textarea name="etapa" class="form-control border-1 bg-light px-4 py-4" rows="4"
                                     required>{{ $atual->etapa }}</textarea>
                             </div>
 
                             <div class="col-12">
-                                Valor:
+                                Valor: *
                                 <input type="text" name="valor" class="form-control border-1 bg-light px-4"
                                     value="{{ $atual->valor }}" style="height: 55px;" onkeypress="return numerais()">
                             </div>
 
                             <div class="col-12">
-                                E-mail:
+                                E-mail: *
                                 <input type="email" name="email" class="form-control border-1 bg-light px-4"
                                     value="{{ $atual->email }}" style="height: 55px;">
                             </div>
 
                             <div class="col-12">
-                                Telefone:
+                                Telefone: *
                                 <input type="tel" name="telefone" id="telefone"
                                     class="form-control border-1 bg-light px-4" placeholder="(00) 9 - 0000-0000"
                                     value="{{ $atual->telefone }}" placeholder="(00) 9 - 0000-0000" style="height: 55px;">
                             </div>
 
                             <div class="col-12">
-                                <label>Selecione uma categoria: </label><br />
+                                <label>Selecione uma categoria: * </label><br />
                                 <select name="categoria" class="form-control border-1 bg-light px-4"
                                     style="opacity: calc(1)">
                                     <p style="opacity: calc(0.5)">
@@ -200,7 +208,7 @@
                                 </select>
                             </div>
                             <div class="col-12">
-                                <label>Status do Edital: </label><br />
+                                <label>Status do Edital: * </label><br />
                                 <select name="flag" class="form-control border-1 bg-light px-4"
                                     style="opacity: calc(1)">
                                     <p style="opacity: calc(0.5)">
@@ -212,7 +220,7 @@
                             </div>
 
                             <div class="col-12">
-                                Selecione uma imagem para o edital
+                                Selecione uma imagem para o edital *
                                 <input type="file" name="arquivo" accept="image/png,image/jpg, image/jpeg"
                                     class="form-control border-1 bg-light px-4">{{ $atual->arquivo }}<br />
 
