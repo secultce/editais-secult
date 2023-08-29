@@ -70,7 +70,7 @@
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.3s">
                     <div class="bg-white shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
                         <div class="bg-dark d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
-                            <i class="fa fa-award text-primary"></i>
+                            <i class="fa fa-check text-white"></i>
                         </div>
                         <div class="ps-4">
                             <h5 class="text-black mb-0">Conhecimento Público</h5>
@@ -82,7 +82,7 @@
                 <div class="col-lg-3 wow zoomIn" data-wow-delay="0.3s">
                     <div class="bg-white shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
                         <div class="bg-dark d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
-                            <i class="fa fa-award text-primary"></i>
+                            <i class="fa fa-check text-white"></i>
                         </div>
                         <div class="ps-4">
                             <h5 class="text-black mb-0">Inscrições Abertas</h5>
@@ -102,7 +102,6 @@
                         </div>
                     </div>
                 </div>
-               
             </div>
         </div>
     </div>
