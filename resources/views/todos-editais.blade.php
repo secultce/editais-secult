@@ -2,29 +2,29 @@
 @section('title', 'Editais')
 @section('content')
     <!-- Navbar & Carousel Start -->
-    <div class="container-fluid position-relative p-0">
-        <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="fa fa-bars"></span>
-            </button> 
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
-                    <a href="/editais" class="nav-item nav-link active">Editais</a>
-                    <a href="/equipamentos" class="nav-item nav-link ">Equipamentos</a>
-                    <a href="/servico" class="nav-item nav-link">Servicos</a>
-                    <a href="/cefic" class="nav-item nav-link ">Cefic</a>
-                </div>
+ <!-- Navbar & Carousel Start -->
+ <div class="container-fluid position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-5 py-3 py-lg-0">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button> 
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="/editais" class="nav-item nav-link active">Editais</a>
+                <a href="/equipamentos" class="nav-item nav-link ">Equipamentos</a>
+                <a href="/servico" class="nav-item nav-link">Servicos</a>
+                <a href="/cefic" class="nav-item nav-link ">Cefic</a>
             </div>
-            <button type="button" class="btn text-light bg-dark ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"> Pesquisar</i></button>
+        </div>
+        <button type="button" class="btn text-light bg-dark ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"> Pesquisar</i></button>
 
-        </nav>
-        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="img/logo/logoNova.png" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                        </div>
+    </nav>
+    <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100" src="img/logo/logoNova.png" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
                     </div>
                 </div>
             </div>
@@ -63,6 +63,42 @@
                         <div class="ps-4">
                             <h5 class="text-white mb-0">Inscrições Abertas</h5>
                             <h1 class="text-white mb-0" data-toggle="counter-up">4</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="bg-white shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-dark d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-award text-primary"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-black mb-0">Conhecimento Público</h5>
+                            <h1 class="text-black mb-0" data-toggle="counter-up">8</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="bg-white shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-dark d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-award text-primary"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-black mb-0">Inscrições Abertas</h5>
+                            <h1 class="text-black mb-0" data-toggle="counter-up">4</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 wow zoomIn" data-wow-delay="0.6s">
+                    <div class="bg-secondary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-award text-primary"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white mb-0">Inscrições Abertas</h5>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">59</h1>
                         </div>
                     </div>
                 </div>

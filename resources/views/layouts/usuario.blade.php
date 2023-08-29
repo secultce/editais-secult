@@ -26,13 +26,14 @@
 </head>
 <body>
 <div>
-    <div  id="app">
+   
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner"></div>
     </div>
     <!-- Spinner End -->
+    <div  id="app">
     <!-- Topbar Start -->
     <div class="container-fluid bg-secondary px-5 d-none d-lg-block">
         <div class="row gx-0">
@@ -49,28 +50,7 @@
         </div>
     </div>
     <!-- Topbar End -->    
-    <header-logo />
-
-    <!--acesso rapido start-->
-    <!--<section class="AcessoRapido" data-wow-delay="0.1s">
-        <div class="wrapper">
-            <div class="row">
-                <h4 class="mb-1">Acesso Rápido</h4>
-                <nav class="MenuAcessos">
-                    <div class="acesso-rapido">
-                        <ul id="menu-acesso-rapido-footer" class="menu">
-                            <li id="menu-item-870" class="portal menu-item menu-item-type-custom menu-item-object-custom menu-item-870"><a href="https://cearatransparente.ce.gov.br" target="_blank"><i class="PortalTransparencia"></i>Ceará<br> Transparente</a></li>
-                            <li id="menu-item-871" class="acesso menu-item menu-item-type-custom menu-item-object-custom menu-item-871"><a href="http://cartadeservicos.ce.gov.br/" target="_blank"><i class="AcessoCidadao"></i>Carta de Serviços<br>do Cidadão</a></li>
-                            <li id="menu-item-872" class="lei menu-item menu-item-type-custom menu-item-object-custom menu-item-872"><a href="https://cearatransparente.ce.gov.br/portal-da-transparencia/acesso-a-informacao?locale=pt-BR" target="_blank"><i class="AcessoInformacao"></i>Lei geral de<br> acesso à informação</a></li>
-                            <li id="menu-item-873" class="diario menu-item menu-item-type-custom menu-item-object-custom menu-item-873"><a href="http://pesquisa.doe.seplag.ce.gov.br/" target="_blank"><i class="DiarioOficial"></i>Diário<br> Oficial</a></li>
-                            <li id="menu-item-874" class="legislacao menu-item menu-item-type-custom menu-item-object-custom menu-item-874"><a href="https://www.al.ce.gov.br/" target="_blank"><i class="Legislacao"></i>Legislação<br> Estadual</a></li>
-                            <li id="menu-item-61919" class="acoes menu-item menu-item-type-post_type menu-item-object-page menu-item-61919"><a href="http://www.ceara.gov.br/governo/"><i class="AcoesGoverno"></i>Ações de<br> Governo</a></li>
-                        </ul>
-                    </div>                    
-                </nav>    
-            </div>
-        </div>
-    </section> -->
+    @yield('content')
     <footer>
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-light mt-0 wow fadeInUp" data-wow-delay="0.1s">
