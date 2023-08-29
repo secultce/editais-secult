@@ -1,15 +1,18 @@
 <script setup>
 import axios from 'axios'
 import { ref, reactive } from "vue";
-
+import Details from '../components/edital/Details.vue'
 const editais = ref([]);
+const showDetails = ref(false);
+const refState = ref({
+    idEdit : 0
+})
 
 
 const opOpen = () => {
-
     // axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     // axios.get('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&registrationFrom=LTE(2023-08-28%2013:46)&registrationTo=GTE(2023-08-28%2013:46)&@order=createTimestamp%20DESC&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,%20user,%20owner.userId&@files=(avatar.avatarMedium):url&@page=1&@limit=10')
-    fetch('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&registrationFrom=LTE(2023-08-28)&registrationTo=GTE(2023-08-28)&@order=createTimestamp%20DESC&@select=id,singleUrl,name,type&@files=(avatar.avatarMedium):url&@page=1&@limit=150')
+    fetch('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&registrationFrom=LTE(2023-08-28)&registrationTo=GTE(2023-08-28)&@order=createTimestamp%20DESC&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,%20user,%20owner.userId&@files=(avatar.avatarMedium):url&@page=1&@limit=150')
     .then(res => {
         // console.log(res.json())
         return res.json()
@@ -24,15 +27,23 @@ const opOpen = () => {
     })
 }
 
+const detailsEdit = (item) => {
+    showDetails.value = true
+    state.editalData = item
+}
+
+
 opOpen();
 
 const state = reactive({
     urlCapa: 'https://mapacultural.secult.ce.gov.br/files/opportunity/4443/file/4481112/blob.-8eedc4202dfd250d60557cb4411f338a.png',
-    isLike: false
+    isLike: false,
+    editalData: []
 })
 </script>
 <template>
-    <div>
+    <div  v-if="(!showDetails)">
+        
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
             <h1 class="mb-0">Editais com inscrições abertas </h1>
         </div>
@@ -51,7 +62,7 @@ const state = reactive({
                             <div class="p-4 heigth-card">
                                 <p v-if="(item.name.length > 85)">{{ item.name.slice(0, 85) + '...' }}</p>
                                 <p v-else>{{ item.name }}</p>                                
-                                <a class="text-width-g " href="/single/{{$post->id}}">
+                                <a class="text-width-g " @click="detailsEdit(item)">
                                     Mais informações
                                 <i class="bi bi-arrow-right"></i></a>
                             </div>
@@ -62,7 +73,11 @@ const state = reactive({
             </div>
 
         </div>
+       
     </div>
+    <div v-if="(showDetails)">
+        <Details :editalData="state.editalData"/>
+       </div>
 </template>
 <script>
 export default {
