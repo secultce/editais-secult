@@ -2,10 +2,10 @@
 
 
 
-
 </script>
 <template>
     <div>
+        
         <info-data />
         
         

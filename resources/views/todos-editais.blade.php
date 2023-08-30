@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    <header-logo />
+   <header-logo />
     
 
 @endsection

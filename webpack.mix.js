@@ -10,7 +10,7 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
+mix.disableNotifications();
 mix.js(['resources/js/app.js', 'resources/js/main.js'], 'public/js')
     .vue({
         version: 3,
