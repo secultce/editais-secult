@@ -19594,7 +19594,7 @@ var __default__ = {};
       var field = '@select=id,singleUrl,name'; //campos que deseja pelo api
       var year = moment__WEBPACK_IMPORTED_MODULE_1___default()().format("YYYY") + '-01-01,' + moment__WEBPACK_IMPORTED_MODULE_1___default()().format("YYYY") + '-12-31'; //ano inteiro, variando somente o ano
       var codeAgent = '7297,120334,5975,117354,117683'; //Agentes dono das oportunidades
-      fetch('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?' + period + '&@order=createTimestamp%20DESC&' + field + '&@files=(avatar.avatarBig):url,description&@page=1&registrationFrom=BET(' + year + ')&owner=IN(' + codeAgent + ')').then(function (res) {
+      fetch("https://mapacultural.secult.ce.gov.br/" + '/api/opportunity/find/?' + period + '&@order=createTimestamp%20DESC&' + field + '&@files=(avatar.avatarBig):url,description&@page=1&registrationFrom=BET(' + year + ')&owner=IN(' + codeAgent + ')').then(function (res) {
         // console.log(res.json())
         return res.json();
       }).then(function (data) {

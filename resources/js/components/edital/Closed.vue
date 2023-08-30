@@ -14,7 +14,7 @@ const noticeClosed= () => {
     const field = '@select=id,singleUrl,name' //campos que deseja pelo api
     const year = moment().format("YYYY")+'-01-01,'+moment().format("YYYY")+'-12-31' //ano inteiro, variando somente o ano
     const codeAgent = '7297,120334,5975,117354,117683' //Agentes dono das oportunidades
-    fetch('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?'+period+'&@order=createTimestamp%20DESC&'+field+'&@files=(avatar.avatarBig):url,description&@page=1&registrationFrom=BET('+year+')&owner=IN('+codeAgent+')')
+    fetch(process.env.MIX_API_MAPA_URL + '/api/opportunity/find/?'+period+'&@order=createTimestamp%20DESC&'+field+'&@files=(avatar.avatarBig):url,description&@page=1&registrationFrom=BET('+year+')&owner=IN('+codeAgent+')')
     .then(res => {
         // console.log(res.json())
         return res.json()
