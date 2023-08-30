@@ -38,17 +38,17 @@ editalFind();
 
 <template>
     <div class="container rounded-2 bg-secondary p-3 justify-content-around"> 
-        <a href="/editais" class="btn btn-light">
+        <a href="/editais" class="btn btn-light m-1">
             <i class="fa fa-pen"></i>
             Inscrições aberta
         </a>
 
-        <a href="/editais" class="btn btn-light">
+        <a href="/editais#noticeClosed" class="btn btn-light m-1">
             <i class="fa fa-file-excel"></i>
             Inscrições encerrada
         </a>
 
-        <a href="/editais" class="btn btn-light">
+        <a href="/editais" class="btn btn-light m-1">
             <i class="fa fa-list-ul"></i>
             Processo de Seleção
         </a>

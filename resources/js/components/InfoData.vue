@@ -16,9 +16,9 @@ const opOpen = () => {
     console.log(moment().format('YYYY-MM-DD'));
     const period = `${'registrationFrom=LTE('+moment().format('YYYY-MM-DD')+')&registrationTo=GTE('+moment().format('YYYY-MM-DD')+')'}`;
     const field = '@select=id,singleUrl,name,subTitle,type,shortDescription,terms';
-    const codeAgent = '7297,120334,5975,117354'
-    // axios.get('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&registrationFrom=LTE(2023-08-28%2013:46)&registrationTo=GTE(2023-08-28%2013:46)&@order=createTimestamp%20DESC&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,%20user,%20owner.userId&@files=(avatar.avatarMedium):url&@page=1&@limit=10')
-    fetch('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&'+period+'&@order=createTimestamp%20DESC&'+field+'&@files=(avatar.avatarBig):url&@page=1&status=eq(1)&owner=IN('+codeAgent+')')
+    const codeAgent = '7297,120334,5975,117354,117683'
+
+    fetch(process.env.MIX_API_MAPA_URL + '/api/opportunity/find/?&'+period+'&@order=createTimestamp%20DESC&'+field+'&@files=(avatar.avatarBig):url&@page=1&status=eq(1)&owner=IN('+codeAgent+')')
     .then(res => {
         return res.json()
     })
@@ -56,7 +56,7 @@ const state = reactive({
             <div class="container py-5">
                 <div v-for="(item, index) in editais" class="col-lg-3  wow zoomIn" data-wow-delay="0.1s" style="min-height: 350px;">
                     <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s" :key="index">
-                        <div class="blog-item bg-light rounded overflow-hidden mb-5">
+                        <div class="blog-item bg-light rounded overflow-hidden mb-5 border border-secondary-subtle">
                             <div class="blog-img position-relative overflow-hidden">
                                 <a @click="detailsEdit(item.id)">
                                     <img class="dimensao" v-if="(typeof item['@files:avatar.avatarBig'] !== 'undefined')" :src="item['@files:avatar.avatarBig'].url">
@@ -69,7 +69,7 @@ const state = reactive({
                             </div>
                             <div class="p-4 heigth-card">
                                 <p v-if="(item.name.length > 85)">{{ item.name.slice(0, 85) + '...' }}</p>
-                                <p v-else>{{ item.name }}</p>                                
+                                <p v-else>{{ item.name }}</p>                       
                                 <a class="text-width-g " @click="detailsEdit(item.id)">
                                     Mais informações
                                 <i class="bi bi-arrow-right"></i></a>
@@ -87,8 +87,9 @@ const state = reactive({
 
         <SingleEdital :id="idEdit" />
     </div>
-
     <Closed />
+  
+    
 </template>
 <script>
 export default {
