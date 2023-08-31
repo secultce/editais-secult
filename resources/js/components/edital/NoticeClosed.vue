@@ -3,6 +3,8 @@ import {ref, onMounted, reactive} from "vue"
 import moment from 'moment';
 moment.locale('pt-br');
 
+const emit = defineEmits(['notice-id'])
+
 const editalData = ref([])
 const state = reactive({
     urlFeatureImg: 'https://mapacultural.secult.ce.gov.br/files/opportunity/4443/file/4481112/blob.-8eedc4202dfd250d60557cb4411f338a.png',
@@ -13,7 +15,7 @@ const noticeClosed= () => {
     const period = `${'registrationTo=LTE('+moment().format('YYYY-MM-DD')+')'}` //menor que a data do dia
     const field = '@select=id,singleUrl,name' //campos que deseja pelo api
     const year = moment().format("YYYY")+'-01-01,'+moment().format("YYYY")+'-12-31' //ano inteiro, variando somente o ano
-    const codeAgent = '7297,120334,5975,117354,117683' //Agentes dono das oportunidades
+    const codeAgent = process.env.MIX_ID_AGENTS_SECULT //Agentes dono das oportunidades
     fetch(process.env.MIX_API_MAPA_URL + '/api/opportunity/find/?'+period+'&@order=createTimestamp%20DESC&'+field+'&@files=(avatar.avatarBig):url,description&@page=1&registrationFrom=BET('+year+')&owner=IN('+codeAgent+')')
     .then(res => {
         // console.log(res.json())
@@ -23,18 +25,20 @@ const noticeClosed= () => {
         console.log(data)
         //
         editalData.value = data
-
-        // featureCover.value = editalData.value['@files:avatar.avatarBig'].url;
-        // editalData.value.registrationFrom = moment(editalData.value.registrationFrom.date).format('llll');
-        // editalData.value.registrationTo = moment(editalData.value.registrationTo.date).format('llll');
-        // editalData.value.nameOwner = editalData.value.owner.name 
-        // editalData.value.idOwner = editalData.value.owner.id
-        // editalData.value.files = editalData.value['@files:downloads']
     })
     .catch(err => {
         console.log({err})
     })
 }
+
+const detailsEdit = (id) => {
+    let emitClosed = {
+        id: id,
+        notice: 'closed'
+    }
+    emit("notice-id", emitClosed)
+}
+
 
 onMounted(() => {
     noticeClosed();
@@ -55,6 +59,7 @@ onMounted(() => {
                 <div class="col-lg-10 col-md-6 wow zoomIn" data-wow-delay="0.3s">
                     <div class="blog-item bg-light rounded overflow-hidden mb-5 border border-secondary-subtle">
                         <div class="blog-img position-relative overflow-hidden">
+                            <a @click="detailsEdit(item.id)">
                             <div class="nova">
                                 
                                 <img class="dimensao" v-if="(typeof item['@files:avatar.avatarBig'] !== 'undefined')" :src="item['@files:avatar.avatarBig'].url">
@@ -65,11 +70,12 @@ onMounted(() => {
                             <div class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4 bg-danger">
                                 Edital encerrado
                             </div>
+                        </a>
                         </div>
                         <div class="p-4 heigth-card">
                             <p v-if="(item.name.length > 85)">{{ item.name.slice(0, 85) + '...' }}</p>
                                 <p v-else>{{ item.name }}</p>     
-                            <a class="text-width-g " href="#">Ver informações<i class="bi bi-arrow-right"></i></a>
+                            <a class="text-width-g a-cursor-point" href="#">Ver informações<i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -89,4 +95,5 @@ export default {
 .heigth-card {
     height: 200px;
 }
+
 </style>

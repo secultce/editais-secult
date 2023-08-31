@@ -902,5 +902,10 @@ footer {
 #login-button-panel {
   justify-content: space-evenly;
 }
+
+.a-cursor-point {
+  cursor: pointer;
+}
+
 }
 

@@ -1,22 +1,26 @@
 <script setup>
 
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
+//Componentes Criados
 import SingleEdital from '../components/edital/SingleEdital.vue'
-import Closed from '../components/edital/Closed.vue'
+//PLUGINS
 import moment from 'moment';
 moment.locale('pt-br');
 
 const editais = ref([]);
 const showDetails = ref(false);
-const idEdit = ref(0)
 
+ 
+const props = defineProps({
+    showNoticeOpen: Boolean
+})
+const emit = defineEmits(['notice-id'])
 
 const opOpen = () => {
-    // axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-    console.log(moment().format('YYYY-MM-DD'));
+
     const period = `${'registrationFrom=LTE('+moment().format('YYYY-MM-DD')+')&registrationTo=GTE('+moment().format('YYYY-MM-DD')+')'}`;
     const field = '@select=id,singleUrl,name,subTitle,type,shortDescription,terms';
-    const codeAgent = '7297,120334,5975,117354,117683'
+    const codeAgent = process.env.MIX_ID_AGENTS_SECULT
 
     fetch(process.env.MIX_API_MAPA_URL + '/api/opportunity/find/?&'+period+'&@order=createTimestamp%20DESC&'+field+'&@files=(avatar.avatarBig):url&@page=1&status=eq(1)&owner=IN('+codeAgent+')')
     .then(res => {
@@ -33,13 +37,17 @@ const opOpen = () => {
 }
 
 const detailsEdit = (id) => {
-    showDetails.value = true
-    idEdit.value = id
+
+    let emitOpen = {
+        id: id,
+        notice: 'open'
+    }
+    emit("notice-id", emitOpen)
 }
 
-
-opOpen();
-
+onMounted(() =>{
+    opOpen();   
+})
 const state = reactive({
     urlCapa: 'https://mapacultural.secult.ce.gov.br/files/opportunity/4443/file/4481112/blob.-8eedc4202dfd250d60557cb4411f338a.png',
     isLike: false,
@@ -59,8 +67,8 @@ const state = reactive({
                         <div class="blog-item bg-light rounded overflow-hidden mb-5 border border-secondary-subtle">
                             <div class="blog-img position-relative overflow-hidden">
                                 <a @click="detailsEdit(item.id)">
-                                    <img class="dimensao" v-if="(typeof item['@files:avatar.avatarBig'] !== 'undefined')" :src="item['@files:avatar.avatarBig'].url">
-                                    <img class="dimensao" v-else :src="state.urlCapa">
+                                    <img class="dimensao a-cursor-point" v-if="(typeof item['@files:avatar.avatarBig'] !== 'undefined')" :src="item['@files:avatar.avatarBig'].url">
+                                    <img class="dimensao a-cursor-point" v-else :src="state.urlCapa">
                                     <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
                                         Edital aberto
                                     </div>
@@ -70,7 +78,7 @@ const state = reactive({
                             <div class="p-4 heigth-card">
                                 <p v-if="(item.name.length > 85)">{{ item.name.slice(0, 85) + '...' }}</p>
                                 <p v-else>{{ item.name }}</p>                       
-                                <a class="text-width-g " @click="detailsEdit(item.id)">
+                                <a class="text-width-g a-cursor-point" @click="detailsEdit(item.id)">
                                     Mais informações
                                 <i class="bi bi-arrow-right"></i></a>
                             </div>
@@ -83,11 +91,8 @@ const state = reactive({
         </div>
        
     </div>
-    <div v-if="(showDetails)">
-
-        <SingleEdital :id="idEdit" />
-    </div>
-    <Closed />
+   
+    
   
     
 </template>

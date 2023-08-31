@@ -7,16 +7,16 @@ import { createApp } from 'vue'
 
 //COMPONENTE CRIADO PARA APLICAÇÃO
 import HeaderLogo from './components/HeaderLogo.vue'
-import InfoData from './components/InfoData.vue'
+import NoticeOpen from './components/NoticeOpen.vue'
 import SingleEdital from './components/edital/SingleEdital.vue'
-import Closed from './components/edital/Closed.vue'
+import NoticeClosed from './components/edital/NoticeClosed.vue'
 
 const app = createApp({})
 
 app.component('header-logo', HeaderLogo)
-app.component('info-data', InfoData)
+app.component('notice-open', NoticeOpen)
 app.component('single-edital', SingleEdital)
-app.component('closed', Closed)
+app.component('notice-closed', NoticeClosed)
 // app.component("infinite-loading", InfiniteLoading);
 
 app.mount('#app')
