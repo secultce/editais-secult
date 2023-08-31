@@ -1,10 +1,13 @@
 <script setup>
 import {ref, onMounted} from "vue"
+import  helper  from "../util/helpers.js"
 
 const showNoticeOpen = ref(true);
 const showNoticeClosed = ref(false);
 const showDetails = ref(false);
 const idEdit = ref(0)
+const totalNoticeOpen = ref(0)
+const totalNoticeClosed = ref(0)
 
 const noticeOpenFunc = () => {
     showNoticeOpen.value = true
@@ -29,6 +32,19 @@ function noticeId(emitNotice)
     showDetails.value = true
 }
 
+let help = helper.getNoticeOpen()
+    help.then(res => {
+        
+        setTimeout(() => {
+            totalNoticeOpen.value = res.length
+        }, 1000);
+    })
+    let closed = helper.getNoticeClosed()
+    closed.then(res => {
+        setTimeout(() => {
+            totalNoticeClosed.value = res.length
+        }, 2000);
+    })
 </script>
 <template>
     <div>
@@ -43,7 +59,10 @@ function noticeId(emitNotice)
                         </div>
                         <div class="ps-4">
                             <h5 class="text-white mb-0">Inscrições Abertas</h5>
-                            <h1 class="text-white mb-0" data-toggle="counter-up">4</h1>
+                            <Transition>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">{{ totalNoticeOpen }}</h1>
+                            </Transition>
+                            <small class="text-white">clique aqui</small>
                         </div>
                     </div>
                 </div>
@@ -56,6 +75,7 @@ function noticeId(emitNotice)
                         <div class="ps-4">
                             <h5 class="text-black mb-0">Conhecimento Público</h5>
                             <h1 class="text-black mb-0" data-toggle="counter-up">8</h1>
+                            <small>clique aqui</small>
                         </div>
                     </div>
                 </div>
@@ -68,7 +88,7 @@ function noticeId(emitNotice)
                         <div class="ps-4">
                             <h5 class="text-black mb-0">Processo de Seleção</h5>
                             <h1 class="text-black mb-0" data-toggle="counter-up">4</h1>
-                            <small>consultar</small>
+                            <small>clique aqui</small>
                         </div>
                     </div>
                 </div>
@@ -80,7 +100,8 @@ function noticeId(emitNotice)
                         </div>
                         <div class="ps-4">
                             <h5 class="text-white mb-0">Inscrições encerradas</h5>
-                            <h1 class="text-white mb-0" data-toggle="counter-up">59</h1>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">{{ totalNoticeClosed }}</h1>
+                            <small class="text-white">clique aqui</small>
                         </div>
                     </div>
                 </div>
@@ -111,5 +132,14 @@ export default {
 <style>
 .a-cursor-point {
   cursor: pointer;
+}
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

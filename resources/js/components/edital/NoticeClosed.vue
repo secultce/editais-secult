@@ -1,33 +1,25 @@
 <script setup>
 import {ref, onMounted, reactive} from "vue"
+import  helper  from "../../util/helpers.js"
+//plugins
 import moment from 'moment';
 moment.locale('pt-br');
+//Componentes
 
 const emit = defineEmits(['notice-id'])
 
 const editalData = ref([])
+
 const state = reactive({
     urlFeatureImg: 'https://mapacultural.secult.ce.gov.br/files/opportunity/4443/file/4481112/blob.-8eedc4202dfd250d60557cb4411f338a.png',
 })
 
 const noticeClosed= () => {
-    
-    const period = `${'registrationTo=LTE('+moment().format('YYYY-MM-DD')+')'}` //menor que a data do dia
-    const field = '@select=id,singleUrl,name' //campos que deseja pelo api
-    const year = moment().format("YYYY")+'-01-01,'+moment().format("YYYY")+'-12-31' //ano inteiro, variando somente o ano
-    const codeAgent = process.env.MIX_ID_AGENTS_SECULT //Agentes dono das oportunidades
-    fetch(process.env.MIX_API_MAPA_URL + '/api/opportunity/find/?'+period+'&@order=createTimestamp%20DESC&'+field+'&@files=(avatar.avatarBig):url,description&@page=1&registrationFrom=BET('+year+')&owner=IN('+codeAgent+')')
-    .then(res => {
-        // console.log(res.json())
-        return res.json()
+    let closed = helper.getNoticeClosed()
+    closed.then(res => {
+        editalData.value = res
     })
-    .then(function(data) {
-        //
-        editalData.value = data
-    })
-    .catch(err => {
-        console.log({err})
-    })
+   
 }
 
 const detailsEdit = (id) => {
@@ -41,6 +33,7 @@ const detailsEdit = (id) => {
 
 onMounted(() => {
     noticeClosed();
+    console.log('mounted noticeClosed')
 })
 
 

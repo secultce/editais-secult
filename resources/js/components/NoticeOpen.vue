@@ -3,36 +3,19 @@
 import { ref, reactive, onMounted } from "vue";
 //Componentes Criados
 import SingleEdital from '../components/edital/SingleEdital.vue'
+import  helper  from "../util/helpers.js"
 //PLUGINS
 import moment from 'moment';
 moment.locale('pt-br');
 
 const editais = ref([]);
 const showDetails = ref(false);
-
+const countOpen = ref([0])
  
 const props = defineProps({
     showNoticeOpen: Boolean
 })
-const emit = defineEmits(['notice-id'])
-
-const opOpen = () => {
-
-    const period = `${'registrationFrom=LTE('+moment().format('YYYY-MM-DD')+')&registrationTo=GTE('+moment().format('YYYY-MM-DD')+')'}`;
-    const field = '@select=id,singleUrl,name,subTitle,type,shortDescription,terms';
-    const codeAgent = process.env.MIX_ID_AGENTS_SECULT
-
-    fetch(process.env.MIX_API_MAPA_URL + '/api/opportunity/find/?&'+period+'&@order=createTimestamp%20DESC&'+field+'&@files=(avatar.avatarBig):url&@page=1&status=eq(1)&owner=IN('+codeAgent+')')
-    .then(res => {
-        return res.json()
-    })
-    .then(function(data) {
-        editais.value = data
-    })
-    .catch(err => {
-        console.log({err})
-    })
-}
+const emit = defineEmits(['notice-id', 'count-open'])
 
 const detailsEdit = (id) => {
 
@@ -44,7 +27,13 @@ const detailsEdit = (id) => {
 }
 
 onMounted(() =>{
-    opOpen();   
+    let openNotice = helper.getNoticeOpen()
+    console.log('Home ')
+    openNotice.then(res => {
+        console.log(res.length)
+        editais.value = res
+    })
+   
 })
 const state = reactive({
     urlCapa: 'https://mapacultural.secult.ce.gov.br/files/opportunity/4443/file/4481112/blob.-8eedc4202dfd250d60557cb4411f338a.png',
