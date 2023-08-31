@@ -19491,34 +19491,23 @@ var __default__ = {};
     var showDetails = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     var idEdit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(0);
     var noticeOpenFunc = function noticeOpenFunc() {
-      console.log('noticeOpen');
       showNoticeOpen.value = true;
       showNoticeClosed.value = false;
+      showDetails.value = false;
     };
     var noticeClosedFunc = function noticeClosedFunc() {
-      console.log('noticeClosed');
       showNoticeClosed.value = true;
       showNoticeOpen.value = false;
+      showDetails.value = false;
+    };
+    var closeAll = function closeAll() {
+      showNoticeOpen.value = false;
+      showNoticeClosed.value = false;
     };
     function noticeId(emitNotice) {
-      console.log({
-        emitNotice: emitNotice
-      });
-      //  console.log(['Notice id' , id])
       idEdit.value = emitNotice.id;
-      //  id > 0 ? showDetails.value = true : showDetails.value = false
-      switch (emitNotice.notice) {
-        case 'open':
-          showNoticeOpen.value = false;
-          showDetails.value = true;
-          break;
-        case 'closed':
-          showNoticeClosed.value = false;
-          showDetails.value = true;
-          break;
-        default:
-          break;
-      }
+      closeAll();
+      showDetails.value = true;
     }
     var __returned__ = {
       showNoticeOpen: showNoticeOpen,
@@ -19527,6 +19516,7 @@ var __default__ = {};
       idEdit: idEdit,
       noticeOpenFunc: noticeOpenFunc,
       noticeClosedFunc: noticeClosedFunc,
+      closeAll: closeAll,
       noticeId: noticeId,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted
@@ -19583,7 +19573,6 @@ var __default__ = {};
       fetch("https://mapacultural.secult.ce.gov.br/" + '/api/opportunity/find/?&' + period + '&@order=createTimestamp%20DESC&' + field + '&@files=(avatar.avatarBig):url&@page=1&status=eq(1)&owner=IN(' + codeAgent + ')').then(function (res) {
         return res.json();
       }).then(function (data) {
-        console.log(data);
         editais.value = data;
       })["catch"](function (err) {
         console.log({
@@ -19668,7 +19657,6 @@ var __default__ = {};
         // console.log(res.json())
         return res.json();
       }).then(function (data) {
-        console.log(data);
         //
         editalData.value = data;
       })["catch"](function (err) {
@@ -19737,10 +19725,11 @@ var __default__ = {};
     moment__WEBPACK_IMPORTED_MODULE_1___default().locale('pt-br');
     var editalData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var featureCover = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)('');
+    var idNotice = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.id);
 
     //https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&@order=createTimestamp%20DESC&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,%20user,%20owner.userId,owner.name,registrationFrom,registrationTo&@files=(avatar.avatarMedium):url&@page=1&status=eq(1)&id=eq(4427)
     var editalFind = function editalFind() {
-      fetch('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&@order=createTimestamp%20DESC&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,%20user,%20owner.userId,owner.name,registrationFrom,registrationTo&@files=(avatar.avatarBig,downloads):url,description&@page=1&status=eq(1)&id=eq(' + props.id + ')').then(function (res) {
+      fetch('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&@order=createTimestamp%20DESC&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,%20user,%20owner.userId,owner.name,registrationFrom,registrationTo&@files=(avatar.avatarBig,downloads):url,description&@page=1&status=eq(1)&id=eq(' + idNotice.value + ')').then(function (res) {
         // console.log(res.json())
         return res.json();
       }).then(function (data) {
@@ -19758,14 +19747,17 @@ var __default__ = {};
         });
       });
     };
-    editalFind();
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      editalFind();
+    });
     var __returned__ = {
       props: props,
       editalData: editalData,
       featureCover: featureCover,
+      idNotice: idNotice,
       editalFind: editalFind,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
-      reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       moment: (moment__WEBPACK_IMPORTED_MODULE_1___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -20033,113 +20025,112 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container rounded-2 bg-secondary p-3 justify-content-around\"><a href=\"/editais\" class=\"btn btn-light m-1\"><i class=\"fa fa-pen\"></i> Inscrições aberta </a><a href=\"/editais#noticeClosed\" class=\"btn btn-light m-1\"><i class=\"fa fa-file-excel\"></i> Inscrições encerrada </a><a href=\"/editais\" class=\"btn btn-light m-1\"><i class=\"fa fa-list-ul\"></i> Processo de Seleção </a></div>", 1);
-var _hoisted_2 = {
+var _hoisted_1 = {
   "class": "container-fluid py-5 wow fadeInUp",
   "data-wow-delay": "0.1s"
 };
-var _hoisted_3 = {
+var _hoisted_2 = {
   "class": "section-title text-center position-relative pb-3 mb-5 mx-auto",
   style: {
     "max-width": "600px"
   }
 };
-var _hoisted_4 = {
+var _hoisted_3 = {
   "class": "fw-bold text-primary text-uppercase"
 };
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": "container py-5"
 };
-var _hoisted_6 = {
+var _hoisted_5 = {
   "class": "row g-5"
 };
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "col-lg-4 wow zoomIn",
   "data-wow-delay": "0.9s",
   style: {
     "min-height": "350px"
   }
 };
-var _hoisted_8 = {
+var _hoisted_7 = {
   "class": "blog-img position-relative overflow-hidden"
 };
-var _hoisted_9 = ["href"];
-var _hoisted_10 = ["src"];
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_8 = ["href"];
+var _hoisted_9 = ["src"];
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4"
 }, " Edital aberto ", -1 /* HOISTED */);
-var _hoisted_12 = {
+var _hoisted_11 = {
   "class": "d-flex justify-content-center mt-3"
 };
-var _hoisted_13 = ["href"];
-var _hoisted_14 = {
+var _hoisted_12 = ["href"];
+var _hoisted_13 = {
   "class": "col-lg-4"
 };
-var _hoisted_15 = {
+var _hoisted_14 = {
   "class": "row g-5"
 };
-var _hoisted_16 = {
+var _hoisted_15 = {
   "class": "col-12 wow zoomIn",
   "data-wow-delay": "0.2s"
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Etapas de Execução", -1 /* HOISTED */);
-var _hoisted_18 = {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Etapas de Execução", -1 /* HOISTED */);
+var _hoisted_17 = {
   "class": "mb-0"
 };
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa fa-arrow-right text-primary me-3"
 }, null, -1 /* HOISTED */);
-var _hoisted_20 = {
+var _hoisted_19 = {
   "class": "col-lg-12 mb-20"
 };
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Descrição do edital", -1 /* HOISTED */);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Descrição do edital", -1 /* HOISTED */);
+var _hoisted_21 = {
+  "class": "mb-0"
+};
 var _hoisted_22 = {
-  "class": "mb-0"
-};
-var _hoisted_23 = {
   "class": "col-lg-12 mb-20"
 };
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Publicado por:", -1 /* HOISTED */);
-var _hoisted_25 = {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Publicado por:", -1 /* HOISTED */);
+var _hoisted_24 = {
   "class": "mb-0"
 };
-var _hoisted_26 = ["href"];
-var _hoisted_27 = {
+var _hoisted_25 = ["href"];
+var _hoisted_26 = {
   "class": "col-lg-4"
 };
-var _hoisted_28 = {
+var _hoisted_27 = {
   "class": "row g-5"
 };
-var _hoisted_29 = {
+var _hoisted_28 = {
   "class": "col-12 wow zoomIn",
   "data-wow-delay": "0.4s"
 };
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Publicações do Edital", -1 /* HOISTED */);
-var _hoisted_31 = {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, "Publicações do Edital", -1 /* HOISTED */);
+var _hoisted_30 = {
   "class": "list-group"
 };
-var _hoisted_32 = ["href"];
+var _hoisted_31 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "".concat($setup.editalData.singleUrl),
     target: "_blank"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     "class": "dimensao",
     src: $setup.featureCover
-  }, null, 8 /* PROPS */, _hoisted_10), _hoisted_11], 8 /* PROPS */, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, null, 8 /* PROPS */, _hoisted_9), _hoisted_10], 8 /* PROPS */, _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "".concat($setup.editalData.singleUrl),
     target: "_blank",
     "class": "btn btn-success"
-  }, "Acessar Oportunidade", 8 /* PROPS */, _hoisted_13)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Inscrições do período de: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.registrationFrom) + " até " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.registrationTo), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.shortDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, "Acessar Oportunidade", 8 /* PROPS */, _hoisted_12)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Inscrições do período de: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.registrationFrom) + " até " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.registrationTo), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.shortDescription), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "".concat('https://mapacultural.secult.ce.gov.br/agente/' + $setup.editalData.idOwner),
     target: "_blank"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.nameOwner), 9 /* TEXT, PROPS */, _hoisted_26)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.editalData.files, function (element, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.editalData.nameOwner), 9 /* TEXT, PROPS */, _hoisted_25)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.editalData.files, function (element, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
       href: "".concat(element.url),
       key: index,
       "class": "list-group-item list-group-item-action"
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(element.description), 9 /* TEXT, PROPS */, _hoisted_32))]);
-  }), 256 /* UNKEYED_FRAGMENT */))])])])])])])], 64 /* STABLE_FRAGMENT */);
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(element.description), 9 /* TEXT, PROPS */, _hoisted_31))]);
+  }), 256 /* UNKEYED_FRAGMENT */))])])])])])]);
 }
 
 /***/ }),

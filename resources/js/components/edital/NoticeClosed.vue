@@ -22,7 +22,6 @@ const noticeClosed= () => {
         return res.json()
     })
     .then(function(data) {
-        console.log(data)
         //
         editalData.value = data
     })

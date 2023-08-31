@@ -27,8 +27,6 @@ const opOpen = () => {
         return res.json()
     })
     .then(function(data) {
-        console.log(data);
-
         editais.value = data
     })
     .catch(err => {

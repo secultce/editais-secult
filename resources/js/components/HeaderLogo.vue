@@ -7,42 +7,32 @@ const showDetails = ref(false);
 const idEdit = ref(0)
 
 const noticeOpenFunc = () => {
-    console.log('noticeOpen');
     showNoticeOpen.value = true
     showNoticeClosed.value = false
+    showDetails.value = false
 }
 const noticeClosedFunc = () => {
-    console.log('noticeClosed');
     showNoticeClosed.value = true
     showNoticeOpen.value = false
+    showDetails.value = false
+}
+
+const closeAll = () => {
+    showNoticeOpen.value = false
+    showNoticeClosed.value = false
 }
 
 function noticeId(emitNotice)
 {
-    console.log({emitNotice})
-//  console.log(['Notice id' , id])
- idEdit.value = emitNotice.id
-//  id > 0 ? showDetails.value = true : showDetails.value = false
-    switch (emitNotice.notice) {
-        case 'open':
-            showNoticeOpen.value = false
-            showDetails.value = true
-            break;
-        case 'closed':
-            showNoticeClosed.value = false
-            showDetails.value = true
-            break;
-    
-        default:
-            break;
-    } 
+    idEdit.value = emitNotice.id
+    closeAll()
+    showDetails.value = true
 }
-
-
 
 </script>
 <template>
     <div>
+        
         <div class="container-fluid facts py-5 pt-lg-0">
         <div class="container py-5 pt-lg-0">
             <div class="row gx-0">
