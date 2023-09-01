@@ -52,9 +52,9 @@ onMounted(() => {
                     <div class="blog-img position-relative overflow-hidden">
                         <a :href="`${editalData.singleUrl}`" target="_blank">
                             <img class="dimensao" :src="featureCover">
-                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                            <!-- <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
                                 Edital aberto
-                            </div>
+                            </div> -->
                         </a>
                         <div class="d-flex justify-content-center mt-3">
                             <a :href="`${editalData.singleUrl}`" target="_blank" class="btn btn-success">Acessar Oportunidade</a>

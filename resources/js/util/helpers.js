@@ -26,7 +26,6 @@ async function getNoticeOpen()
 
 async function getNoticeClosed()
 {
-    const dataNoticeOpen = [];
     const period = `${'registrationTo=LTE('+moment().format('YYYY-MM-DD')+')'}` //menor que a data do dia
     const field = '@select=id,singleUrl,name' //campos que deseja pelo api
     const year = moment().format("YYYY")+'-01-01,'+moment().format("YYYY")+'-12-31' //ano inteiro, variando somente o ano
@@ -52,7 +51,62 @@ async function getNoticeClosed()
     return dataClosed
 }
 
+async function getNoticePublic()
+{
+    const period = `${'registrationFrom=GT('+moment().format('YYYY-MM-DD')+')&registrationTo=GT('+moment().format('YYYY-MM-DD')+')'}`;
+    const field = '@select=id,singleUrl,name' //campos que deseja pelo api
+    const codeAgent = process.env.MIX_ID_AGENTS_SECULT //Agentes dono das oportunidades
+    const dataClosed = await fetch(
+        process.env.MIX_API_MAPA_URL + 
+        'api/opportunity/find/?'+
+        period + '&@order=createTimestamp%20DESC&'+
+        field + '&@files=(avatar.avatarBig):url,description&owner=IN('+codeAgent+')'
+    )
+    .then(res => {
+        // console.log(res.json())
+        return res.json()
+    })
+    .then(function(data) {
+        //
+        return data
+    })
+    .catch(err => {
+        console.log('getNoticePublic ', err)
+    })
+
+    return dataClosed
+}
+
+async function getNoticeProcess()
+{
+    const period = `${'registrationFrom=LT('+moment().format('YYYY-MM-DD')+')&registrationTo=GTE('+moment().format('YYYY-MM-DD')+')'}`;
+    const field = '@select=id,singleUrl,name' //campos que deseja pelo api
+    const codeAgent = process.env.MIX_ID_AGENTS_SECULT //Agentes dono das oportunidades
+    const dataNotice = await fetch(
+        process.env.MIX_API_MAPA_URL + 
+        'api/opportunity/find/?'+
+        period + '&@order=createTimestamp%20DESC&'+
+        field + '&@files=(avatar.avatarBig):url,description&owner=IN('+codeAgent+')'
+    )
+    .then(res => {
+        // console.log(res.json())
+        return res.json()
+    })
+    .then(function(data) {
+        //
+        return data
+    })
+    .catch(err => {
+        console.log('getNoticeProcess ', err)
+    })
+
+    return dataNotice
+}
+
+
 export default {
     getNoticeOpen,
-    getNoticeClosed
+    getNoticeClosed,
+    getNoticePublic,
+    getNoticeProcess
 }
