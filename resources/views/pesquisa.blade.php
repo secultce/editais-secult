@@ -205,6 +205,22 @@
                         <h2>Nenhum edital foi encontrado</h2>
                     </label>
                 </div>
+
+                <div class=" text-center position-relative pb-3 mb-5 mx-auto " style="max-width: 600px;">
+                    <label>
+                        <h5>
+                            Não encontrou o que estava procurando?
+                            <br>
+                            <a href="https://mapacultural.secult.ce.gov.br/busca/##(global:(enabled:(opportunity:!t),filterEntity:opportunity,viewMode:list))" 
+                                target="_blank"
+                                class="btn btn-success"
+                            >
+                                Tente novamente clicando aqui
+                            </a>
+                        </h5>
+                    </label>
+                </div>
+                
             </div>
         </div>
 
