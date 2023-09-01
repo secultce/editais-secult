@@ -1,5 +1,5 @@
 <script setup>
-import {ref, reactive} from "vue"
+import {ref, onMounted} from "vue"
 import moment from 'moment';
 moment.locale('pt-br');
 
@@ -9,11 +9,12 @@ const props = defineProps({
 
 const editalData = ref([])
 const featureCover = ref('');
+const idNotice = ref(props.id);
 
 //https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&@order=createTimestamp%20DESC&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,%20user,%20owner.userId,owner.name,registrationFrom,registrationTo&@files=(avatar.avatarMedium):url&@page=1&status=eq(1)&id=eq(4427)
 const editalFind = () => {
 
-    fetch('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&@order=createTimestamp%20DESC&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,%20user,%20owner.userId,owner.name,registrationFrom,registrationTo&@files=(avatar.avatarBig,downloads):url,description&@page=1&status=eq(1)&id=eq('+props.id+')')
+    fetch('https://mapacultural.secult.ce.gov.br/api/opportunity/find/?&@order=createTimestamp%20DESC&@select=id,singleUrl,name,subTitle,type,shortDescription,terms,project.name,project.singleUrl,%20user,%20owner.userId,owner.name,registrationFrom,registrationTo&@files=(avatar.avatarBig,downloads):url,description&@page=1&status=eq(1)&id=eq('+idNotice.value+')')
     .then(res => {
         // console.log(res.json())
         return res.json()
@@ -33,27 +34,13 @@ const editalFind = () => {
     })
 }
 
-editalFind();
+onMounted(() => {
+    editalFind();
+})
+
 </script>
 
 <template>
-    <div class="container rounded-2 bg-secondary p-3 justify-content-around"> 
-        <a href="/editais" class="btn btn-light m-1">
-            <i class="fa fa-pen"></i>
-            Inscrições aberta
-        </a>
-
-        <a href="/editais#noticeClosed" class="btn btn-light m-1">
-            <i class="fa fa-file-excel"></i>
-            Inscrições encerrada
-        </a>
-
-        <a href="/editais" class="btn btn-light m-1">
-            <i class="fa fa-list-ul"></i>
-            Processo de Seleção
-        </a>
-
-    </div>
     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
        
         <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
@@ -65,9 +52,9 @@ editalFind();
                     <div class="blog-img position-relative overflow-hidden">
                         <a :href="`${editalData.singleUrl}`" target="_blank">
                             <img class="dimensao" :src="featureCover">
-                            <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
+                            <!-- <div class="position-absolute top-0 start-0 bg-secondary text-white rounded-end mt-5 py-2 px-4">
                                 Edital aberto
-                            </div>
+                            </div> -->
                         </a>
                         <div class="d-flex justify-content-center mt-3">
                             <a :href="`${editalData.singleUrl}`" target="_blank" class="btn btn-success">Acessar Oportunidade</a>
