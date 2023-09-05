@@ -19,7 +19,7 @@
                         <div class="p-4 heigth-card">
                             <p v-if="(item.name.length > 85)">{{ item.name.slice(0, 85) + '...' }}</p>
                                 <p v-else>{{ item.name }}</p>     
-                            <a class="text-width-g a-cursor-point" href="#">Ver informações<i class="bi bi-arrow-right"></i></a>
+                            <a class="text-width-g a-cursor-point" @click="detailsEdit(item.id)">Ver informações<i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
