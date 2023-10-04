@@ -19,7 +19,7 @@
   overflow: hidden;
 }
 
-#dimensao {
+.dimensao {
   /*border: 1px solid rgb(0, 0, 0);*/
   width: 100%;  
 }
@@ -902,5 +902,10 @@ footer {
 #login-button-panel {
   justify-content: space-evenly;
 }
+
+.a-cursor-point {
+  cursor: pointer;
+}
+
 }
 

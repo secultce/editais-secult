@@ -219,5 +219,3 @@ class PostagensController extends Controller
     return view('pesquisa', compact('posts'));
   }
 }    
-
-
